@@ -41,31 +41,31 @@
       "media": [
         {
           "type": "image",
-          "src": "",
+          "src": "/media/nikexjd_21.jpg",
           "span": "half"
         },
         {
           "type": "image",
-          "src": "",
+          "src": "/media/21.jpg",
           "span": "half"
         }
       ],
       "caption": "Campaign stills shot across one morning in the city.",
       "ink": "#FAF9F7",
       "layout": "editorial",
-      "heroSrc": "",
-      "slug": "lululemon",
-      "client": "Lululemon",
-      "intro": "A campaign built around movement in daylight, shot across one morning in the city.",
+      "heroSrc": "/media/nikexjd_14.jpg",
+      "slug": "Nike X JD",
+      "client": "JD",
+      "intro": "A campaign built around movement in daylight, shot across one morning in Rotterdam",
       "deliverables": "Campaign stills for retail and social",
       "heroType": "image",
       "kind": "photo",
       "role": "Photography",
       "article": "A campaign built around movement in daylight, shot across one morning in the city.",
-      "cover": "",
-      "title": "Lululemon",
+      "cover": "/media/nikexjd_14.jpg",
+      "title": "Nike X JD",
       "reel": true,
-      "year": "2025"
+      "year": "2024"
     },
     {
       "color": "#F7CE46",
