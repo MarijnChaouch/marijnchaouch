@@ -206,31 +206,31 @@
       "media": [
         {
           "type": "image",
-          "src": "",
+          "src": "/media/Provoke_BTS_SnipesXKappa_2.mp4",
           "span": "half"
         },
         {
           "type": "image",
-          "src": "",
+          "src": "/media/Provoke_BTS_SnipesXKappa_3.mp4",
           "span": "half"
         }
       ],
-      "caption": "Portraits made in the hour before a race weekend.",
+      "caption": "Shot across the run up to the tournament.",
       "ink": "#FAF9F7",
       "layout": "index",
-      "heroSrc": "",
-      "slug": "nyck-de-vries",
-      "client": "Nyck de Vries",
-      "intro": "A quiet portrait series made in the hour before a race weekend starts.",
-      "deliverables": "Portrait series",
-      "heroType": "image",
-      "kind": "photo",
-      "role": "Portrait",
-      "article": "A quiet portrait series made in the hour before a race weekend starts.",
+      "heroSrc": "/media/Provoke_BTS_SnipesXKappa_1.mp4",
+      "slug": "snipes-x-kappa",
+      "client": "Snipes & Provoke",
+      "intro": "Kappa x Snipes with Pepsi.de\nUnited by Attitude.",
+      "deliverables": "3 BTS videos and 9 socials",
+      "heroType": "video",
+      "kind": "video",
+      "role": "BTS and Socials videos ",
+      "article": "A campaign made in collaboration for the 2026 World Cup in the United States.",
       "cover": "",
-      "title": "Nyck de Vries",
+      "title": "Snipes X Kappa",
       "reel": false,
-      "year": "2024"
+      "year": "2026"
     },
     {
       "color": "#416FE4",
