@@ -138,28 +138,28 @@
       "color": "#D92F8A",
       "media": [
         {
-          "type": "image",
-          "src": "",
+          "type": "video",
+          "src": "/media/reel-2.mp4",
           "span": "half"
         },
         {
-          "type": "image",
-          "src": "",
+          "type": "video",
+          "src": "/media/reel-3.mp4",
           "span": "half"
         }
       ],
-      "caption": "Lookbook on location, one light, one palette.",
+      "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
       "layout": "split",
-      "heroSrc": "",
+      "heroSrc": "/media/reel-1.mp4",
       "slug": "pal-sporting-goods",
       "client": "PAL Sporting Goods",
-      "intro": "A lookbook shot on location, held together by one light and one palette.d",
-      "deliverables": "Lookbook and campaign stills",
-      "heroType": "image",
+      "intro": "SS26 for PAL Sporting Goods. On the pitch with The Amsterdam Pirates",
+      "deliverables": "Spring Summer 26 Videos",
+      "heroType": "video",
       "kind": "video",
       "role": "Videography",
-      "article": "A lookbook shot on location, held together by one light and one palette.",
+      "article": "",
       "cover": "",
       "title": "PAL Sporting Goods",
       "reel": true,
