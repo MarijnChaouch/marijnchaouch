@@ -99,7 +99,7 @@
       "year": "2026"
     },
     {
-      "color": "#419274",
+      "color": "#ffffff",
       "media": [
         {
           "type": "video",
@@ -118,7 +118,7 @@
         }
       ],
       "caption": "Two nights on the road, cut into one film.",
-      "ink": "#FAF9F7",
+      "ink": "#14110F",
       "layout": "panel",
       "heroSrc": "",
       "slug": "FilaSS24",
