@@ -4,12 +4,12 @@
       "color": "#2260ff",
       "media": [
         {
-          "type": "image",
-          "src": "",
+          "type": "video",
+          "src": "/media/rocks.mp4",
           "span": "half"
         },
         {
-          "type": "image",
+          "type": "video",
           "src": "",
           "span": "half"
         },
@@ -19,18 +19,18 @@
           "span": "full"
         }
       ],
-      "caption": "Immersive exhibition, Amsterdam. Photo and film in one pass.",
+      "caption": "For mizunorunningeurope we went to Gran Canaria to shoot the Neo Accera trail shoe. @NataliaMastrota was one of the first to test the Neo Accera in the hills of Tejeda, Gran Canaria.",
       "ink": "#FAF9F7",
       "layout": "split",
       "heroSrc": "/media/trailrun_recap-_final-.mp4",
-      "slug": "fabrique-des-lumieres",
-      "client": "Muzuno",
-      "intro": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
-      "deliverables": "One brand film, 13 shorts, two cutdowns for social",
+      "slug": "Mizuno-Neo-Accera",
+      "client": "MIzuno",
+      "intro": "Went to Gran Canaria for 3 days to launch the Neo Accera trail shoe. Captured and edited everything on site",
+      "deliverables": "1 Main video and 8 socials ",
       "heroType": "video",
       "kind": "video",
-      "role": "Photo and video",
-      "article": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
+      "role": "Videographer",
+      "article": "",
       "cover": "",
       "title": "Mizuno Neo Accera",
       "reel": true,
