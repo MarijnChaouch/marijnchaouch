@@ -1,0 +1,262 @@
+{
+  "projects": [
+    {
+      "title": "Fabrique des Lumières",
+      "slug": "fabrique-des-lumieres",
+      "client": "Fabrique des Lumières",
+      "year": "2026",
+      "kind": "video",
+      "role": "Photo and video",
+      "deliverables": "One brand film, twenty stills, three cutdowns for social",
+      "intro": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
+      "reel": true,
+      "cover": "",
+      "heroType": "video",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "video",
+          "src": "",
+          "span": "full"
+        }
+      ],
+      "color": "#416FE4",
+      "ink": "#FAF9F7",
+      "caption": "Immersive exhibition, Amsterdam. Photo and film in one pass.",
+      "article": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
+      "layout": "split"
+    },
+    {
+      "title": "Lululemon",
+      "slug": "lululemon",
+      "client": "Lululemon",
+      "year": "2025",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "Campaign stills for retail and social",
+      "intro": "A campaign built around movement in daylight, shot across one morning in the city.",
+      "reel": true,
+      "cover": "",
+      "heroType": "image",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#C92C1D",
+      "ink": "#FAF9F7",
+      "caption": "Campaign stills shot across one morning in the city.",
+      "article": "A campaign built around movement in daylight, shot across one morning in the city.",
+      "layout": "editorial"
+    },
+    {
+      "title": "Mizuno",
+      "slug": "mizuno",
+      "client": "Mizuno",
+      "year": "2025",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "Product and lifestyle stills",
+      "intro": "Product work that had to sit next to lifestyle frames without changing register.",
+      "reel": true,
+      "cover": "",
+      "heroType": "image",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#F7CE46",
+      "ink": "#14110F",
+      "caption": "Product and lifestyle in the same register.",
+      "article": "Product work that had to sit next to lifestyle frames without changing register.",
+      "layout": "index"
+    },
+    {
+      "title": "Sunnery James & Ryan Marciano",
+      "slug": "sunnery-james-ryan-marciano",
+      "client": "Sunnery James & Ryan Marciano",
+      "year": "2025",
+      "kind": "video",
+      "role": "Video and photo",
+      "deliverables": "Tour film and press stills",
+      "intro": "Two nights on the road, cut into one film that keeps the pace of the set.",
+      "reel": true,
+      "cover": "",
+      "heroType": "video",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "video",
+          "src": "",
+          "span": "full"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#419274",
+      "ink": "#FAF9F7",
+      "caption": "Two nights on the road, cut into one film.",
+      "article": "Two nights on the road, cut into one film that keeps the pace of the set.",
+      "layout": "panel"
+    },
+    {
+      "title": "PAL Sporting Goods",
+      "slug": "pal-sporting-goods",
+      "client": "PAL Sporting Goods",
+      "year": "2024",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "Lookbook and campaign stills",
+      "intro": "A lookbook shot on location, held together by one light and one palette.",
+      "reel": true,
+      "cover": "",
+      "heroType": "image",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#D92F8A",
+      "ink": "#FAF9F7",
+      "caption": "Lookbook on location, one light, one palette.",
+      "article": "A lookbook shot on location, held together by one light and one palette.",
+      "layout": "split"
+    },
+    {
+      "title": "Brooks",
+      "slug": "brooks",
+      "client": "Brooks",
+      "year": "2024",
+      "kind": "video",
+      "role": "Video",
+      "deliverables": "Brand film and cutdowns",
+      "intro": "A running film that stays with one athlete from first light to the end of the route.",
+      "reel": true,
+      "cover": "",
+      "heroType": "video",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "video",
+          "src": "",
+          "span": "full"
+        },
+        {
+          "type": "video",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#E56A2D",
+      "ink": "#14110F",
+      "caption": "A running film from first light to the end of the route.",
+      "article": "A running film that stays with one athlete from first light to the end of the route.",
+      "layout": "editorial"
+    },
+    {
+      "title": "Nyck de Vries",
+      "slug": "nyck-de-vries",
+      "client": "Nyck de Vries",
+      "year": "2024",
+      "kind": "photo",
+      "role": "Portrait",
+      "deliverables": "Portrait series",
+      "intro": "A quiet portrait series made in the hour before a race weekend starts.",
+      "reel": false,
+      "cover": "",
+      "heroType": "image",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#0F1011",
+      "ink": "#FAF9F7",
+      "caption": "Portraits made in the hour before a race weekend.",
+      "article": "A quiet portrait series made in the hour before a race weekend starts.",
+      "layout": "index"
+    },
+    {
+      "title": "Foundershouse",
+      "slug": "foundershouse",
+      "client": "Foundershouse",
+      "year": "2024",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "Brand stills",
+      "intro": "Brand images for a place that is really about the people passing through it.",
+      "reel": false,
+      "cover": "",
+      "heroType": "image",
+      "heroSrc": "",
+      "media": [
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "",
+          "span": "half"
+        }
+      ],
+      "color": "#416FE4",
+      "ink": "#FAF9F7",
+      "caption": "Brand images about the people passing through.",
+      "article": "Brand images for a place that is really about the people passing through it.",
+      "layout": "panel"
+    }
+  ]
+}

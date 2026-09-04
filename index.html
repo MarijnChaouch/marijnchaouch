@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marijn-Sohail Chaouch — Photography and Film</title>
+<meta name="description" content="Marijn-Sohail Chaouch is a photographer and filmmaker based in Amsterdam, making cinematic stills and motion inside one concept.">
+<meta property="og:title" content="Marijn-Sohail Chaouch">
+<meta property="og:description" content="Photography and film, Amsterdam.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<main class="home">
+  <div class="wrap">
+
+    <header class="bar">
+      <div class="mark">Photography and Film</div>
+      <button class="burger" data-menu type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+      <nav data-nav>
+        <a class="on" href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="home-row">
+      <div class="home-left">
+        <h1>Marijn-Sohail<br>Chaouch</h1>
+        <p class="lede" data-t="tagline">Photographer and filmmaker based in Amsterdam.</p>
+      </div>
+
+      <div class="reel" data-reel></div>
+
+      <div class="home-right">
+        <div class="eyebrow">Selected clients</div>
+        <div class="clients" data-clients></div>
+      </div>
+    </div>
+
+  <p data-offline hidden style="font-size:13px;color:#8C857C;padding:24px 0">Open deze site via je webadres. Als je het bestand rechtstreeks op je computer opent, kan de browser je projecten en teksten niet inladen.</p>
+
+    <footer class="foot">
+      <span data-t="location">Amsterdam, NL</span>
+      <span data-t="status">Available for commissions</span>
+      <span>&copy; 2026</span>
+    </footer>
+
+  </div>
+</main>
+<script src="data/projects.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", function (user) {
+    if (!user) {
+      window.netlifyIdentity.on("login", function () { document.location.href = "/admin/"; });
+    }
+  });
+}
+</script>
+</body>
+</html>

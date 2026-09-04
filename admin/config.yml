@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "media"
+public_folder: "/media"
+
+locale: "nl"
+
+collections:
+  - name: "projecten"
+    label: "Projecten"
+    files:
+      - name: "lijst"
+        label: "Alle projecten"
+        file: "data/projects.json"
+        format: "json"
+        fields:
+          - label: "Projecten"
+            name: "projects"
+            widget: "list"
+            label_singular: "Project"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Webadres deel", name: "slug", widget: "string", hint: "Kleine letters en streepjes, bijvoorbeeld nyck-de-vries" }
+              - { label: "Klant", name: "client", widget: "string" }
+              - { label: "Jaar", name: "year", widget: "string" }
+              - { label: "Soort", name: "kind", widget: "select", options: [{ label: "Foto", value: "photo" }, { label: "Video", value: "video" }] }
+              - { label: "Rol", name: "role", widget: "string", required: false }
+              - { label: "Opgeleverd", name: "deliverables", widget: "string", required: false }
+              - { label: "Introtekst", name: "intro", widget: "text", required: false }
+              - { label: "Achtergrondkleur van de projectpagina", name: "color", widget: "color", required: false, default: "#EAE7E2" }
+              - { label: "Tekstkleur", name: "ink", widget: "select", required: false, default: "#14110F", options: [{ label: "Donker", value: "#14110F" }, { label: "Licht", value: "#FAF9F7" }] }
+              - label: "Opmaak van de pagina"
+                name: "layout"
+                widget: "select"
+                default: "editorial"
+                options:
+                  - { label: "Gesplitst, beeld links", value: "split" }
+                  - { label: "Redactioneel, beeld midden", value: "editorial" }
+                  - { label: "Index, beeld boven", value: "index" }
+                  - { label: "Paneel, beeld links en tekst rechts", value: "panel" }
+              - { label: "Bijschrift links", name: "caption", widget: "text", required: false }
+              - { label: "Tekst rechts", name: "article", widget: "text", required: false }
+              - { label: "Op de homepage tonen", name: "reel", widget: "boolean", default: true }
+              - { label: "Omslagbeeld", name: "cover", widget: "image", required: false, hint: "Dit beeld staat in de grid en op de homepage" }
+              - { label: "Soort hoofdbeeld", name: "heroType", widget: "select", options: [{ label: "Foto", value: "image" }, { label: "Video", value: "video" }], default: "image" }
+              - { label: "Hoofdbeeld", name: "heroSrc", widget: "file", required: false, hint: "Grote foto of video bovenaan de projectpagina" }
+              - label: "Beeld op de projectpagina"
+                name: "media"
+                widget: "list"
+                required: false
+                label_singular: "Beeld"
+                fields:
+                  - { label: "Soort", name: "type", widget: "select", options: [{ label: "Foto", value: "image" }, { label: "Video", value: "video" }] }
+                  - { label: "Bestand", name: "src", widget: "file", required: false }
+                  - { label: "Breedte", name: "span", widget: "select", options: [{ label: "Halve breedte", value: "half" }, { label: "Volle breedte", value: "full" }], default: "half" }
+
+  - name: "teksten"
+    label: "Teksten"
+    files:
+      - name: "algemeen"
+        label: "Teksten en gegevens"
+        file: "data/site.json"
+        format: "json"
+        fields:
+          - { label: "Zin op de homepage", name: "tagline", widget: "string" }
+          - { label: "Plaats", name: "location", widget: "string" }
+          - { label: "Status", name: "status", widget: "string", hint: "Bijvoorbeeld Available for commissions" }
+          - { label: "Portretfoto", name: "portrait", widget: "image", required: false }
+          - { label: "Vierkante foto naast de tekst", name: "portrait2", widget: "image", required: false }
+          - { label: "Over jou, eerste alinea", name: "aboutIntro", widget: "text" }
+          - { label: "Over jou, tweede alinea", name: "aboutTwo", widget: "text", required: false }
+          - { label: "Over jou, derde alinea", name: "aboutThree", widget: "text", required: false }
+          - { label: "Diensten", name: "services", widget: "list", field: { label: "Regel", name: "regel", widget: "string" } }
+          - { label: "Materiaal", name: "kit", widget: "list", field: { label: "Regel", name: "regel", widget: "string" } }
+          - { label: "Klanten", name: "clients", widget: "list", field: { label: "Regel", name: "regel", widget: "string" } }
+          - { label: "Zin op de contactpagina", name: "contactHeading", widget: "text" }
+          - { label: "E-mailadres", name: "email", widget: "string" }
+          - { label: "Instagram link", name: "instagram", widget: "string", required: false }
+          - { label: "Vimeo link", name: "vimeo", widget: "string", required: false }
+          - { label: "LinkedIn link", name: "linkedin", widget: "string", required: false }
+          - { label: "Tarieven regel", name: "booking", widget: "string", required: false }
+          - { label: "KvK nummer", name: "kvk", widget: "string", required: false }
