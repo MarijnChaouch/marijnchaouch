@@ -72,31 +72,31 @@
       "media": [
         {
           "type": "image",
-          "src": "",
+          "src": "/media/screenshot-2026-09-04-at-15.05.18.png",
           "span": "half"
         },
         {
           "type": "image",
-          "src": "",
+          "src": "/media/screenshot-2026-09-04-at-15.06.43.png",
           "span": "half"
         }
       ],
-      "caption": "Product and lifestyle in the same register.",
+      "caption": "Shot in Spain, where rocky terrains, red-toned water streams and warm earth tones shape the landscape, the campaign captures movement through the environment.",
       "ink": "#14110F",
       "layout": "index",
-      "heroSrc": "",
-      "slug": "mizuno",
-      "client": "Mizuno",
-      "intro": "Product work that had to sit next to lifestyle frames without changing register.",
-      "deliverables": "Product and lifestyle stills",
-      "heroType": "image",
-      "kind": "photo",
-      "role": "Photography",
-      "article": "Product work that had to sit next to lifestyle frames without changing register.",
-      "cover": "",
-      "title": "Mizuno",
+      "heroSrc": "/media/main_final.mp4",
+      "slug": "Hi Tec",
+      "client": "HI TEC HTS74",
+      "intro": "From rocky terrains to red-toned streams.\nA campaign shaped by movement.\n\nInspired by the iconic “Walk on Water” video.\nBuilt for versatility, designed for everyday.",
+      "deliverables": "Main Video + 2 Cutdowns ",
+      "heroType": "video",
+      "kind": "video",
+      "role": "Videography",
+      "article": "Shot in Spain, where rocky terrains, red toned water streams and warm earth tones shape the landscape, the campaign captures movement through the environment.",
+      "cover": "/media/screenshot-2026-09-04-at-15.05.18.png",
+      "title": "Hi Tec",
       "reel": true,
-      "year": "2025"
+      "year": "2026"
     },
     {
       "color": "#419274",
@@ -121,18 +121,18 @@
       "ink": "#FAF9F7",
       "layout": "panel",
       "heroSrc": "",
-      "slug": "sunnery-james-ryan-marciano",
-      "client": "Sunnery James & Ryan Marciano",
+      "slug": "FilaSS24",
+      "client": "Fila & The spot agency ",
       "intro": "Two nights on the road, cut into one film that keeps the pace of the set.",
       "deliverables": "Tour film and press stills",
       "heroType": "video",
-      "kind": "video",
+      "kind": "photo",
       "role": "Video and photo",
       "article": "Two nights on the road, cut into one film that keeps the pace of the set.",
       "cover": "",
-      "title": "Sunnery James & Ryan Marciano",
+      "title": "Fila SS24",
       "reel": true,
-      "year": "2025"
+      "year": "2024"
     },
     {
       "color": "#D92F8A",
