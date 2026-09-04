@@ -139,19 +139,24 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/reel-2.mp4",
+          "src": "/media/reel-1.mp4",
           "span": "half"
         },
         {
           "type": "video",
-          "src": "/media/reel-3.mp4",
+          "src": "/media/reel-2.mp4",
           "span": "half"
+        },
+        {
+          "span": "half",
+          "type": "video",
+          "src": "/media/reel-3.mp4"
         }
       ],
       "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
       "layout": "split",
-      "heroSrc": "/media/reel-1.mp4",
+      "heroSrc": "/media/teaser.mp4",
       "slug": "pal-sporting-goods",
       "client": "PAL Sporting Goods",
       "intro": "SS26 for PAL Sporting Goods. On the pitch with The Amsterdam Pirates",
