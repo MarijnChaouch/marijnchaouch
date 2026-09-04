@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "color": "#1355ff",
+      "color": "#2260ff",
       "media": [
         {
           "type": "image",
@@ -22,17 +22,17 @@
       "caption": "Immersive exhibition, Amsterdam. Photo and film in one pass.",
       "ink": "#FAF9F7",
       "layout": "split",
-      "heroSrc": "",
+      "heroSrc": "/media/trailrun_recap-_final-.mp4",
       "slug": "fabrique-des-lumieres",
-      "client": "Fabrique des Lumières",
+      "client": "Muzuno",
       "intro": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
-      "deliverables": "One brand film, twenty stills, three cutdowns for social",
+      "deliverables": "One brand film, 13 shorts, two cutdowns for social",
       "heroType": "video",
       "kind": "video",
       "role": "Photo and video",
       "article": "An immersive exhibition asks for images that keep moving even when they stand still. We shot the room the way a visitor walks into it, then cut the film around the same light.",
       "cover": "",
-      "title": "Fabrique des Lumières",
+      "title": "Mizuno Neo Accera",
       "reel": true,
       "year": "2026"
     },
