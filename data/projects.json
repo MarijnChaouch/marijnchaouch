@@ -102,33 +102,33 @@
       "color": "#ffffff",
       "media": [
         {
-          "type": "video",
-          "src": "",
+          "type": "image",
+          "src": "/media/fila_ss24_thespot_25-copy.jpg",
           "span": "full"
         },
         {
           "type": "image",
-          "src": "",
+          "src": "/media/fila_ss24_thespot_16.jpg",
           "span": "half"
         },
         {
           "type": "image",
-          "src": "",
+          "src": "/media/screenshot-2026-09-04-at-16.58.48.png",
           "span": "half"
         }
       ],
-      "caption": "Two nights on the road, cut into one film.",
+      "caption": "Shot the official FILA Fall/Winter 2024 collection",
       "ink": "#14110F",
       "layout": "panel",
-      "heroSrc": "",
+      "heroSrc": "/media/denieuwe_vernissage-02.jpg",
       "slug": "FilaSS24",
       "client": "Fila & The spot agency ",
-      "intro": "Two nights on the road, cut into one film that keeps the pace of the set.",
-      "deliverables": "Tour film and press stills",
+      "intro": "Shot the official FILA Fall/Winter 2024 collection",
+      "deliverables": "24 Photos + 5 social videos and bts",
       "heroType": "video",
       "kind": "photo",
       "role": "Video and photo",
-      "article": "Two nights on the road, cut into one film that keeps the pace of the set.",
+      "article": "Client @filaeurope\nArt direction @vcreedijk\nPhotography @shotbymarijn\nStyling @pippeters\nTalent @sterremarith",
       "cover": "/media/denieuwe_vernissage-02.jpg",
       "title": "Fila SS24",
       "reel": true,
