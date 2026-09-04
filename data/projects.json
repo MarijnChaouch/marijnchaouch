@@ -99,7 +99,7 @@
       "year": "2026"
     },
     {
-      "color": "#ffffff",
+      "color": "#000000",
       "media": [
         {
           "type": "image",
@@ -118,7 +118,7 @@
         }
       ],
       "caption": "Shot the official FILA Fall/Winter 2024 collection",
-      "ink": "#14110F",
+      "ink": "#FAF9F7",
       "layout": "panel",
       "heroSrc": "/media/denieuwe_vernissage-02.jpg",
       "slug": "FilaSS24",
