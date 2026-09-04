@@ -10,13 +10,8 @@
         },
         {
           "type": "video",
-          "src": "",
+          "src": "/media/13.mp4",
           "span": "half"
-        },
-        {
-          "type": "video",
-          "src": "",
-          "span": "full"
         }
       ],
       "caption": "For mizunorunningeurope we went to Gran Canaria to shoot the Neo Accera trail shoe. @NataliaMastrota was one of the first to test the Neo Accera in the hills of Tejeda, Gran Canaria.",
@@ -171,33 +166,38 @@
       "year": "2026"
     },
     {
-      "color": "#E56A2D",
+      "color": "#50e983",
       "media": [
         {
-          "type": "video",
-          "src": "",
-          "span": "full"
+          "type": "image",
+          "src": "/media/transavia_23.jpg",
+          "span": "half"
         },
         {
-          "type": "video",
-          "src": "",
+          "type": "image",
+          "src": "/media/transavia_13.jpg",
           "span": "half"
+        },
+        {
+          "span": "full",
+          "src": "/media/dsc08960.jpg",
+          "type": "image"
         }
       ],
-      "caption": "A running film from first light to the end of the route.",
-      "ink": "#14110F",
+      "caption": "sick project to be involved in!🛩️",
+      "ink": "#FAF9F7",
       "layout": "editorial",
-      "heroSrc": "",
-      "slug": "brooks",
-      "client": "Brooks",
-      "intro": "A running film that stays with one athlete from first light to the end of the route.",
-      "deliverables": "Brand film and cutdowns",
-      "heroType": "video",
-      "kind": "video",
-      "role": "Video",
-      "article": "A running film that stays with one athlete from first light to the end of the route.",
-      "cover": "",
-      "title": "Brooks",
+      "heroSrc": "/media/transavia_19.jpg",
+      "slug": "Transavia",
+      "client": "Transavia Untold agency ",
+      "intro": "Captured during the new @transavia ad by @untoldstories.studio sick project to be involved in!🛩️",
+      "deliverables": "20 Stills",
+      "heroType": "image",
+      "kind": "photo",
+      "role": "Photography",
+      "article": "",
+      "cover": "/media/transavia_19.jpg",
+      "title": "Transavia",
       "reel": true,
       "year": "2024"
     },
