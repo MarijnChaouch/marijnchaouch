@@ -9,7 +9,8 @@
     return n;
   }
 
-  function media(type, src, label, cls) {
+  function media(type, src, label, cls, opts) {
+    opts = opts || {};
     var box = el('div', cls || '');
     if (!src) {
       box.appendChild(el('div', 'ph', '<span>' + (type === 'video' ? 'Video' : 'Photo') + '</span><b>' + (label || '') + '</b>'));
@@ -17,9 +18,18 @@
     }
     if (type === 'video') {
       var v = document.createElement('video');
-      v.src = src; v.muted = true; v.loop = true; v.autoplay = true;
+      v.src = src;
       v.setAttribute('playsinline', '');
-      box.appendChild(v);
+      if (opts.poster) v.poster = opts.poster;
+      if (opts.play === 'click') {
+        v.preload = 'metadata';
+        box.classList.add('with-play');
+        box.appendChild(v);
+        box.appendChild(el('button', 'playbtn', '<span class="sr">Play</span>'));
+      } else {
+        v.muted = true; v.loop = true; v.autoplay = true;
+        box.appendChild(v);
+      }
     } else {
       var i = document.createElement('img');
       i.src = src; i.alt = label || ''; i.loading = 'lazy';
@@ -27,6 +37,19 @@
     }
     return box;
   }
+
+  /* speelknop: geluid aan, bediening zichtbaar */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.playbtn') : null;
+    if (!btn) return;
+    var box = btn.parentElement;
+    var v = box.querySelector('video');
+    if (!v) return;
+    v.muted = false;
+    v.controls = true;
+    v.play();
+    box.classList.add('playing');
+  });
 
   function rgba(hex, a) {
     var h = (hex || '#14110F').replace('#', '');
@@ -51,13 +74,19 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  function shot(type, src, label, cls) {
+  function shot(type, src, label, cls, opts) {
+    opts = opts || {};
     if (!src) {
       return '<div class="' + cls + '"><div class="ph"><span>' + (type === 'video' ? 'Video' : 'Photo') +
         '</span><b>' + esc(label) + '</b></div></div>';
     }
     if (type === 'video') {
-      return '<div class="' + cls + '"><video src="' + esc(src) + '" muted loop autoplay playsinline></video></div>';
+      var poster = opts.poster ? ' poster="' + esc(opts.poster) + '"' : '';
+      if (opts.play === 'click') {
+        return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + poster +
+          ' preload="metadata" playsinline></video><button class="playbtn"><span class="sr">Play</span></button></div>';
+      }
+      return '<div class="' + cls + '"><video src="' + esc(src) + '"' + poster + ' muted loop autoplay playsinline></video></div>';
     }
     return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(label) + '" loading="lazy"></div>';
   }
@@ -65,9 +94,9 @@
   function pieces(p) {
     var m = p.media || [];
     return {
-      hero: shot(p.heroType || 'image', p.heroSrc, p.title, 'case-img'),
-      one: m[0] ? shot(m[0].type, m[0].src, p.title, 'case-img') : shot('image', '', p.title, 'case-img'),
-      two: m[1] ? shot(m[1].type, m[1].src, p.title, 'case-img') : shot('image', '', p.title, 'case-img')
+      hero: shot(p.heroType || 'image', p.heroSrc, p.title, 'case-img', { play: p.heroPlay, poster: p.heroPoster }),
+      one: m[0] ? shot(m[0].type, m[0].src, p.title, 'case-img', m[0]) : shot('image', '', p.title, 'case-img'),
+      two: m[1] ? shot(m[1].type, m[1].src, p.title, 'case-img', m[1]) : shot('image', '', p.title, 'case-img')
     };
   }
 
@@ -170,7 +199,7 @@
       var val = S[key];
       if (val == null || val === '') return;
       if (n.tagName === 'A' && key !== 'email') { n.href = val; return; }
-      if (key === 'email') { n.href = 'mailto:' + val; n.textContent = val; return; }
+      if (key === 'email') { n.href = 'mailto:' + val; if (!n.hasAttribute('data-keep')) n.textContent = val; return; }
       n.textContent = val;
     });
 
@@ -202,21 +231,61 @@
 
     var track = el('div', 'reel-track');
     items.concat([items[0]]).forEach(function (p) {
-      track.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame'));
+      var cell = el('div', 'reel-cell');
+      cell.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame'));
+      var cap = el('a', 'reel-cap', p.title);
+      cap.href = 'project.html?p=' + encodeURIComponent(p.slug);
+      cell.appendChild(cap);
+      track.appendChild(cell);
     });
     host.appendChild(track);
 
-    var names = items.map(function (p) { var b = el('b', '', p.title); list.appendChild(b); return b; });
+    var names = items.map(function (p) {
+      var b = el('b', '', p.title);
+      var a = el('a', 'client-link');
+      a.href = 'project.html?p=' + encodeURIComponent(p.slug);
+      a.appendChild(b);
+      list.appendChild(a);
+      return b;
+    });
 
     function size() {
       var h = host.clientHeight || window.innerHeight;
       if (!h) return;
       var ratio = window.innerWidth >= 1100 ? 0.72 : 0.62;
       var fh = Math.round(h * ratio);
+      var top = Math.round((h - fh) / 2);
+
+      /* hoogte van het bijschrift dat onder het beeld meeloopt */
+      var cap = track.querySelector('.reel-cap');
+      var capH = (cap && cap.offsetParent) ? Math.ceil(cap.getBoundingClientRect().height) + 10 : 0;
+
+      /* op telefoon en tablet houdt het beeld altijd afstand van de tekst */
+      if (window.innerWidth < 1100) {
+        var base = host.getBoundingClientRect().top;
+        var left = document.querySelector('.home-left');
+        var right = document.querySelector('.home-right');
+        var low = (right && right.offsetParent) ? right : document.querySelector('.home .foot');
+        var gap = 28;
+        var from = left ? Math.round(left.getBoundingClientRect().bottom - base) + gap : top;
+        var to = low ? Math.round(low.getBoundingClientRect().top - base) - gap : h;
+        var room = to - from - capH;
+        if (room > 200) {
+          top = from;
+          fh = room;
+        } else {
+          top = Math.max(from, top);
+          fh = Math.min(fh, Math.max(200, h - top - capH - 24));
+        }
+      }
+
       track.style.setProperty('--step', h + 'px');
-      track.style.gap = (h - fh) + 'px';
-      track.style.paddingTop = Math.round((h - fh) / 2) + 'px';
-      Array.prototype.forEach.call(track.children, function (f) { f.style.height = fh + 'px'; });
+      track.style.gap = (h - fh - capH) + 'px';
+      track.style.paddingTop = top + 'px';
+      Array.prototype.forEach.call(track.children, function (cell) {
+        var f = cell.querySelector ? cell.querySelector('.reel-frame') : null;
+        (f || cell).style.height = fh + 'px';
+      });
     }
 
     size();
@@ -237,14 +306,41 @@
     paint();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || items.length < 2) return;
 
-    setInterval(function () {
-      if (document.hidden) return;
+    /* video's die de browser heeft gepauzeerd weer aanzetten */
+    function wake() {
+      Array.prototype.forEach.call(track.querySelectorAll('video'), function (v) {
+        if (v.paused && !v.hasAttribute('controls')) {
+          var go = v.play();
+          if (go && go.catch) go.catch(function () {});
+        }
+      });
+    }
+
+    /* één klok, geen losse timers die kunnen blijven hangen */
+    var timer = null, blurOff = null, step = null;
+
+    function clear() {
+      if (timer) { clearTimeout(timer); timer = null; }
+      if (blurOff) { clearTimeout(blurOff); blurOff = null; }
+      if (step) { clearTimeout(step); step = null; }
+    }
+
+    function settle() {
+      track.classList.remove('moving');
+      wake();
+    }
+
+    function advance() {
       i += 1;
       track.classList.add('moving');
       paint();
-      setTimeout(function () { track.classList.remove('moving'); }, travel * 0.55);
-      if (i === items.length) {
-        setTimeout(function () {
+
+      if (blurOff) clearTimeout(blurOff);
+      blurOff = setTimeout(settle, travel * 0.55);
+
+      if (i >= items.length) {
+        if (step) clearTimeout(step);
+        step = setTimeout(function () {
           track.classList.add('jump');
           i = 0;
           paint();
@@ -253,7 +349,38 @@
           });
         }, travel);
       }
-    }, wait);
+    }
+
+    function loop() {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (!document.hidden) advance();
+        loop();
+      }, wait);
+    }
+
+    /* het blur weghalen zodra de beweging echt klaar is */
+    track.addEventListener('transitionend', function (e) {
+      if (e.propertyName === 'transform') settle();
+    });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { clear(); return; }
+      track.classList.remove('moving');
+      track.classList.add('jump');
+      i = 0;
+      paint();
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { track.classList.remove('jump'); });
+      });
+      wake();
+      loop();
+    });
+
+    window.addEventListener('pageshow', wake);
+    setInterval(wake, 4000);
+
+    loop();
   }
 
   /* work */
@@ -296,7 +423,7 @@
     if (n < 0) n = 0;
     var p = P[n], next = P[(n + 1) % P.length];
 
-    document.title = p.title + ' \u2014 Marijn-Sohail Chaouch';
+    document.title = p.title + ' \u2014 Marijn Chaouch';
     paint(p);
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
@@ -308,7 +435,7 @@
       stack.innerHTML = '';
       var used = (p.layout === 'split') ? 1 : 0;
       (p.media || []).slice(used).forEach(function (m) {
-        var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''));
+        var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);
         box.style.aspectRatio = m.span === 'full' ? '16 / 9' : '4 / 5';
         stack.appendChild(box);
       });
