@@ -85,7 +85,7 @@
       "intro": "From rocky terrains to red-toned streams.\nA campaign shaped by movement.\n\nInspired by the iconic “Walk on Water” video.\nBuilt for versatility, designed for everyday.",
       "deliverables": "Main Video + 2 Cutdowns ",
       "heroType": "video",
-      "kind": "photo",
+      "kind": "video",
       "role": "Videography",
       "article": "Shot in Spain, where rocky terrains, red toned water streams and warm earth tones shape the landscape, the campaign captures movement through the environment.",
       "cover": "",
@@ -237,7 +237,7 @@
       "media": [
         {
           "type": "image",
-          "src": "",
+          "src": "/media/denieuwe_vernissage-01.jpg",
           "span": "half"
         },
         {
@@ -249,17 +249,17 @@
       "caption": "Brand images about the people passing through.",
       "ink": "#FAF9F7",
       "layout": "panel",
-      "heroSrc": "",
-      "slug": "foundershouse",
-      "client": "Foundershouse",
-      "intro": "Brand images for a place that is really about the people passing through it.",
-      "deliverables": "Brand stills",
+      "heroSrc": "/media/17102023_presskit_brazil_shotbymarijn-14.jpg",
+      "slug": "Sjrm ",
+      "client": "Sunnery James & Ryan Marciano",
+      "intro": "",
+      "deliverables": "Press kits, tour coverage and more",
       "heroType": "image",
       "kind": "photo",
       "role": "Photography",
       "article": "Brand images for a place that is really about the people passing through it.",
       "cover": "",
-      "title": "Foundershouse",
+      "title": "Sunnery James & Ryan Marciano",
       "reel": false,
       "year": "2024"
     }
