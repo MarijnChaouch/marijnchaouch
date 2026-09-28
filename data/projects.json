@@ -233,7 +233,7 @@
       "year": "2026"
     },
     {
-      "color": "#416FE4",
+      "color": "#ffffff",
       "media": [
         {
           "type": "image",
@@ -258,7 +258,7 @@
       "kind": "photo",
       "role": "Photography",
       "article": "Brand images for a place that is really about the people passing through it.",
-      "cover": "",
+      "cover": "/media/denieuwe_vernissage-01.jpg",
       "title": "Sunnery James & Ryan Marciano",
       "reel": false,
       "year": "2024"
