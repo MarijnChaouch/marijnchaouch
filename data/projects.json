@@ -306,6 +306,33 @@
           "span": "half"
         }
       ]
+    },
+    {
+      "title": "Personal Project",
+      "slug": "personal-project",
+      "look": 5,
+      "client": "Personal",
+      "year": "2026",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "",
+      "intro": "",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "gallery",
+      "reel": false,
+      "cover": "/media/morocco_road.jpg",
+      "heroType": "image",
+      "heroSrc": "/media/morocco_road.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/morocco_driver.jpg",
+          "span": "half"
+        }
+      ]
     }
   ]
 }
