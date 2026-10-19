@@ -53,3 +53,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Nieuwe beelden die Marijn aanlevert eerst verkleinen voor ze in `media/` komen: foto's naar sRGB, max 2000 px,
   JPEG kwaliteit 82 (Pillow); video's met ffmpeg H.264 `-crf 23 -preset slow -movflags +faststart`, zonder geluid
   behalve lange films, en breder dan 1280 px alleen als het beeld groot in beeld staat.
+- Elke video in `media/` heeft een stilstaand beeld ernaast met dezelfde naam plus `-poster.jpg`
+  (eerste frame: `ffmpeg -i x.mp4 -frames:v 1 -q:v 4 x-poster.jpg`). `site.js` gebruikt dat automatisch.
+- Videoprojecten krijgen als `cover` een korte preview (`naam-preview.mp4`, 6 seconden, max 720 hoog of 960 breed,
+  `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
+- `site.js` laadt en speelt video's pas als ze in beeld zijn (IntersectionObserver) en pauzeert ze daarbuiten.

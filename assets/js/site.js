@@ -9,6 +9,31 @@
     return n;
   }
 
+  /* stilstaand beeld naast elke video: naam-poster.jpg */
+  function poster(src) { return String(src || '').replace(/\.mp4$/i, '-poster.jpg'); }
+
+  /* video's pas laden en afspelen als ze in beeld zijn, en pauzeren als ze weg zijn */
+  var seen = window.IntersectionObserver ? new IntersectionObserver(function (list) {
+    list.forEach(function (e) {
+      var v = e.target;
+      v.inview = e.isIntersecting;
+      if (e.isIntersecting) {
+        if (!v.getAttribute('src')) v.src = v.getAttribute('data-src');
+        var go = v.play();
+        if (go && go.catch) go.catch(function () {});
+      } else if (!v.controls) {
+        v.pause();
+      }
+    });
+  }, { rootMargin: '200px 0px' }) : null;
+
+  function watch(v) {
+    if (seen) { seen.observe(v); return; }
+    v.inview = true;
+    v.src = v.getAttribute('data-src');
+    v.autoplay = true;
+  }
+
   function media(type, src, label, cls, opts) {
     opts = opts || {};
     var box = el('div', cls || '');
@@ -18,17 +43,19 @@
     }
     if (type === 'video') {
       var v = document.createElement('video');
-      v.src = src;
       v.setAttribute('playsinline', '');
-      if (opts.poster) v.poster = opts.poster;
+      v.poster = opts.poster || poster(src);
       if (opts.play === 'click') {
+        v.src = src;
         v.preload = 'metadata';
         box.classList.add('with-play');
         box.appendChild(v);
         box.appendChild(el('button', 'playbtn', '<span class="sr">Play</span>'));
       } else {
-        v.muted = true; v.loop = true; v.autoplay = true;
+        v.muted = true; v.loop = true;
+        v.setAttribute('data-src', src);
         box.appendChild(v);
+        watch(v);
       }
     } else {
       var i = document.createElement('img');
@@ -81,12 +108,12 @@
         '</span><b>' + esc(label) + '</b></div></div>';
     }
     if (type === 'video') {
-      var poster = opts.poster ? ' poster="' + esc(opts.poster) + '"' : '';
+      var still = ' poster="' + esc(opts.poster || poster(src)) + '"';
       if (opts.play === 'click') {
-        return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + poster +
+        return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + still +
           ' preload="metadata" playsinline></video><button class="playbtn"><span class="sr">Play</span></button></div>';
       }
-      return '<div class="' + cls + '"><video src="' + esc(src) + '"' + poster + ' muted loop autoplay playsinline></video></div>';
+      return '<div class="' + cls + '"><video data-src="' + esc(src) + '"' + still + ' muted loop playsinline preload="none"></video></div>';
     }
     return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(label) + '" loading="lazy"></div>';
   }
@@ -313,7 +340,7 @@
     /* video's die de browser heeft gepauzeerd weer aanzetten */
     function wake() {
       Array.prototype.forEach.call(track.querySelectorAll('video'), function (v) {
-        if (v.paused && !v.hasAttribute('controls')) {
+        if (v.paused && v.inview && v.getAttribute('src') && !v.hasAttribute('controls')) {
           var go = v.play();
           if (go && go.catch) go.catch(function () {});
         }
@@ -433,7 +460,7 @@
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
     host.innerHTML = caseMarkup(p);
-    Array.prototype.forEach.call(host.querySelectorAll('video'), function (v) { v.muted = true; });
+    Array.prototype.forEach.call(host.querySelectorAll('video[data-src]'), function (v) { v.muted = true; watch(v); });
 
     var stack = document.querySelector('[data-stack]');
     if (stack) {
