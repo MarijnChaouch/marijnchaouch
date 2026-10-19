@@ -76,6 +76,12 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   Bekijk een andere opzet met `?layout=` achter het adres. Titels met `data-fit` worden in `site.js` precies op breedte gezet.
 - De beelden onder een project staan in hun eigen vorm (niets bijsnijden) en verspringen links/rechts.
 
+## About en Contact
+
+- Beide in de donkere RUE-stijl (naar het RUE Proposal-template dat Marijn mooi vindt): donkere achtergrond, lichtgrijze tekst,
+  portret in zwart-wit, een groot woord ('About', 'CONTACT') op breedte gezet met `data-fit`.
+- Geen genummerde, gecentreerde kolommen ('1 Services'): Marijn vindt die niet mooi. Koppen als grote tekst mag wel.
+
 ## Opmaak van Work
 
 - Elk project op Work heeft een eigen opzet (`look-1` t/m `look-6`): 1 verspringende titel, 2 alles rechts,

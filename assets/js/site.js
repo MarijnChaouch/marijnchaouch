@@ -698,6 +698,7 @@
         P = (out[0] && out[0].projects) || [];
         S = out[1] || {};
         texts();
+        fit();
         reel();
         grid();
         project();

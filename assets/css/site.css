@@ -1798,3 +1798,110 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
   .gallery-facts { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 40px; font-size: 13px; }
   .gallery-facts .back { grid-column: auto; }
 }
+
+/* ---------- RUE-stijl: About en Contact, donker met lichtgrijze tekst ---------- */
+
+.rue-page { --rue: #141210; --rueink: #E6E2DB; --ruemute: rgba(230, 226, 219, .55); --rueline: rgba(230, 226, 219, .16); background: var(--rue); color: var(--rueink); }
+.rue-page .bar nav a { color: var(--ruemute); }
+.rue-page .bar nav a.on { color: var(--rueink); }
+.rue-page .bar .mark { color: var(--rueink); }
+.rue-page .burger span { background: var(--rueink); }
+.rue-page .ph { background: #23201d; }
+
+.rue-top, .rue-bottom, .rue-foot {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ruemute);
+}
+.rue-top span:last-child, .rue-bottom span:last-child, .rue-foot span:last-child { text-align: right; }
+
+.rue-word {
+  margin: 0;
+  font-size: 120px;
+  font-weight: 700;
+  line-height: .8;
+  letter-spacing: -0.05em;
+  color: var(--rueink);
+  white-space: nowrap;
+}
+.rue-word span { display: inline-block; }
+.rue-word-caps { text-transform: uppercase; font-weight: 500; letter-spacing: -0.04em; }
+
+/* about */
+.rue-about { display: flex; flex-direction: column; margin: 0 calc(var(--pad) * -1); }
+.rue-panel { display: flex; flex-direction: column; gap: 32px; padding: 6px var(--pad) 18px; }
+.rue-copy { display: flex; flex-direction: column; gap: 24px; }
+.rue-statement {
+  margin: 0;
+  font-size: clamp(22px, 6.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+}
+.rue-small { display: flex; flex-direction: column; gap: 12px; font-size: 11px; font-weight: 600; line-height: 1.3; text-transform: uppercase; max-width: 34ch; }
+.rue-small p { margin: 0; }
+.rue-link { align-self: flex-start; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.rue-photo { aspect-ratio: 4 / 5; overflow: hidden; background: #23201d; }
+.rue-photo > div { width: 100%; height: 100%; }
+.rue-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+
+.rue-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 12px;
+  padding: 18px 0 24px;
+  margin-top: 40px;
+  border-top: 1px solid var(--rueline);
+}
+.rue-col { display: flex; flex-direction: column; gap: 6px; }
+.rue-col h2 { margin: 0 0 6px; font-size: clamp(22px, 6vw, 30px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; color: var(--rueink); }
+.rue-col ul { list-style: none; margin: 0; padding: 0; font-size: 10px; font-weight: 700; line-height: 1.35; text-transform: uppercase; color: var(--ruemute); }
+.rue-foot { padding: 32px 0 24px; }
+
+/* contact */
+.rue-contact { flex: 1; display: flex; flex-direction: column; min-height: calc(100svh - 72px); padding: 4px 0 16px; }
+.rue-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.rue-shot { aspect-ratio: 4 / 3; overflow: hidden; background: #23201d; }
+.rue-shot img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: grayscale(1) contrast(1.05); }
+.rue-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.rue-values a { color: var(--rueink); }
+.rue-side { text-align: right; color: var(--ruemute); }
+.rue-contact .rue-word { margin-top: auto; padding-top: 40px; }
+.rue-bottom { margin-top: 10px; }
+
+@media (min-width: 720px) {
+  .rue-top, .rue-bottom, .rue-foot { font-size: 11px; }
+  .rue-about { flex-direction: row; min-height: calc(100svh - 84px); margin: 0 calc(var(--pad) * -1) 0 0; }
+  .rue-panel { flex: 1; padding: 8px 32px 20px 0; justify-content: space-between; }
+  .rue-copy { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 24px; }
+  .rue-statement { font-size: clamp(24px, 2.5vw, 40px); }
+  .rue-small { font-size: 11px; }
+  .rue-photo { width: 36%; flex: none; aspect-ratio: auto; }
+  .rue-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 20px 0 32px; margin-top: 56px; }
+  .rue-col h2 { font-size: clamp(26px, 2.6vw, 44px); margin-bottom: 10px; }
+  .rue-col ul { font-size: 12px; }
+
+  .rue-contact { min-height: calc(100svh - 84px); }
+  .rue-shots, .rue-info { gap: 10px; }
+  .rue-info { font-size: 12px; }
+}
+
+@media (min-width: 1100px) {
+  .rue-about { min-height: calc(100svh - 120px); }
+  .rue-contact { min-height: calc(100svh - 120px); }
+}
