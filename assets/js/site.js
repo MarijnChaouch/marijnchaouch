@@ -83,6 +83,18 @@
     return box;
   }
 
+  /* film: geluid aan/uit */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.film-sound') : null;
+    if (!b) return;
+    var v = b.parentElement.querySelector('video');
+    if (!v) return;
+    v.muted = !v.muted;
+    if (!v.muted) { v.currentTime = 0; var go = v.play(); if (go && go.catch) go.catch(function () {}); }
+    b.textContent = v.muted ? 'Sound on' : 'Sound off';
+    b.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
+  });
+
   /* speelknop: geluid aan, bediening zichtbaar */
   document.addEventListener('click', function (e) {
     var btn = e.target.closest ? e.target.closest('.playbtn') : null;
@@ -222,6 +234,37 @@
     }
 
     var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>';
+
+    /* midden: de film in het midden, links titel en klant, rechts de tekst als citaat, kleine regels onderaan */
+    if (layout === 'center') {
+      var rowsC2 = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+        .filter(function (r) { return r[1]; })
+        .map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; }).join('');
+      return '<div class="lay lay-center"' + (p.ratio ? ' style="--ratio:' + esc(p.ratio) + '"' : '') + '>' +
+        '<div class="center-left"><h1>' + esc(p.title) + '</h1><div class="center-facts">' + rowsC2 + '</div></div>' +
+        '<div class="film-frame center-frame">' + shot(p.heroType || 'video', p.heroSrc, p.title, 'film-shot', { poster: p.heroPoster }) +
+          (p.heroType === 'video' ? '<button class="film-sound" type="button" aria-pressed="false">Sound on</button>' : '') +
+        '</div>' +
+        '<div class="center-right">' + (p.intro ? '<p class="center-quote">' + esc(p.intro) + '</p>' : '') + '</div>' +
+        '</div>';
+    }
+
+    /* film: de hoofdfilm groot in eigen vorm, titel en gegevens ernaast, geluid via een knop */
+    if (layout === 'film') {
+      var rows = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+        .filter(function (r) { return r[1]; })
+        .map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; }).join('');
+      return '<div class="lay lay-film"' + (p.ratio ? ' style="--ratio:' + esc(p.ratio) + '"' : '') + '>' +
+        '<div class="film-text">' +
+          '<h1>' + esc(p.title) + '</h1>' +
+          (p.intro && p.intro !== p.title ? '<p class="film-intro">' + esc(p.intro) + '</p>' : '') +
+          '<div class="film-facts">' + rows + '</div>' +
+        '</div>' +
+        '<div class="film-frame">' + shot(p.heroType || 'video', p.heroSrc, p.title, 'film-shot', { poster: p.heroPoster }) +
+          (p.heroType === 'video' ? '<button class="film-sound" type="button" aria-pressed="false">Sound on</button>' : '') +
+        '</div>' +
+        '</div>';
+    }
 
     /* galerij: twee grote beelden naast elkaar van rand tot rand, kleine witte tekst erover,
        daaronder een grote alinea in hoofdletters over de hele breedte */
@@ -716,7 +759,8 @@
     menu();
     Promise.all([load('data/projects.json'), load('data/site.json')])
       .then(function (out) {
-        P = (out[0] && out[0].projects) || [];
+        /* "hidden": true houdt een project van de site (bijv. tot een lancering) */
+        P = ((out[0] && out[0].projects) || []).filter(function (p) { return !p.hidden; });
         S = out[1] || {};
         texts();
         fit();
