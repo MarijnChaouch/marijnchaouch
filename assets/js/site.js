@@ -251,8 +251,23 @@
       var under = p.posterUnder ? shot(/\.mp4$/i.test(p.posterUnder) ? 'video' : 'image', p.posterUnder, p.title, 'poster-under') : '';
       var info = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
         .filter(function (r) { return r[1]; });
+      /* twee frames: frames links, gegevens en intro in de rechterkolom, titel er direct onder */
+      if (frames === 2) {
+        return '<div class="lay lay-poster poster-duo">' +
+          '<div class="duo-top">' + shots.join('') +
+            '<div class="duo-side">' +
+              '<div class="duo-head"><span>' + no + '</span><span>' + kind + '</span></div>' +
+              (p.intro && p.intro !== p.title ? '<p class="duo-intro">' + esc(p.intro) + '</p>' : '') +
+              '<div class="duo-facts">' + info.map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; }).join('') + '</div>' +
+              back +
+            '</div>' +
+          '</div>' +
+          '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' +
+          (under ? '<div class="duo-under">' + under + '<p>' + esc(p.caption || p.deliverables || '') + '</p></div>' : '') +
+          '</div>';
+      }
       return '<div class="lay lay-poster">' +
-        '<div class="poster-shots' + (frames === 2 ? ' poster-two' : '') + '">' + shots.join('') + '</div>' +
+        '<div class="poster-shots">' + shots.join('') + '</div>' +
         '<div class="poster-info">' +
           '<div class="poster-labels">' + info.map(function (r) { return r[0] + ':'; }).join('<br>') + '</div>' +
           '<div class="poster-values">' + info.map(function (r) { return esc(r[1]); }).join('<br>') + '</div>' +
