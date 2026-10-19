@@ -73,7 +73,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   `gallery` (twee beelden schermvullend naast elkaar, tekst eronder) en `headline` (titel op breedte, 4 kolommen gegevens,
   hoofdbeeld schermbreed). Oude layouts bestaan nog in `site.js` maar worden niet gebruikt.
 - Geen achtergrondkleuren per project (`paint(p)` staat uit).
-- Beelden onder een project: raster van 2 kolommen, `span: half` = 4:5, `span: full` = 3:2 over de volle breedte.
+- Beelden vullen nooit het hele scherm (wens Marijn): max `--imgmax` (76svh) hoog, in eigen vorm, niet bijgesneden.
+  Onder een project verspringen ze links/rechts; `span: full` voor brede beelden (breder vak, midden).
 - Optioneel veld `agency` verschijnt als 'Agency' bij de gegevens.
 
 ## About en Contact

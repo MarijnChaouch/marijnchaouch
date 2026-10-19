@@ -2039,3 +2039,76 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
 }
 
 @media (min-width: 1100px) { .grid > .card .shot { margin-bottom: 88px; } }
+
+/* ================= beelden nooit schermvullend (wens Marijn) ================= */
+:root { --imgmax: 76svh; }
+
+/* galerij: twee beelden naast elkaar, binnen de marges en lager dan het scherm */
+.gallery-shots { width: auto; margin-left: 0; padding: 0; }
+.gallery-shot { aspect-ratio: 4 / 5; height: auto; max-height: var(--imgmax); }
+@media (min-width: 720px) {
+  .gallery-shots { gap: 10px; padding: 0; }
+  .gallery-shot { aspect-ratio: auto; height: var(--imgmax); }
+}
+
+/* kop: hoofdbeeld in eigen vorm, niet schermbreed */
+.lay-headline .head-visual, .lay-headline .head-visual:where(*) { width: auto; margin-left: 0; }
+.lay-headline .head-visual .case-img, .lay-headline .head-visual .case-img:where(*) { height: auto; background: transparent; }
+.lay-headline .head-visual img, .lay-headline .head-visual video {
+  width: auto; max-width: 100%; height: auto; max-height: var(--imgmax); object-fit: contain;
+}
+@media (min-width: 720px) {
+  .lay-headline .head-visual .case-img { height: auto; }
+}
+
+/* overige grote beelden in oude opzetten ook begrenzen */
+.case .lay-visual, .case .lay-index .lay-frame, .case .case-row .case-shot { max-height: var(--imgmax); }
+.case .lay-split .lay-visual, .case .lay-panel-page .lay-visual { height: var(--imgmax); width: auto; margin-left: 0; margin-right: 0; max-width: 100%; }
+
+/* beelden onder een project: eigen verhouding, verspringend */
+.case .stack, .case:not(.case-contents) .stack { grid-template-columns: 1fr; gap: 40px; padding-top: 64px; align-items: start; }
+.case .stack .item, .case:not(.case-contents) .stack .item,
+.case:not(.case-contents) .stack .item:nth-child(n),
+.case .stack .item.full, .case:not(.case-contents) .stack .item.full {
+  aspect-ratio: auto; background: transparent; overflow: visible;
+}
+.case .stack .item > div { height: auto; }
+.case .stack .item img, .case .stack .item video,
+.case:not(.case-contents) .stack .item img, .case:not(.case-contents) .stack .item video {
+  width: auto; max-width: 100%; height: auto; max-height: var(--imgmax); object-fit: contain;
+}
+.case .stack .item:nth-child(even) { justify-self: end; width: 78%; }
+.case .stack .item:nth-child(even) img, .case .stack .item:nth-child(even) video { margin-left: auto; }
+@media (min-width: 720px) {
+  .case .stack, .case:not(.case-contents) .stack { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px 24px; padding-top: 96px; }
+  .case .stack .item:nth-child(n), .case:not(.case-contents) .stack .item:nth-child(n) { width: auto; justify-self: stretch; }
+  .case .stack .item:nth-child(3n+1) { grid-column: 1 / span 6; }
+  .case .stack .item:nth-child(3n+2) { grid-column: 8 / span 5; margin-top: 16vh; }
+  .case .stack .item:nth-child(3n+2) img, .case .stack .item:nth-child(3n+2) video { margin-left: auto; }
+  .case .stack .item:nth-child(3n+3) { grid-column: 3 / span 7; }
+  .case .stack .item.full:nth-child(n), .case:not(.case-contents) .stack .item.full:nth-child(n) { grid-column: 2 / span 10; margin-top: 0; }
+  .case .stack .item.full img, .case .stack .item.full video { margin: 0 auto; }
+}
+
+/* stapel: beeld vult de kolombreedte, maximaal --imgmax hoog, in eigen vorm */
+.case .stack .item img, .case .stack .item video,
+.case:not(.case-contents) .stack .item img, .case:not(.case-contents) .stack .item video {
+  display: block; width: 100%; height: auto; max-height: var(--imgmax); object-fit: contain; object-position: left top;
+}
+.case .stack .item:nth-child(even) img, .case .stack .item:nth-child(even) video { object-position: right top; }
+@media (min-width: 720px) {
+  .case .stack .item:nth-child(3n+2) img, .case .stack .item:nth-child(3n+2) video { object-position: right top; }
+  .case .stack .item:nth-child(3n+3) img, .case .stack .item:nth-child(3n+3) video,
+  .case .stack .item.full img, .case .stack .item.full video { object-position: center top; }
+}
+
+/* kolomplekken (sterker dan de eerdere 'strak'-regels) */
+@media (min-width: 720px) {
+  .case:not(.case-contents) .stack .item:nth-child(3n+1) { grid-column: 1 / span 6; margin-top: 0; }
+  .case:not(.case-contents) .stack .item:nth-child(3n+2) { grid-column: 8 / span 5; margin-top: 16vh; }
+  .case:not(.case-contents) .stack .item:nth-child(3n+3) { grid-column: 3 / span 7; margin-top: 0; }
+  .case:not(.case-contents) .stack .item.full:nth-child(n) { grid-column: 2 / span 10; margin-top: 0; }
+}
+@media (max-width: 719px) {
+  .case:not(.case-contents) .stack .item:nth-child(even) { justify-self: end; width: 78%; }
+}
