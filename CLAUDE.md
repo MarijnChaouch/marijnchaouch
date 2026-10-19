@@ -30,26 +30,26 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Niet opnieuw de nameservers naar Vercel (`ns1/ns2.vercel-dns.com`) zetten: dat is op 19-10-2026 geprobeerd,
   Vercel activeerde de zone niet (REFUSED) en de site was even onbereikbaar.
 
-## Overstap van Netlify (19-10-2026)
+## Overstap van Netlify (19-10-2026, afgerond)
 
-- De site draaide eerst op Netlify, betaald (ongeveer 10 euro per maand).
-- Netlify mag pas opgezegd worden als `https://marijnchaouch.com` en `https://www.marijnchaouch.com`
-  allebei via Vercel werken (met slotje). Sinds 19-10 werken beide met een geldig certificaat via Vercel (het kale domein stuurt met een 308 door naar www).
-- Het beheerpaneel `/admin` (Decap CMS met Netlify Identity en Git Gateway) werkt niet op Vercel.
-  Marijn wil wijzigingen via Claude doen, dus het paneel en het Netlify Identity-script in de pagina's mogen weg.
+- De site draaide eerst op Netlify (betaald). Sinds 19-10 werken `marijnchaouch.com` en `www.marijnchaouch.com`
+  allebei via Vercel met een geldig certificaat (het kale domein stuurt met een 308 door naar www).
+- Netlify is op 19-10 teruggezet naar het gratis plan (gaat in na de betaalperiode, rond 3-11) en het project is verwijderd.
+  Niet op "Cancel downgrade" klikken.
+- Het beheerpaneel `/admin` en het Netlify Identity-script zijn weg; wijzigingen gaan via Claude.
+- Na het verwijderen gaf Safari op Marijns Mac nog de oude Netlify-site (oude doorverwijzing www naar kaal in de cache,
+  plus een Ziggo-DNS-server die nog de oude Netlify-IP's gaf). Opgelost met Develop > Empty Caches.
+  Ziet iemand "Site not found" van Netlify of een certificaatfout: browsercache legen, het ligt niet aan de site.
 
 ## Openstaande punten
 
-1. Netlify opzeggen: kan nu, beide domeinen werken via Vercel. Marijn doet dit zelf.
-2. `/admin` en het Netlify Identity-script uit de HTML-pagina's halen.
-3. Beelden verkleinen: map is ongeveer 318 MB (media 142 MB). Uitschieters: `21.jpg` (13 MB),
-   PNG-screenshots van 3 tot 7 MB, video's `main_final.mp4` (23 MB) en `trailrun_recap-_final-.mp4` (18 MB).
-4. `index.html` en `work.html` laden `data/projects.js`, dat bestaat niet (fout in de console).
-5. Vimeo, LinkedIn en KvK-nummer zijn nog leeg in `data/site.json`.
-6. Klant "MIzuno" moet "Mizuno" zijn; slug `Mizuno-Neo-Accera` bevat hoofdletters.
-7. Naam is niet overal gelijk: beheerpaneel zegt "Marijn-Sohail Chaouch", de site "Marijn Chaouch".
+1. Vimeo, LinkedIn en KvK-nummer zijn nog leeg in `data/site.json`.
+2. Project Sunnery James & Ryan Marciano (`sjrm`) heeft alleen een tijdelijke introtekst (de naam); Marijn levert later tekst aan.
 
 ## Beelden aanleveren
 
 - Foto's als JPG, ongeveer 2000 px aan de lange zijde.
 - Video's als MP4 zonder geluid (ze spelen automatisch). Clips voor de homepage 5 tot 10 seconden.
+- Nieuwe beelden die Marijn aanlevert eerst verkleinen voor ze in `media/` komen: foto's naar sRGB, max 2000 px,
+  JPEG kwaliteit 82 (Pillow); video's met ffmpeg H.264 `-crf 23 -preset slow -movflags +faststart`, zonder geluid
+  behalve lange films, en breder dan 1280 px alleen als het beeld groot in beeld staat.
