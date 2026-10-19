@@ -203,6 +203,14 @@
     var buttons = document.querySelectorAll('[data-menu]');
     if (!buttons.length) return;
 
+    /* telefoonmenu: klein merk bovenaan, e-mail en grote naam onderaan (desktop verbergt deze delen) */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-nav]'), function (nav) {
+      nav.insertBefore(el('div', 'nav-head', 'Marijn Chaouch'), nav.firstChild);
+      nav.appendChild(el('div', 'nav-foot',
+        '<a data-t="email" href="mailto:shotbymarijn@gmail.com">shotbymarijn@gmail.com</a>' +
+        '<b class="nav-logo">Marijn<br>Chaouch</b>'));
+    });
+
     function close() {
       document.body.classList.remove('menu-open');
       Array.prototype.forEach.call(buttons, function (b) { b.setAttribute('aria-expanded', 'false'); });

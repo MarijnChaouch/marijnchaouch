@@ -969,3 +969,137 @@ body.case {
   .ct-u:hover { opacity: .6; }
   .ct-foot { font-size: 12px; padding-bottom: 32px; }
 }
+
+
+/* editorial op telefoon: grote titels, kleine tekst in de hoeken, menu over het hele scherm */
+
+.bar nav { --navline: rgba(20, 17, 15, .16); color: var(--ink); }
+.dark .bar nav { --navline: rgba(250, 249, 247, .18); color: var(--paper); }
+.case .bar nav { --navline: var(--casefade); color: var(--caseink); }
+
+@media (max-width: 1099px) {
+  .bar nav {
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 var(--pad) 20px;
+  }
+  .bar nav a { padding: 5px 0 7px; line-height: 1.05; border-bottom: 1px solid var(--navline); }
+  .dark .bar nav a { color: var(--paper); }
+  .dark .bar nav a.on { color: #8C857C; }
+
+  .nav-head {
+    flex: none;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--navline);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .nav-foot { margin-top: auto; display: flex; flex-direction: column; }
+  .bar nav .nav-foot a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3;
+    padding: 0 0 8px;
+    color: inherit;
+  }
+  .nav-logo {
+    display: block;
+    margin-top: 10px;
+    font-size: clamp(64px, 21vw, 150px);
+    font-weight: 700;
+    line-height: .8;
+    letter-spacing: -0.065em;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1099px) {
+  .nav-head { height: 84px; }
+}
+
+@media (min-width: 1100px) {
+  .nav-head, .nav-foot { display: none; }
+}
+
+.page-top, .corners { display: none; }
+
+@media (max-width: 719px) {
+  .home h1 { font-size: clamp(48px, 17vw, 80px); line-height: .86; letter-spacing: -0.055em; }
+
+  .page-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: calc(36svh - 72px);
+    padding: 2px 0 22px;
+  }
+
+  .corners {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #8C857C;
+  }
+
+  .page-title, .head h1 {
+    margin: 0;
+    font-size: clamp(64px, 22vw, 120px);
+    font-weight: 700;
+    line-height: .84;
+    letter-spacing: -0.06em;
+  }
+
+  /* naam over twee verspringende regels */
+  .page-title.stagger { font-size: clamp(54px, 18.5vw, 100px); }
+  .stagger span { display: block; }
+  .stagger span + span { text-align: right; }
+
+  .head { margin-top: 0; min-height: calc(36svh - 72px); justify-content: flex-end; gap: 14px; }
+  .head .corners { margin-bottom: auto; }
+
+  /* about: klein label links, tekst rechts, portret over de volle breedte */
+  .ab { display: grid; grid-template-columns: 30% minmax(0, 1fr); column-gap: 14px; margin: 0; }
+  .ab-panel, .ab-top { display: contents; }
+  .ab-eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 2px;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: 1;
+  }
+  .ab-panel h1 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+  .ab-link { grid-column: 2; grid-row: 2; justify-self: start; margin-top: 14px; font-size: 13px; }
+  .ab-photo { grid-column: 1 / -1; grid-row: 3; margin: 32px calc(var(--pad) * -1) 0; }
+  .ab-body { grid-column: 2; grid-row: 4; margin-top: 24px; font-size: 13px; color: var(--mid); }
+
+  .cols { gap: 0; }
+  .cols > div {
+    display: grid;
+    grid-template-columns: 30% minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 12px 0 14px;
+    border-top: 1px solid var(--line);
+  }
+  .cols .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink); }
+  .cols ul { margin: 0; gap: 4px; font-size: 13px; }
+}
