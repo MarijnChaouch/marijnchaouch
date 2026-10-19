@@ -355,7 +355,15 @@
     /* contactvel: alle projecten klein in een raster */
     function buildSheet() {
       var sheet = el('div', 'reel-sheet');
-      P.forEach(function (p, k) {
+      /* dambord: video en foto wisselen elkaar af, in de rij en in de kolom */
+      var cols = window.matchMedia('(min-width: 720px)').matches ? 4 : 2;
+      var vids = P.filter(function (p) { return coverType(p) === 'video'; });
+      var pics = P.filter(function (p) { return coverType(p) !== 'video'; });
+      var order = P.map(function (p, k) {
+        var want = (Math.floor(k / cols) + k % cols) % 2 === 0 ? vids : pics;
+        return (want.length ? want : (want === vids ? pics : vids)).shift();
+      });
+      order.forEach(function (p, k) {
         var a = el('a', 'sheet-item');
         a.href = link(p);
         a.appendChild(media(coverType(p), cover(p), p.title, 'sheet-shot'));
