@@ -31,6 +31,21 @@
     if (seen) seen.observe(v);
   }
 
+  /* blokkeert de telefoon het vanzelf afspelen (bijv. energiebesparing), dan starten we bij elke aanraking
+     de video's die in beeld staan: een aanraking mag dat wel */
+  function kick() {
+    Array.prototype.forEach.call(document.querySelectorAll('video[autoplay]'), function (v) {
+      var cell = v.closest ? v.closest('.reel-cell') : null;
+      var active = cell ? cell.classList.contains('on') : v.inview;
+      if (active && v.paused && !v.controls) {
+        var go = v.play();
+        if (go && go.catch) go.catch(function () {});
+      }
+    });
+  }
+  document.addEventListener('touchend', kick, { passive: true });
+  document.addEventListener('click', kick);
+
   function media(type, src, label, cls, opts) {
     opts = opts || {};
     var box = el('div', cls || '');
@@ -318,7 +333,24 @@
     }
 
     show();
-    if (items.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (items.length < 2) return;
+
+    /* telefoon en tablet: zelf swipen, het kader volgt waar je naartoe swipet */
+    if (window.matchMedia('(max-width: 1099px)').matches) {
+      host.classList.add('swipe');
+      var t;
+      stage.addEventListener('scroll', function () {
+        clearTimeout(t);
+        t = setTimeout(function () {
+          var w = cells[0].getBoundingClientRect().width + 10;
+          var k = Math.max(0, Math.min(items.length - 1, Math.round(stage.scrollLeft / w)));
+          if (k !== i) { i = k; show(); }
+        }, 80);
+      }, { passive: true });
+      return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     setInterval(function () {
       if (document.hidden) return;

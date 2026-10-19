@@ -59,7 +59,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
 - Video's krijgen meteen hun bron met `muted`, `autoplay`, `loop` en `playsinline` als attributen; een IntersectionObserver pauzeert ze
   alleen buiten beeld. Niet terug naar pas laden bij in beeld komen: dat speelde op Marijns iPhone niet af (oktober 2026).
-- Home: één vast kader waarin de reel-projecten in elkaar overvloeien (geen schuivende strook meer).
+- Home: op desktop één vast kader waarin de reel-projecten overvloeien; op telefoon en tablet swipe je zelf door de projecten.
+- Blokkeert een iPhone het vanzelf afspelen (energiebesparing of 'videovoorvertoningen automatisch afspelen' uit), dan verbergt de CSS
+  de iOS-afspeelknop en start `kick()` in `site.js` de video's in beeld bij elke aanraking.
 - Browsers bewaren `/media/` 30 dagen (`vercel.json`). Vervang je een beeld, geef het dan een nieuwe naam (bijv. `-v2`), anders ziet een bezoeker nog de oude versie.
 
 ## Opmaak van Work

@@ -1278,3 +1278,34 @@ body.case {
   .grid > .card:first-child .card-row { margin: 12px 0 18px; }
   .grid > .card:first-child .card-row p { display: none; }
 }
+
+/* iPhone: geen eigen afspeelknop over video's die vanzelf horen te spelen */
+video:not([controls])::-webkit-media-controls { display: none !important; }
+video:not([controls])::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+
+/* home op telefoon en tablet: projecten naast elkaar, zelf swipen, het volgende piept er al in */
+@media (max-width: 1099px) {
+  .reel.swipe .reel-stage {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: none;
+    margin-right: calc(var(--pad) * -1);
+    padding-right: var(--pad);
+  }
+  .reel.swipe .reel-stage::-webkit-scrollbar { display: none; }
+  .reel.swipe .reel-cell {
+    position: relative;
+    inset: auto;
+    flex: 0 0 86%;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+    scroll-snap-align: start;
+    background: var(--frame);
+  }
+}
