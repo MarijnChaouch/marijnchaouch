@@ -330,7 +330,7 @@
 
   /* home */
 
-  /* home: varianten frame, index, full, sheet, of mix (telefoon full, desktop index);
+  /* home: varianten frame, index, full, sheet, of mix (telefoon full, desktop sheet);
      kies met data-home op <main> of ?home= in het adres */
   function reel() {
     var host = document.querySelector('[data-reel]');
@@ -342,7 +342,7 @@
     var both = false;
     if (mode === 'mix') {
       if (window.matchMedia('(max-width: 1099px)').matches) mode = 'full';
-      else { mode = 'index'; both = true; }
+      else mode = 'sheet';
     }
     if (['frame', 'index', 'full', 'sheet'].indexOf(mode) < 0) mode = 'frame';
     document.body.classList.add('home-' + mode);
