@@ -4,4 +4,4 @@ media/lululemon/cover.jpg
 media/lululemon/01.jpg
 media/lululemon/film.mp4
 
-Verwijs er daarna naar in data/projects.js.
+Verwijs er daarna naar in data/projects.json.
