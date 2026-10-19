@@ -430,16 +430,24 @@
 
   /* work */
 
-  /* kop per project op telefoon: nummer en soort in de hoeken, titel over twee regels, klant en intro in twee kolommen */
-  function editorial(p, n) {
+  /* elk project een eigen opzet: look 1 t/m 6 wisselt per project, of kies er een met "look" in projects.json */
+  function look(p) {
+    var l = parseInt(p.look, 10);
+    return l >= 1 && l <= 6 ? l : (P.indexOf(p) % 6) + 1;
+  }
+
+  /* kop per project: nummer en soort, groot nummer, titel in twee delen, klant en intro */
+  function editorial(p) {
+    var no = ('0' + (P.indexOf(p) + 1)).slice(-2);
     var words = String(p.title || '').split(' ');
     var cut = Math.max(1, Math.floor(words.length / 2));
     var title = '<span>' + esc(words.slice(0, cut).join(' ')) + '</span>' +
-      (words.length > 1 ? '<span>' + esc(words.slice(cut).join(' ')) + '</span>' : '');
+      (words.length > 1 ? ' <span>' + esc(words.slice(cut).join(' ')) + '</span>' : '');
     var intro = p.intro && p.intro !== p.title ? '<p>' + esc(p.intro) + '</p>' : '';
-    return '<div class="corners"><span>' + ('0' + (n + 1)).slice(-2) + '</span><span>' +
+    return '<div class="corners"><span>' + no + '</span><span>' +
       (p.kind === 'video' ? 'Video' : 'Photo') + '</span></div>' +
-      '<p class="card-title stagger">' + title + '</p>' +
+      '<p class="card-num">' + no + '</p>' +
+      '<p class="card-title">' + title + '</p>' +
       '<div class="card-row"><span>' + esc(p.client) + '<br>' + esc(p.year) + '</span>' + intro + '</div>';
   }
 
@@ -450,9 +458,9 @@
     function draw(kind) {
       host.innerHTML = '';
       P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
-        var a = el('a', 'card');
+        var a = el('a', 'card look-' + look(p));
         a.href = link(p);
-        a.appendChild(el('div', 'card-ed', editorial(p, n)));
+        a.appendChild(el('div', 'card-ed', editorial(p)));
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
         a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
         host.appendChild(a);

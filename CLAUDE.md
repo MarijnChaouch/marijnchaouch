@@ -58,3 +58,10 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Videoprojecten krijgen als `cover` een korte preview (`naam-preview.mp4`, 6 seconden, max 720 hoog of 960 breed,
   `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
 - `site.js` laadt en speelt video's pas als ze in beeld zijn (IntersectionObserver) en pauzeert ze daarbuiten.
+
+## Opmaak van Work
+
+- Elk project op Work heeft een eigen opzet (`look-1` t/m `look-6`): 1 verspringende titel, 2 alles rechts,
+  3 beeld eerst, 4 groot nummer, 5 hoofdletters, 6 inspringend met gegevens onder het beeld.
+- Standaard wisselt de opzet met de plek in `data/projects.json`; met `"look": 4` (1 t/m 6) kies je er zelf een per project.
+- Op desktop en tablet heeft elke opzet een eigen breedte en positie in een raster van 12 kolommen.

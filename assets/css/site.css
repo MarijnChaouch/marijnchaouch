@@ -1095,45 +1095,6 @@ body.case {
   .cols ul { margin: 0; gap: 4px; font-size: 13px; }
 }
 
-/* work op telefoon: elk project als redactionele kop met het beeld over de volle breedte */
-
-.card-ed { display: none; }
-
-@media (max-width: 719px) {
-  .grid { gap: 64px; }
-  .card { gap: 0; padding-top: 12px; border-top: 1px solid var(--line); }
-  .card-ed { display: block; }
-  .card-ed .corners { margin-bottom: 40px; }
-  .card-title {
-    margin: 0;
-    font-size: clamp(40px, 13vw, 72px);
-    font-weight: 700;
-    line-height: .88;
-    letter-spacing: -0.055em;
-  }
-  .card-row {
-    display: grid;
-    grid-template-columns: 30% minmax(0, 1fr);
-    column-gap: 14px;
-    margin: 18px 0 24px;
-    font-size: 12px;
-    line-height: 1.35;
-  }
-  .card-row span { font-weight: 700; }
-  .card-row p {
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.45;
-    color: var(--mid);
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .card .shot { margin: 0 calc(var(--pad) * -1); }
-  .card .meta { display: none; }
-}
-
 /* tablet en desktop: dezelfde redactionele opbouw, op grotere schaal */
 
 @media (min-width: 720px) {
@@ -1179,52 +1140,132 @@ body.case {
   .head .corners { grid-column: 1 / -1; grid-row: 1; align-self: start; }
   .head h1 { grid-column: 1; grid-row: 3; }
   .head .filters { grid-column: 2; grid-row: 3; padding-bottom: 8px; }
-
-  /* projecten: kop en beeld per kaart, beelden in een rij op dezelfde hoogte */
-  .grid { gap: 72px 32px; }
-  .card {
-    display: grid;
-    grid-row: span 2;
-    grid-template-rows: subgrid;
-    row-gap: 0;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-  }
-  .card .meta { display: none; }
-  .card-ed { display: block; }
-  .card-ed .corners { margin-bottom: 44px; }
-  .card-title {
-    margin: 0;
-    font-size: clamp(36px, 5.2vw, 64px);
-    font-weight: 700;
-    line-height: .88;
-    letter-spacing: -0.055em;
-  }
-  .stagger span { display: block; }
-  .stagger span + span { text-align: right; }
-  .card-row {
-    display: grid;
-    grid-template-columns: 30% minmax(0, 1fr);
-    column-gap: 16px;
-    margin: 20px 0 24px;
-    font-size: 12px;
-    line-height: 1.35;
-  }
-  .card-row span { font-weight: 700; }
-  .card-row p {
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.45;
-    color: var(--mid);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
 }
 
 @media (min-width: 1100px) {
   .page-top, .head { min-height: calc(44svh - 120px); }
-  .grid { gap: 96px 40px; }
-  .card-title { font-size: clamp(36px, 3.4vw, 60px); }
+}
+
+/* work: elk project een eigen opzet (look-1 t/m look-6, wisselt per project of via "look" in projects.json) */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.card .meta { display: none; }
+.card-ed { display: contents; }
+.card .corners { order: 1; margin-bottom: 40px; }
+.card-num { display: none; order: 2; margin: 0; }
+.card-title {
+  order: 3;
+  margin: 0;
+  font-size: clamp(40px, 13vw, 72px);
+  font-weight: 700;
+  line-height: .88;
+  letter-spacing: -0.055em;
+}
+.card-title span { display: block; }
+.card-row {
+  order: 4;
+  display: grid;
+  grid-template-columns: 30% minmax(0, 1fr);
+  column-gap: 14px;
+  margin: 18px 0 24px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.card-row span { font-weight: 700; }
+.card-row p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--mid);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card .shot { order: 5; margin: 0 calc(var(--pad) * -1); }
+
+/* 1: verspringend, staand beeld */
+.look-1 .card-title span + span { text-align: right; }
+.look-1 .shot { aspect-ratio: 4 / 5; }
+
+/* 2: alles rechts, vierkant beeld */
+.look-2 .card-title { text-align: right; }
+.look-2 .card-row { grid-template-columns: minmax(0, 1fr) 30%; }
+.look-2 .card-row span { grid-column: 2; grid-row: 1; text-align: right; }
+.look-2 .shot { aspect-ratio: 1 / 1; }
+
+/* 3: beeld eerst, titel op één regel eronder */
+.look-3 .shot { order: 0; aspect-ratio: 3 / 2; margin-bottom: 14px; }
+.look-3 .corners { margin-bottom: 18px; }
+.look-3 .card-title span { display: inline; }
+.look-3 .card-row { margin-bottom: 0; }
+
+/* 4: het nummer is de kop */
+.look-4 .corners span:first-child { visibility: hidden; }
+.look-4 .card-num {
+  display: block;
+  font-size: clamp(120px, 42vw, 220px);
+  font-weight: 700;
+  line-height: .78;
+  letter-spacing: -0.07em;
+}
+.look-4 .card-title { margin-top: 18px; font-size: clamp(24px, 7vw, 34px); letter-spacing: -0.035em; }
+.look-4 .card-title span { display: inline; }
+.look-4 .shot { aspect-ratio: 4 / 5; }
+
+/* 5: hoofdletters, intro groot en vet, breed beeld */
+.look-5 .card-title { text-transform: uppercase; font-size: clamp(34px, 11vw, 64px); line-height: .9; letter-spacing: -0.045em; }
+.look-5 .card-title span { display: inline; }
+.look-5 .card-row { grid-template-columns: 1fr; row-gap: 12px; }
+.look-5 .card-row p {
+  order: -1;
+  font-size: clamp(17px, 5vw, 22px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  -webkit-line-clamp: 6;
+}
+.look-5 .shot { aspect-ratio: 16 / 9; }
+
+/* 6: tweede regel springt in, gegevens onder het beeld */
+.look-6 .card-title { margin-bottom: 24px; }
+.look-6 .card-title span + span { padding-left: 22%; }
+.look-6 .shot { order: 4; aspect-ratio: 3 / 4; }
+.look-6 .card-row { order: 5; margin: 14px 0 0; }
+
+/* tablet en desktop: wisselende breedtes en posities, als een tijdschrift */
+@media (min-width: 720px) {
+  .grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 120px 32px; align-items: start; }
+  .card .shot { margin-left: 0; margin-right: 0; }
+  .card-title { font-size: clamp(40px, 4.6vw, 80px); }
+  .card-row p { -webkit-line-clamp: 3; }
+
+  .look-1 { grid-column: 1 / span 7; }
+  .look-2 { grid-column: 8 / span 5; margin-top: 160px; }
+  .look-3 { grid-column: 1 / span 6; }
+  .look-4 { grid-column: 8 / span 5; margin-top: 100px; }
+  .look-5 { grid-column: 2 / span 10; }
+  .look-6 { grid-column: 7 / span 6; }
+
+  .look-4 .card-num { font-size: clamp(140px, 16vw, 260px); }
+  .look-4 .card-title { font-size: clamp(26px, 2.4vw, 38px); }
+  .look-5 .card-title { font-size: clamp(48px, 6vw, 104px); }
+  .look-5 .card-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: 32px; }
+  .look-5 .card-row p { font-size: clamp(20px, 2vw, 30px); }
+  .look-5 .card-row span { align-self: end; text-align: right; }
+}
+
+@media (min-width: 1100px) {
+  .grid { gap: 160px 40px; }
+  .look-2 { grid-column: 9 / span 4; margin-top: 220px; }
+  .look-4 { grid-column: 8 / span 4; margin-top: 140px; }
+  .look-6 { grid-column: 7 / span 5; }
 }
