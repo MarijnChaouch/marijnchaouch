@@ -21,7 +21,7 @@
       "slug": "mizuno-neo-accera",
       "client": "Mizuno",
       "intro": "Went to Gran Canaria for 3 days to launch the Neo Accera trail shoe. Captured and edited everything on site",
-      "deliverables": "1 Main video and 8 socials ",
+      "deliverables": "1 Main video and 8 socials",
       "heroType": "video",
       "kind": "video",
       "role": "Videographer",
@@ -83,7 +83,7 @@
       "slug": "hi-tec",
       "client": "HI TEC HTS74",
       "intro": "From rocky terrains to red-toned streams.\nA campaign shaped by movement.\n\nInspired by the iconic “Walk on Water” video.\nBuilt for versatility, designed for everyday.",
-      "deliverables": "Main Video + 2 Cutdowns ",
+      "deliverables": "Main Video + 2 Cutdowns",
       "heroType": "video",
       "kind": "video",
       "role": "Videography",
@@ -117,7 +117,7 @@
       "layout": "panel",
       "heroSrc": "/media/denieuwe_vernissage-02.jpg",
       "slug": "fila-ss24",
-      "client": "Fila & The spot agency ",
+      "client": "Fila & The spot agency",
       "intro": "Shot the official FILA Fall/Winter 2024 collection",
       "deliverables": "24 Photos + 5 social videos and bts",
       "heroType": "image",
@@ -189,7 +189,7 @@
       "layout": "editorial",
       "heroSrc": "/media/transavia_19.jpg",
       "slug": "transavia",
-      "client": "Transavia Untold agency ",
+      "client": "Transavia Untold agency",
       "intro": "Captured during the new @transavia ad by @untoldstories.studio sick project to be involved in!🛩️",
       "deliverables": "20 Stills",
       "heroType": "image",
@@ -205,12 +205,12 @@
       "color": "#0F1011",
       "media": [
         {
-          "type": "image",
+          "type": "video",
           "src": "/media/Provoke_BTS_SnipesXKappa_2.mp4",
           "span": "half"
         },
         {
-          "type": "image",
+          "type": "video",
           "src": "/media/Provoke_BTS_SnipesXKappa_3.mp4",
           "span": "half"
         }
@@ -225,7 +225,7 @@
       "deliverables": "3 BTS videos and 9 socials",
       "heroType": "video",
       "kind": "video",
-      "role": "BTS and Socials videos ",
+      "role": "BTS and Socials videos",
       "article": "A campaign made in collaboration for the 2026 World Cup in the United States.",
       "cover": "",
       "title": "Snipes X Kappa",
@@ -239,15 +239,10 @@
           "type": "image",
           "src": "/media/denieuwe_vernissage-01.jpg",
           "span": "half"
-        },
-        {
-          "type": "image",
-          "src": "",
-          "span": "half"
         }
       ],
       "caption": "Brand images about the people passing through.",
-      "ink": "#FAF9F7",
+      "ink": "#14110F",
       "layout": "editorial",
       "heroSrc": "/media/17102023_presskit_brazil_shotbymarijn-14.jpg",
       "slug": "sjrm",

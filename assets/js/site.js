@@ -163,6 +163,10 @@
       '</div></div>';
   }
 
+  /* webadres van een project; spaties en hoofdletters in de slug mogen geen verkeerd project opleveren */
+  function key(slug) { return String(slug == null ? '' : slug).trim().toLowerCase(); }
+  function link(p) { return 'project.html?p=' + encodeURIComponent(key(p.slug)); }
+
   function cover(p) { return p.cover || p.heroSrc || ''; }
   function coverType(p) { return p.cover ? (p.kind === 'video' ? 'video' : 'image') : (p.heroType || 'image'); }
 
@@ -233,17 +237,17 @@
     items.concat([items[0]]).forEach(function (p) {
       var cell = el('div', 'reel-cell');
       cell.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame'));
-      var cap = el('a', 'reel-cap', p.title);
-      cap.href = 'project.html?p=' + encodeURIComponent(p.slug);
+      var cap = el('a', 'reel-cap', esc(p.title));
+      cap.href = link(p);
       cell.appendChild(cap);
       track.appendChild(cell);
     });
     host.appendChild(track);
 
     var names = items.map(function (p) {
-      var b = el('b', '', p.title);
+      var b = el('b', '', esc(p.title));
       var a = el('a', 'client-link');
-      a.href = 'project.html?p=' + encodeURIComponent(p.slug);
+      a.href = link(p);
       a.appendChild(b);
       list.appendChild(a);
       return b;
@@ -393,9 +397,9 @@
       host.innerHTML = '';
       P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
         var a = el('a', 'card');
-        a.href = 'project.html?p=' + p.slug;
+        a.href = link(p);
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
-        a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + p.title + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
+        a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
         host.appendChild(a);
       });
     }
@@ -418,9 +422,10 @@
     var host = document.querySelector('[data-case]');
     if (!host || !P.length) return;
 
-    var slug = new URLSearchParams(location.search).get('p');
-    var n = P.findIndex(function (p) { return p.slug === slug; });
-    if (n < 0) n = 0;
+    var slug = key(new URLSearchParams(location.search).get('p'));
+    var n = P.findIndex(function (p) { return key(p.slug) === slug; });
+    /* onbekend project: terug naar het overzicht in plaats van een ander project tonen */
+    if (n < 0) { location.replace('work.html'); return; }
     var p = P[n], next = P[(n + 1) % P.length];
 
     document.title = p.title + ' \u2014 Marijn Chaouch';
@@ -441,10 +446,10 @@
       });
     }
 
-    var link = document.querySelector('[data-next]');
-    if (link) {
-      link.textContent = next.title;
-      link.href = 'project.html?p=' + next.slug;
+    var more = document.querySelector('[data-next]');
+    if (more) {
+      more.textContent = next.title;
+      more.href = link(next);
     }
   }
 
