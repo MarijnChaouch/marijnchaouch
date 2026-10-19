@@ -229,9 +229,10 @@
       var g = p.media || [];
       var second = g[0] ? shot(g[0].type, g[0].src, p.title, 'gallery-shot', g[0]) : '';
       return '<div class="lay lay-gallery"><div class="gallery-screen">' +
-        '<div class="gallery-shots">' +
+        /* ratio (bijv. "9 / 16"): beelden houden die vorm in plaats van bijgesneden te worden */
+        '<div class="gallery-shots' + (p.ratio ? ' has-ratio' : '') + '"' + (p.ratio ? ' style="--ratio:' + esc(p.ratio) + '"' : '') + '>' +
           '<div class="gallery-first">' + shot(p.heroType || 'image', p.heroSrc, p.title, 'gallery-shot', { poster: p.heroPoster }) +
-            '<div class="gallery-over">' + esc(p.title) + '<br>' + esc(p.client) + '<br>' + esc(p.year) + '</div></div>' +
+            '<div class="gallery-over">' + esc(p.title) + (p.client && p.client !== p.title ? '<br>' + esc(p.client) : '') + '<br>' + esc(p.year) + '</div></div>' +
           second +
         '</div>' +
         '<div class="gallery-text">' +

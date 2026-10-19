@@ -76,6 +76,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Beelden vullen nooit het hele scherm (wens Marijn): max `--imgmax` (76svh) hoog, in eigen vorm, niet bijgesneden.
   Onder een project verspringen ze links/rechts; `span: full` voor brede beelden (breder vak, midden).
 - Optioneel veld `agency` verschijnt als 'Agency' bij de gegevens.
+- Optioneel veld `ratio` (bijv. "9 / 16") bij `gallery`: beelden houden die vorm, voor staande video's (Ravi Nagarkar).
 
 ## About en Contact
 

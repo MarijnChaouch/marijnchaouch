@@ -375,6 +375,38 @@
           "span": "half"
         }
       ]
+    },
+    {
+      "title": "Ravi Nagarkar",
+      "slug": "ravi-nagarkar",
+      "client": "Ravi Nagarkar",
+      "year": "2026",
+      "kind": "video",
+      "role": "Videography",
+      "deliverables": "",
+      "intro": "",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "gallery",
+      "reel": false,
+      "cover": "/media/ravi_main-preview.mp4",
+      "heroType": "video",
+      "heroSrc": "/media/ravi_main.mp4",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/ravi_render.mp4",
+          "span": "half"
+        },
+        {
+          "type": "video",
+          "src": "/media/ravi_ring.mp4",
+          "span": "half"
+        }
+      ],
+      "ratio": "9 / 16"
     }
   ]
 }

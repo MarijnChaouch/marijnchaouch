@@ -2112,3 +2112,11 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
 @media (max-width: 719px) {
   .case:not(.case-contents) .stack .item:nth-child(even) { justify-self: end; width: 78%; }
 }
+
+/* galerij met vaste beeldvorm (veld ratio), bijv. staande video's: niets bijsnijden */
+.gallery-shots.has-ratio { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.gallery-shots.has-ratio .gallery-shot { aspect-ratio: var(--ratio); height: auto; max-height: none; }
+@media (min-width: 720px) {
+  .gallery-shots.has-ratio { grid-template-columns: repeat(2, max-content); gap: 10px; }
+  .gallery-shots.has-ratio .gallery-shot { height: var(--imgmax); width: auto; }
+}
