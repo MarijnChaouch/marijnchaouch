@@ -1270,3 +1270,20 @@ body.case {
   .slot-e { grid-column: 1 / span 5; }
   .slot-f { grid-column: 7 / span 6; margin-top: 160px; }
 }
+
+/* work op telefoon rustiger: geen hoekteksten en nummers, intro kort */
+@media (max-width: 719px) {
+  .head .corners { display: none; }
+  .head { min-height: 0; padding-top: 24px; }
+  .card .corners { display: none; }
+  .look-4 .card-num { margin-bottom: 0; }
+  .card-row p { -webkit-line-clamp: 2; }
+  .look-5 .card-row p { -webkit-line-clamp: 3; }
+  .grid { gap: 72px; }
+
+  /* overal eerst titel, dan beeld: zo wisselen tekst en beeld elkaar steeds af */
+  .look-3 .shot, .look-6 .shot { order: 5; margin-bottom: 0; }
+  .look-3 .card-row { margin-bottom: 24px; }
+  .look-6 .card-row { order: 4; margin: 0 0 24px; }
+  .look-6 .card-title { margin-bottom: 0; }
+}
