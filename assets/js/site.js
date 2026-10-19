@@ -44,6 +44,7 @@
     if (type === 'video') {
       var v = document.createElement('video');
       v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
       v.poster = opts.poster || poster(src);
       if (opts.play === 'click') {
         v.src = src;
@@ -52,7 +53,12 @@
         box.appendChild(v);
         box.appendChild(el('button', 'playbtn', '<span class="sr">Play</span>'));
       } else {
-        v.muted = true; v.loop = true;
+        /* iPhone speelt alleen vanzelf af met muted, autoplay en playsinline als echte attributen */
+        v.muted = true; v.defaultMuted = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('loop', '');
+        v.setAttribute('autoplay', '');
+        v.setAttribute('preload', 'none');
         v.setAttribute('data-src', src);
         box.appendChild(v);
         watch(v);
@@ -113,7 +119,7 @@
         return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + still +
           ' preload="metadata" playsinline></video><button class="playbtn"><span class="sr">Play</span></button></div>';
       }
-      return '<div class="' + cls + '"><video data-src="' + esc(src) + '"' + still + ' muted loop playsinline preload="none"></video></div>';
+      return '<div class="' + cls + '"><video data-src="' + esc(src) + '"' + still + ' muted loop autoplay playsinline webkit-playsinline preload="none"></video></div>';
     }
     return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(label) + '" loading="lazy"></div>';
   }
