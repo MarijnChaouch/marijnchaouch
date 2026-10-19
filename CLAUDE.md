@@ -34,13 +34,13 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 - De site draaide eerst op Netlify, betaald (ongeveer 10 euro per maand).
 - Netlify mag pas opgezegd worden als `https://marijnchaouch.com` en `https://www.marijnchaouch.com`
-  allebei via Vercel werken (met slotje). Op 19-10 werkte www al, het certificaat voor het kale domein was nog onderweg.
+  allebei via Vercel werken (met slotje). Sinds 19-10 werken beide met een geldig certificaat via Vercel (het kale domein stuurt met een 308 door naar www).
 - Het beheerpaneel `/admin` (Decap CMS met Netlify Identity en Git Gateway) werkt niet op Vercel.
   Marijn wil wijzigingen via Claude doen, dus het paneel en het Netlify Identity-script in de pagina's mogen weg.
 
 ## Openstaande punten
 
-1. Netlify opzeggen zodra beide domeinen via Vercel werken.
+1. Netlify opzeggen: kan nu, beide domeinen werken via Vercel. Marijn doet dit zelf.
 2. `/admin` en het Netlify Identity-script uit de HTML-pagina's halen.
 3. Beelden verkleinen: map is ongeveer 318 MB (media 142 MB). Uitschieters: `21.jpg` (13 MB),
    PNG-screenshots van 3 tot 7 MB, video's `main_final.mp4` (23 MB) en `trailrun_recap-_final-.mp4` (18 MB).
