@@ -89,11 +89,39 @@
     if (!b) return;
     var v = b.parentElement.querySelector('video');
     if (!v) return;
-    v.muted = !v.muted;
-    if (!v.muted) { v.currentTime = 0; var go = v.play(); if (go && go.catch) go.catch(function () {}); }
-    b.textContent = v.muted ? 'Sound on' : 'Sound off';
-    b.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
+    var on = v.muted;
+    /* maar één video tegelijk met geluid */
+    Array.prototype.forEach.call(document.querySelectorAll('.film-sound'), function (o) {
+      var ov = o.parentElement.querySelector('video');
+      if (ov && ov !== v) { ov.muted = true; o.textContent = 'Sound on'; o.setAttribute('aria-pressed', 'false'); }
+    });
+    v.muted = !on;
+    if (on) { v.currentTime = 0; var go = v.play(); if (go && go.catch) go.catch(function () {}); }
+    b.textContent = on ? 'Sound off' : 'Sound on';
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
+
+  /* elke video op een projectpagina krijgt een geluidsknop, maar alleen zichtbaar als de video geluid heeft */
+  function hasAudio(v) {
+    return !!(v.mozHasAudio || (v.webkitAudioDecodedByteCount > 0) || (v.audioTracks && v.audioTracks.length));
+  }
+  function soundButtons(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('video'), function (v) {
+      var box = v.parentElement;
+      if (!box || box.querySelector('.film-sound') || v.controls) return;
+      box.classList.add('has-sound');
+      var b = el('button', 'film-sound', 'Sound on');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', 'false');
+      b.hidden = true;
+      box.appendChild(b);
+      var tries = 0;
+      (function check() {
+        if (hasAudio(v)) { b.hidden = false; return; }
+        if (++tries < 12) setTimeout(check, 500);
+      })();
+    });
+  }
 
   /* speelknop: geluid aan, bediening zichtbaar */
   document.addEventListener('click', function (e) {
@@ -243,8 +271,7 @@
       return '<div class="lay lay-center"' + (p.ratio ? ' style="--ratio:' + esc(p.ratio) + '"' : '') + '>' +
         '<div class="center-left"><h1>' + esc(p.title) + '</h1><div class="center-facts">' + rowsC2 + '</div></div>' +
         '<div class="film-frame center-frame">' + shot(p.heroType || 'video', p.heroSrc, p.title, 'film-shot', { poster: p.heroPoster }) +
-          (p.heroType === 'video' ? '<button class="film-sound" type="button" aria-pressed="false">Sound on</button>' : '') +
-        '</div>' +
+                  '</div>' +
         '<div class="center-right">' + (p.intro ? '<p class="center-quote">' + esc(p.intro) + '</p>' : '') + '</div>' +
         '</div>';
     }
@@ -261,8 +288,7 @@
           '<div class="film-facts">' + rows + '</div>' +
         '</div>' +
         '<div class="film-frame">' + shot(p.heroType || 'video', p.heroSrc, p.title, 'film-shot', { poster: p.heroPoster }) +
-          (p.heroType === 'video' ? '<button class="film-sound" type="button" aria-pressed="false">Sound on</button>' : '') +
-        '</div>' +
+                  '</div>' +
         '</div>';
     }
 
@@ -298,12 +324,15 @@
       /* twee frames: frames links, gegevens en intro in de rechterkolom, titel er direct onder */
       if (frames === 2) {
         return '<div class="lay lay-poster poster-duo">' +
-          '<div class="duo-top">' + shots.join('') +
+          /* hoofdvideo groot in eigen vorm met geluidsknop, tweede beeld kleiner */
+          '<div class="duo-top">' +
+            '<div class="duo-main film-frame">' + shots[0].replace('poster-shot', 'poster-shot duo-hero') +
+                          '</div>' +
+            (shots[1] ? '<div class="duo-second">' + shots[1] + '</div>' : '') +
             '<div class="duo-side">' +
-              '<div class="duo-head"><span>' + no + '</span><span>' + kind + '</span></div>' +
+
               (p.intro && p.intro !== p.title ? '<p class="duo-intro">' + esc(p.intro) + '</p>' : '') +
               '<div class="duo-facts">' + info.map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; }).join('') + '</div>' +
-              back +
             '</div>' +
           '</div>' +
           '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' +
@@ -754,6 +783,7 @@
 
     host.innerHTML = caseMarkup(p, n);
     fit(host);
+    soundButtons(host);
     Array.prototype.forEach.call(host.querySelectorAll('video[autoplay]'), function (v) { v.muted = true; watch(v); });
 
     var stack = document.querySelector('[data-stack]');
@@ -765,6 +795,7 @@
         var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);
         stack.appendChild(box);
       });
+      soundButtons(stack);
     }
 
     var more = document.querySelector('[data-next]');

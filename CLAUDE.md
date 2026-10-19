@@ -78,6 +78,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Optioneel veld `agency` verschijnt als 'Agency' bij de gegevens.
 - Opzetten `film` (hoofdfilm staand rechts, titel en gegevens links, knop 'Sound on') en `center` (film in het midden,
   kolommen links/rechts, tekst als citaat). Veld `hidden: true` verbergt een project overal.
+- Geluidsknop ('Sound on/off') komt automatisch op elke video op een projectpagina die geluid heeft (`soundButtons` in `site.js`);
+  er speelt maar één video tegelijk met geluid. Video's zonder geluid (encoded met `-an`) krijgen geen knop.
 - Optioneel veld `ratio` (bijv. "9 / 16") bij `gallery`: beelden houden die vorm, voor staande video's (Ravi Nagarkar).
 
 ## About en Contact

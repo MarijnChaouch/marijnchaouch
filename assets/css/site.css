@@ -2231,3 +2231,36 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
   .film-text { justify-content: center; }
   .lay-film h1 { margin-top: 0; }
 }
+
+/* poster-duo: hoofdvideo staand en groot, tweede beeld kleiner onderaan */
+.duo-main { position: relative; grid-column: 1 / -1; width: min(100%, calc(var(--imgmax) * 9 / 16)); justify-self: start; align-self: start; }
+.duo-top .duo-hero { aspect-ratio: 9 / 16; height: auto; }
+.duo-second { grid-column: 1 / -1; width: 62%; justify-self: end; }
+.duo-second .poster-shot { aspect-ratio: 4 / 5; }
+@media (min-width: 720px) {
+  .duo-top {
+    grid-template-columns: auto minmax(0, 0.9fr) minmax(0, 1.1fr);
+    height: auto;
+    min-height: 0;
+    gap: 20px;
+    align-items: end;
+  }
+  .duo-main { grid-column: 1; width: auto; height: var(--imgmax); }
+  .duo-top .duo-hero { height: 100%; width: auto; aspect-ratio: 9 / 16; }
+  .duo-second { grid-column: 2; width: 100%; align-self: end; }
+  .duo-second .poster-shot { height: auto; aspect-ratio: 4 / 5; }
+  .duo-side { grid-column: 3; height: var(--imgmax); }
+}
+
+/* geluidsknop op elke video met geluid */
+.has-sound { position: relative; }
+.film-sound[hidden] { display: none; }
+@media (min-width: 720px) { .duo-side { justify-content: center; gap: 28px; } }
+
+/* mizuno: kleine video links, tekst in het midden, hoofdvideo rechts */
+@media (min-width: 720px) {
+  .duo-top { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) auto; }
+  .duo-second { grid-column: 1; grid-row: 1; }
+  .duo-side { grid-column: 2; grid-row: 1; }
+  .duo-main { grid-column: 3; grid-row: 1; }
+}
