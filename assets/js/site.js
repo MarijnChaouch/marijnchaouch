@@ -152,10 +152,63 @@
       '<span class="eyebrow">Deliverables</span><p>' + esc(p.deliverables) + '</p>';
   }
 
-  function caseMarkup(p) {
+  /* titel in twee delen, voor verspringende koppen */
+  function halves(t) {
+    var words = String(t || '').split(' ');
+    var cut = Math.max(1, Math.floor(words.length / 2));
+    return '<span>' + esc(words.slice(0, cut).join(' ')) + '</span>' +
+      (words.length > 1 ? ' <span>' + esc(words.slice(cut).join(' ')) + '</span>' : '');
+  }
+
+  /* gegevens als rijen: label links, waarde rechts */
+  function factRows(p) {
+    return [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+      .filter(function (r) { return r[1]; })
+      .map(function (r) { return '<div class="fact-row"><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; })
+      .join('');
+  }
+
+  function caseMarkup(p, n) {
     var b = pieces(p);
     var back = '<a class="back" href="work.html">Back to work</a>';
     var layout = p.layout || 'editorial';
+    var no = ('0' + ((n || 0) + 1)).slice(-2);
+    var kind = p.kind === 'video' ? 'Video' : 'Photo';
+
+    /* omslag: beeld van rand tot rand, daaronder de titel groot en de gegevens in kolommen */
+    if (layout === 'cover') {
+      return '<div class="lay lay-cover">' +
+        '<div class="cover-visual">' + b.hero + '</div>' +
+        '<div class="cover-text">' +
+          '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>' +
+          '<h1>' + esc(p.title) + '</h1>' +
+          '<div class="cover-facts">' + factRows(p) + '</div>' +
+          (p.intro ? '<p class="statement">' + esc(p.intro) + '</p>' : '') +
+        '</div></div>';
+    }
+
+    /* kolommen: titel over twee verspringende regels, label met tekst, beeld over de volle breedte */
+    if (layout === 'columns') {
+      return '<div class="lay lay-columns">' +
+        '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>' +
+        '<h1 class="stagger">' + halves(p.title) + '</h1>' +
+        '<div class="col-row"><span>Project</span><p>' + esc(p.intro || p.caption || '') + '</p></div>' +
+        '<div class="col-row"><span>Client</span><p>' + esc(p.client) + (p.year ? ', ' + esc(p.year) : '') + '</p></div>' +
+        (p.deliverables ? '<div class="col-row"><span>Delivered</span><p>' + esc(p.deliverables) + '</p></div>' : '') +
+        '<div class="col-visual">' + b.hero + '</div>' +
+        '</div>';
+    }
+
+    /* nummer: het projectnummer is de kop, intro in grote hoofdletters, gegevens als rijen naast het beeld */
+    if (layout === 'number') {
+      return '<div class="lay lay-number">' +
+        '<div class="lay-corners">' + back + '<span>' + kind + '</span></div>' +
+        '<div class="num-head"><b class="num-big">' + no + '</b><h1>' + esc(p.title) + '</h1></div>' +
+        (p.intro ? '<p class="num-caps">' + esc(p.intro) + '</p>' : '') +
+        '<div class="num-body"><div class="num-facts">' + factRows(p) + '</div>' +
+        '<div class="num-frame">' + b.hero + '</div></div>' +
+        '</div>';
+    }
 
     if (layout === 'split') {
       return '<div class="lay lay-split">' +
@@ -277,16 +330,37 @@
 
   /* home */
 
+  /* home: vier varianten (frame, index, full, sheet); kies met data-home op <main> of ?home= in het adres */
   function reel() {
     var host = document.querySelector('[data-reel]');
     var list = document.querySelector('[data-clients]');
     if (!host || !list) return;
 
+    var main = document.querySelector('[data-home]');
+    var mode = new URLSearchParams(location.search).get('home') || (main && main.getAttribute('data-home')) || 'frame';
+    if (['frame', 'index', 'full', 'sheet'].indexOf(mode) < 0) mode = 'frame';
+    document.body.classList.add('home-' + mode);
+
     var items = P.filter(function (p) { return p.reel; });
     if (!items.length) items = P.slice(0, 6);
     if (!items.length) return;
+    var no = function (k) { return ('0' + (k + 1)).slice(-2); };
 
-    /* één vast kader: de projecten vloeien in elkaar over, met naam en teller eronder */
+    /* contactvel: alle projecten klein in een raster */
+    if (mode === 'sheet') {
+      var sheet = el('div', 'reel-sheet');
+      P.forEach(function (p, k) {
+        var a = el('a', 'sheet-item');
+        a.href = link(p);
+        a.appendChild(media(coverType(p), cover(p), p.title, 'sheet-shot'));
+        a.appendChild(el('div', 'sheet-cap', '<span>' + no(k) + '</span><b>' + esc(p.title) + '</b>'));
+        sheet.appendChild(a);
+      });
+      host.appendChild(sheet);
+      return;
+    }
+
+    /* kader: de projecten liggen op elkaar en wisselen */
     var stage = el('div', 'reel-stage');
     var cells = items.map(function (p) {
       var cell = el('a', 'reel-cell');
@@ -302,6 +376,21 @@
     host.appendChild(stage);
     host.appendChild(caption);
 
+    /* index: de projecten als grote titels onder elkaar */
+    var rows = [];
+    if (mode === 'index') {
+      var index = el('div', 'reel-index');
+      rows = items.map(function (p, k) {
+        var r = el('a', 'reel-row', '<span>' + no(k) + '</span><b>' + esc(p.title) + '</b><span>' + esc(p.year) + '</span>');
+        r.href = link(p);
+        r.addEventListener('mouseenter', function () { i = k; show(); hold = true; });
+        r.addEventListener('mouseleave', function () { hold = false; });
+        index.appendChild(r);
+        return r;
+      });
+      host.appendChild(index);
+    }
+
     var names = items.map(function (p) {
       var b = el('b', '', esc(p.title));
       var a = el('a', 'client-link');
@@ -311,8 +400,8 @@
       return b;
     });
 
-    var i = 0;
-    var count = ('0' + items.length).slice(-2);
+    var i = 0, hold = false;
+    var count = no(items.length - 1);
 
     function show() {
       cells.forEach(function (cell, k) {
@@ -328,15 +417,18 @@
         }
       });
       names.forEach(function (n, k) { n.classList.toggle('on', k === i); });
+      rows.forEach(function (r, k) { r.classList.toggle('on', k === i); });
       caption.innerHTML = '<a href="' + link(items[i]) + '">' + esc(items[i].title) + '</a>' +
-        '<span>' + ('0' + (i + 1)).slice(-2) + ' / ' + count + '</span>';
+        '<span>' + no(i) + ' / ' + count + '</span>';
     }
+
+    function next() { i = (i + 1) % items.length; show(); }
 
     show();
     if (items.length < 2) return;
 
-    /* telefoon en tablet: zelf swipen, het kader volgt waar je naartoe swipet */
-    if (window.matchMedia('(max-width: 1099px)').matches) {
+    /* kader op telefoon en tablet: zelf swipen, het kader volgt waar je naartoe swipet */
+    if (mode === 'frame' && window.matchMedia('(max-width: 1099px)').matches) {
       host.classList.add('swipe');
       var t;
       stage.addEventListener('scroll', function () {
@@ -350,13 +442,17 @@
       return;
     }
 
+    /* volledig scherm: tik op het beeld voor het volgende project */
+    if (mode === 'full') {
+      stage.addEventListener('click', function (e) { e.preventDefault(); next(); });
+    }
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     setInterval(function () {
-      if (document.hidden) return;
-      i = (i + 1) % items.length;
-      show();
-    }, 4500);
+      if (document.hidden || hold) return;
+      next();
+    }, mode === 'full' ? 3500 : 4500);
 
     /* terug naar het tabblad: het actieve beeld weer laten spelen */
     document.addEventListener('visibilitychange', function () { if (!document.hidden) show(); });
@@ -425,12 +521,15 @@
     /* onbekend project: terug naar het overzicht in plaats van een ander project tonen */
     if (n < 0) { location.replace('work.html'); return; }
     var p = P[n], next = P[(n + 1) % P.length];
+    /* voorbeeld van een andere opzet: project.html?p=...&layout=cover */
+    var preview = new URLSearchParams(location.search).get('layout');
+    if (preview) p = Object.assign({}, p, { layout: preview });
 
     document.title = p.title + ' \u2014 Marijn Chaouch';
     paint(p);
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
-    host.innerHTML = caseMarkup(p);
+    host.innerHTML = caseMarkup(p, n);
     Array.prototype.forEach.call(host.querySelectorAll('video[autoplay]'), function (v) { v.muted = true; watch(v); });
 
     var stack = document.querySelector('[data-stack]');
