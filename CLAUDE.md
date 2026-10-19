@@ -63,5 +63,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 - Elk project op Work heeft een eigen opzet (`look-1` t/m `look-6`): 1 verspringende titel, 2 alles rechts,
   3 beeld eerst, 4 groot nummer, 5 hoofdletters, 6 inspringend met gegevens onder het beeld.
-- Standaard wisselt de opzet met de plek in `data/projects.json`; met `"look": 4` (1 t/m 6) kies je er zelf een per project.
-- Op desktop en tablet heeft elke opzet een eigen breedte en positie in een raster van 12 kolommen.
+- Elk project heeft een `"look"` (1 t/m 6) in `data/projects.json`, gekozen op de vorm van het omslagbeeld:
+  1, 3, 4 = staand 4:5; 2 = vierkant; 5 = breed 16:9; 6 = staand 3:4. Kies bij een nieuw project een look die bij het beeld past,
+  anders wordt het beeld bijgesneden. Zonder `look` wisselt hij met de plek in de lijst.
+- De plek op de pagina (breedte en positie in het raster van 12 kolommen) hangt af van de positie in de lijst (`slot-a` t/m `slot-f`).
+- Previews zijn gemaakt van de originele video's (staan in de git-geschiedenis, commit 847f3a7). Mizuno en Snipes zijn maar 406x720.

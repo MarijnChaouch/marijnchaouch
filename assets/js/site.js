@@ -458,7 +458,8 @@
     function draw(kind) {
       host.innerHTML = '';
       P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
-        var a = el('a', 'card look-' + look(p));
+        /* opzet volgt het project, de plek op de pagina wisselt per positie */
+        var a = el('a', 'card look-' + look(p) + ' slot-' + 'abcdef'.charAt(P.indexOf(p) % 6));
         a.href = link(p);
         a.appendChild(el('div', 'card-ed', editorial(p)));
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
