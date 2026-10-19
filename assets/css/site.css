@@ -1152,8 +1152,6 @@ body.case {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
 }
 .card .meta { display: none; }
 .card-ed { display: contents; }
