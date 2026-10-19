@@ -70,8 +70,8 @@
         v.setAttribute('muted', '');
         v.setAttribute('loop', '');
         v.setAttribute('autoplay', '');
-        v.setAttribute('preload', 'auto');
-        v.src = src;
+        v.setAttribute('preload', opts.lazy ? 'none' : 'auto');
+        if (opts.lazy) v.setAttribute('data-src', src); else v.src = src;
         box.appendChild(v);
         if (!opts.manual) watch(v);
       }
@@ -339,7 +339,11 @@
 
     var main = document.querySelector('[data-home]');
     var mode = new URLSearchParams(location.search).get('home') || (main && main.getAttribute('data-home')) || 'frame';
-    if (mode === 'mix') mode = window.matchMedia('(max-width: 1099px)').matches ? 'full' : 'index';
+    var both = false;
+    if (mode === 'mix') {
+      if (window.matchMedia('(max-width: 1099px)').matches) mode = 'full';
+      else { mode = 'index'; both = true; }
+    }
     if (['frame', 'index', 'full', 'sheet'].indexOf(mode) < 0) mode = 'frame';
     document.body.classList.add('home-' + mode);
 
@@ -349,7 +353,7 @@
     var no = function (k) { return ('0' + (k + 1)).slice(-2); };
 
     /* contactvel: alle projecten klein in een raster */
-    if (mode === 'sheet') {
+    function buildSheet() {
       var sheet = el('div', 'reel-sheet');
       P.forEach(function (p, k) {
         var a = el('a', 'sheet-item');
@@ -358,16 +362,27 @@
         a.appendChild(el('div', 'sheet-cap', '<span>' + no(k) + '</span><b>' + esc(p.title) + '</b>'));
         sheet.appendChild(a);
       });
-      host.appendChild(sheet);
-      return;
+      return sheet;
     }
+    if (mode === 'sheet') { host.appendChild(buildSheet()); return; }
+
+    /* desktop: onder de index komt het contactvel */
+    if (both) {
+      document.body.classList.add('home-also-sheet');
+      var row = host.parentNode;
+      row.parentNode.insertBefore(buildSheet(), row.nextSibling);
+    }
+
+    var full = mode === 'full';
 
     /* kader: de projecten liggen op elkaar en wisselen */
     var stage = el('div', 'reel-stage');
     var cells = items.map(function (p) {
       var cell = el('a', 'reel-cell');
       cell.href = link(p);
-      cell.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame', { manual: true }));
+      var src = full && p.coverPhone ? p.coverPhone : cover(p);
+      var type = full && p.coverPhone ? 'video' : coverType(p);
+      cell.appendChild(media(type, src, p.title, 'reel-frame', { manual: true, lazy: full }));
       /* alleen het zichtbare beeld speelt; de andere stoppen zodra ze vanzelf willen starten */
       var v = cell.querySelector('video');
       if (v) v.addEventListener('play', function () { if (!cell.classList.contains('on')) v.pause(); });
@@ -405,9 +420,19 @@
     var i = 0, hold = false;
     var count = no(items.length - 1);
 
+    /* volledig scherm: alleen het huidige en het volgende beeld laden */
+    function ready(k) {
+      var v = cells[k] && cells[k].querySelector('video[data-src]');
+      if (v && !v.getAttribute('src')) { v.src = v.getAttribute('data-src'); v.load(); }
+    }
+
+    var last = -1;
     function show() {
+      if (full) { ready(i); ready((i + 1) % items.length); }
       cells.forEach(function (cell, k) {
         cell.classList.toggle('on', k === i);
+        /* het vorige beeld schuift omhoog weg terwijl het nieuwe van onder binnenkomt */
+        cell.classList.toggle('prev', full && k === last && k !== i);
         var v = cell.querySelector('video');
         if (!v) return;
         if (k === i) {
@@ -424,7 +449,7 @@
         '<span>' + no(i) + ' / ' + count + '</span>';
     }
 
-    function next() { i = (i + 1) % items.length; show(); }
+    function next() { last = i; i = (i + 1) % items.length; show(); }
 
     show();
     if (items.length < 2) return;

@@ -1373,7 +1373,16 @@ video:not([controls])::-webkit-media-controls-start-playback-button { display: n
   pointer-events: none;
   background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .12) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .55));
 }
-.home-full .reel-cell { transition: none; }
+/* van onder naar binnen, naar boven weg, aansluitend, met ease-in-out */
+.home-full .reel-cell {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(100%);
+  transition: none;
+}
+.home-full .reel-cell.on, .home-full .reel-cell.prev { transition: transform 1.1s cubic-bezier(.65, 0, .35, 1); }
+.home-full .reel-cell.on { transform: translateY(0); }
+.home-full .reel-cell.prev { transform: translateY(-100%); }
 .home-full .reel-caption {
   display: flex;
   position: absolute;
@@ -1385,7 +1394,7 @@ video:not([controls])::-webkit-media-controls-start-playback-button { display: n
   font-size: 15px;
 }
 .home-full .reel-caption span { color: rgba(250, 249, 247, .7); }
-.home-full .home-left, .home-full .foot, .home-full .bar { position: relative; z-index: 2; }
+.home-full .home-left, .home-full .foot { position: relative; z-index: 2; }
 .home-full .home h1, .home-full h1 { color: #FAF9F7; }
 .home-full .lede { color: rgba(250, 249, 247, .82); }
 .home-full .home .foot, .home-full .foot { color: rgba(250, 249, 247, .75); }
@@ -1559,3 +1568,14 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
     object-fit: contain;
   }
 }
+
+/* desktop: onder de index het contactvel */
+.home-also-sheet .reel-sheet {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 20px;
+  margin: 120px 0 24px;
+  position: relative;
+  z-index: 2;
+}
+.home-also-sheet .home { overflow: visible; }
