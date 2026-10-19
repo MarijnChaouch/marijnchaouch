@@ -19,6 +19,8 @@
       "layout": "poster",
       "heroSrc": "/media/trailrun_recap-_final-.mp4",
       "slug": "mizuno-neo-accera",
+      "posterFrames": 2,
+      "posterUnder": "/media/rocks.mp4",
       "coverPhone": "/media/trailrun_recap-_final--phone.mp4",
       "look": 1,
       "client": "Mizuno",
@@ -188,7 +190,7 @@
         },
         {
           "span": "full",
-          "src": "/media/dsc08960.jpg",
+          "src": "/media/transavia_cabin.jpg",
           "type": "image"
         }
       ],

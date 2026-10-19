@@ -228,7 +228,7 @@
     if (layout === 'gallery') {
       var g = p.media || [];
       var second = g[0] ? shot(g[0].type, g[0].src, p.title, 'gallery-shot', g[0]) : '';
-      return '<div class="lay lay-gallery">' +
+      return '<div class="lay lay-gallery"><div class="gallery-screen">' +
         '<div class="gallery-shots">' +
           '<div class="gallery-first">' + shot(p.heroType || 'image', p.heroSrc, p.title, 'gallery-shot', { poster: p.heroPoster }) +
             '<div class="gallery-over">' + esc(p.title) + '<br>' + esc(p.client) + '<br>' + esc(p.year) + '</div></div>' +
@@ -236,26 +236,30 @@
         '</div>' +
         '<div class="gallery-text">' +
           (p.intro && p.intro !== p.title ? '<p class="gallery-big">' + esc(p.intro) + '</p>' : '<p class="gallery-big">' + esc(p.title) + '</p>') +
-          '<div class="gallery-facts">' + back + factCols(p) + '</div>' +
-        '</div></div>';
+        '</div></div>' +
+        '<div class="gallery-facts">' + back + factCols(p) + '</div>' +
+        '</div>';
     }
 
     /* poster: drie foto's naast elkaar, kleine gegevens in hoofdletters, enorme titel onderaan, tekst langs de rand */
     if (layout === 'poster') {
-      var m = p.media || [];
+      /* posterFrames: 2 geeft twee staande 4:5-frames; posterUnder: een beeld onder de titel */
+      var m = (p.media || []).filter(function (x) { return x.src !== p.posterUnder; });
+      var frames = p.posterFrames === 2 ? 2 : 3;
       var shots = [shot(p.heroType || 'image', p.heroSrc, p.title, 'poster-shot', { poster: p.heroPoster })];
-      m.slice(0, 2).forEach(function (x) { shots.push(shot(x.type, x.src, p.title, 'poster-shot', x)); });
+      m.slice(0, frames - 1).forEach(function (x) { shots.push(shot(x.type, x.src, p.title, 'poster-shot', x)); });
+      var under = p.posterUnder ? shot(/\.mp4$/i.test(p.posterUnder) ? 'video' : 'image', p.posterUnder, p.title, 'poster-under') : '';
       var info = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
         .filter(function (r) { return r[1]; });
       return '<div class="lay lay-poster">' +
-        '<div class="poster-shots">' + shots.join('') + '</div>' +
+        '<div class="poster-shots' + (frames === 2 ? ' poster-two' : '') + '">' + shots.join('') + '</div>' +
         '<div class="poster-info">' +
           '<div class="poster-labels">' + info.map(function (r) { return r[0] + ':'; }).join('<br>') + '</div>' +
           '<div class="poster-values">' + info.map(function (r) { return esc(r[1]); }).join('<br>') + '</div>' +
           '<div class="poster-back">' + back + '</div>' +
         '</div>' +
         (p.intro && p.intro !== p.title ? '<p class="poster-intro">' + esc(p.intro) + '</p>' : '') +
-        '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' +
+        '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' + under +
         '<div class="poster-foot"><span>' + esc(p.client) + '</span><span>' + esc(p.deliverables || kind) + '</span><span>' + no + '</span></div>' +
         '<div class="poster-edge">Marijn Chaouch \u2014 Photography and Film</div>' +
         '</div>';
@@ -667,8 +671,8 @@
     var stack = document.querySelector('[data-stack]');
     if (stack) {
       stack.innerHTML = '';
-      var used = p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? 2 : 0;
-      (p.media || []).slice(used).forEach(function (m) {
+      var used = p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? (p.posterFrames === 2 ? 1 : 2) : 0;
+      (p.media || []).filter(function (m) { return !(p.layout === 'poster' && m.src === p.posterUnder); }).slice(used).forEach(function (m) {
         /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */
         var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);
         stack.appendChild(box);
