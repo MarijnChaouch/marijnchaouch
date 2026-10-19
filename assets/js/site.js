@@ -330,7 +330,8 @@
 
   /* home */
 
-  /* home: vier varianten (frame, index, full, sheet); kies met data-home op <main> of ?home= in het adres */
+  /* home: varianten frame, index, full, sheet, of mix (telefoon full, desktop index);
+     kies met data-home op <main> of ?home= in het adres */
   function reel() {
     var host = document.querySelector('[data-reel]');
     var list = document.querySelector('[data-clients]');
@@ -338,6 +339,7 @@
 
     var main = document.querySelector('[data-home]');
     var mode = new URLSearchParams(location.search).get('home') || (main && main.getAttribute('data-home')) || 'frame';
+    if (mode === 'mix') mode = window.matchMedia('(max-width: 1099px)').matches ? 'full' : 'index';
     if (['frame', 'index', 'full', 'sheet'].indexOf(mode) < 0) mode = 'frame';
     document.body.classList.add('home-' + mode);
 
