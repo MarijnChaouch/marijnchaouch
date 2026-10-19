@@ -58,6 +58,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Videoprojecten krijgen als `cover` een korte preview (`naam-preview.mp4`, 6 seconden, max 720 hoog of 960 breed,
   `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
 - `site.js` laadt en speelt video's pas als ze in beeld zijn (IntersectionObserver) en pauzeert ze daarbuiten.
+- Browsers bewaren `/media/` 30 dagen (`vercel.json`). Vervang je een beeld, geef het dan een nieuwe naam (bijv. `-v2`), anders ziet een bezoeker nog de oude versie.
 
 ## Opmaak van Work
 
