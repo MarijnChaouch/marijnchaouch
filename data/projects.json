@@ -407,6 +407,43 @@
         }
       ],
       "ratio": "9 / 16"
+    },
+    {
+      "title": "Nike x Patta",
+      "slug": "nike-x-patta",
+      "client": "Nike & Patta Academy",
+      "year": "2024",
+      "kind": "video",
+      "role": "Videography",
+      "deliverables": "Campaign film",
+      "intro": "Commissioned by Patta Academy and Nike in 2024, launching globally in 2026.",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "center",
+      "ratio": "9 / 16",
+      "reel": false,
+      "cover": "/media/patta_main-preview.mp4",
+      "heroType": "video",
+      "heroSrc": "/media/patta_main.mp4",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/patta_still_01.jpg",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "/media/patta_still_02.jpg",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "/media/patta_still_03.jpg",
+          "span": "half"
+        }
+      ]
     }
   ]
 }

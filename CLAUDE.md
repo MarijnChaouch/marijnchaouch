@@ -45,8 +45,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 ## Openstaande punten
 
 1. Vimeo, LinkedIn en KvK-nummer zijn nog leeg in `data/site.json`.
-5. Nike x Patta staat klaar in `pending/` (niet in git, niet online): project-JSON en media. Campagne (Africa Day Shirt) start
-   2-11-2026; pas publiceren na akkoord Marijn: JSON toevoegen aan `data/projects.json` (layout `center`), media naar `media/`.
 4. Eigen project 'Personal Project' (gallery, foto's uit Dropbox House of Founders Morocco/Staff): naam volgt nog, meer foto's volgen.
 3. Testproject TCS Marathon Amsterdam (gallery): introtekst is tijdelijk; bureau is The Spot agency (hetzelfde als bij Fila).
 2. Project Sunnery James & Ryan Marciano (`sjrm`) heeft alleen een tijdelijke introtekst (de naam); Marijn levert later tekst aan.
