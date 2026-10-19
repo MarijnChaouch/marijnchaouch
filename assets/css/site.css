@@ -1059,26 +1059,17 @@ body.case {
     letter-spacing: -0.06em;
   }
 
-  /* naam over twee verspringende regels */
-  .page-title.stagger { font-size: clamp(54px, 18.5vw, 100px); }
+  /* titel over twee verspringende regels */
   .stagger span { display: block; }
   .stagger span + span { text-align: right; }
 
   .head { margin-top: 0; min-height: calc(36svh - 72px); justify-content: flex-end; gap: 14px; }
   .head .corners { margin-bottom: auto; }
 
-  /* about: klein label links, tekst rechts, portret over de volle breedte */
+  /* about: tekst in de rechterkolom, portret over de volle breedte */
   .ab { display: grid; grid-template-columns: 30% minmax(0, 1fr); column-gap: 14px; margin: 0; }
   .ab-panel, .ab-top { display: contents; }
-  .ab-eyebrow {
-    grid-column: 1;
-    grid-row: 1;
-    padding-top: 2px;
-    font-size: 12px;
-    letter-spacing: 0;
-    text-transform: none;
-    opacity: 1;
-  }
+  .ab-eyebrow { display: none; }
   .ab-panel h1 {
     grid-column: 2;
     grid-row: 1;
@@ -1102,4 +1093,43 @@ body.case {
   }
   .cols .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink); }
   .cols ul { margin: 0; gap: 4px; font-size: 13px; }
+}
+
+/* work op telefoon: elk project als redactionele kop met het beeld over de volle breedte */
+
+.card-ed { display: none; }
+
+@media (max-width: 719px) {
+  .grid { gap: 64px; }
+  .card { gap: 0; padding-top: 12px; border-top: 1px solid var(--line); }
+  .card-ed { display: block; }
+  .card-ed .corners { margin-bottom: 40px; }
+  .card-title {
+    margin: 0;
+    font-size: clamp(40px, 13vw, 72px);
+    font-weight: 700;
+    line-height: .88;
+    letter-spacing: -0.055em;
+  }
+  .card-row {
+    display: grid;
+    grid-template-columns: 30% minmax(0, 1fr);
+    column-gap: 14px;
+    margin: 18px 0 24px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .card-row span { font-weight: 700; }
+  .card-row p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--mid);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .shot { margin: 0 calc(var(--pad) * -1); }
+  .card .meta { display: none; }
 }

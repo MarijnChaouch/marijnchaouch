@@ -424,6 +424,19 @@
 
   /* work */
 
+  /* kop per project op telefoon: nummer en soort in de hoeken, titel over twee regels, klant en intro in twee kolommen */
+  function editorial(p, n) {
+    var words = String(p.title || '').split(' ');
+    var cut = Math.max(1, Math.floor(words.length / 2));
+    var title = '<span>' + esc(words.slice(0, cut).join(' ')) + '</span>' +
+      (words.length > 1 ? '<span>' + esc(words.slice(cut).join(' ')) + '</span>' : '');
+    var intro = p.intro && p.intro !== p.title ? '<p>' + esc(p.intro) + '</p>' : '';
+    return '<div class="corners"><span>' + ('0' + (n + 1)).slice(-2) + '</span><span>' +
+      (p.kind === 'video' ? 'Video' : 'Photo') + '</span></div>' +
+      '<p class="card-title stagger">' + title + '</p>' +
+      '<div class="card-row"><span>' + esc(p.client) + '<br>' + esc(p.year) + '</span>' + intro + '</div>';
+  }
+
   function grid() {
     var host = document.querySelector('[data-grid]');
     if (!host) return;
@@ -433,6 +446,7 @@
       P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
         var a = el('a', 'card');
         a.href = link(p);
+        a.appendChild(el('div', 'card-ed', editorial(p, n)));
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
         a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
         host.appendChild(a);
