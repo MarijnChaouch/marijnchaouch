@@ -64,10 +64,16 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   de iOS-afspeelknop en start `kick()` in `site.js` de video's in beeld bij elke aanraking.
 - Browsers bewaren `/media/` 30 dagen (`vercel.json`). Vervang je een beeld, geef het dan een nieuwe naam (bijv. `-v2`), anders ziet een bezoeker nog de oude versie.
 
+## Projectpagina's
+
+- De achtergrondkleur per project (`color` en `ink` in `data/projects.json`) staat uit op Marijns verzoek: alle pagina's
+  hebben de lichte achtergrond met zwarte tekst. Weer aanzetten: de regel `paint(p)` in `project()` in `site.js`.
+- Opzetten (`layout`): split, editorial, index, panel, cover, columns, number. Bekijk een andere opzet met `?layout=` achter het adres.
+
 ## Opmaak van Work
 
 - Elk project op Work heeft een eigen opzet (`look-1` t/m `look-6`): 1 verspringende titel, 2 alles rechts,
-  3 beeld eerst, 4 groot nummer, 5 hoofdletters, 6 inspringend met gegevens onder het beeld.
+  3 titel op één regel, 4 groot nummer, 5 hoofdletters, 6 inspringend. Tekst staat altijd boven het beeld (wens van Marijn).
 - Elk project heeft een `"look"` (1 t/m 6) in `data/projects.json`, gekozen op de vorm van het omslagbeeld:
   1, 3, 4 = staand 4:5; 2 = vierkant; 5 = breed 16:9; 6 = staand 3:4. Kies bij een nieuw project een look die bij het beeld past,
   anders wordt het beeld bijgesneden. Zonder `look` wisselt hij met de plek in de lijst.

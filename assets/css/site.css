@@ -1181,11 +1181,9 @@ body.case {
 .look-2 .card-row span { grid-column: 2; grid-row: 1; text-align: right; }
 .look-2 .shot { aspect-ratio: 1 / 1; }
 
-/* 3: beeld eerst, titel op één regel eronder */
-.look-3 .shot { order: 0; aspect-ratio: 4 / 5; margin-bottom: 14px; }
-.look-3 .corners { margin-bottom: 18px; }
+/* 3: titel op één regel (tekst staat altijd boven het beeld) */
+.look-3 .shot { aspect-ratio: 4 / 5; }
 .look-3 .card-title span { display: inline; }
-.look-3 .card-row { margin-bottom: 0; }
 
 /* 4: het nummer is de kop */
 .look-4 .corners span:first-child { visibility: hidden; }
@@ -1216,11 +1214,9 @@ body.case {
 }
 .look-5 .shot { aspect-ratio: 16 / 9; }
 
-/* 6: tweede regel springt in, gegevens onder het beeld */
-.look-6 .card-title { margin-bottom: 24px; }
+/* 6: tweede regel springt in */
 .look-6 .card-title span + span { padding-left: 22%; }
-.look-6 .shot { order: 4; aspect-ratio: 3 / 4; }
-.look-6 .card-row { order: 5; margin: 14px 0 0; }
+.look-6 .shot { aspect-ratio: 3 / 4; }
 
 /* tablet en desktop: wisselende breedtes en posities, als een tijdschrift (slot a t/m f per positie) */
 @media (min-width: 720px) {
@@ -1264,11 +1260,6 @@ body.case {
   .look-5 .card-row p { -webkit-line-clamp: 3; }
   .grid { gap: 72px; }
 
-  /* overal eerst titel, dan beeld: zo wisselen tekst en beeld elkaar steeds af */
-  .look-3 .shot, .look-6 .shot { order: 5; margin-bottom: 0; }
-  .look-3 .card-row { margin-bottom: 24px; }
-  .look-6 .card-row { order: 4; margin: 0 0 24px; }
-  .look-6 .card-title { margin-bottom: 0; }
 }
 
 /* work op telefoon, alleen bovenaan: "Work" staat vrij, het eerste project is kleiner en zonder intro */

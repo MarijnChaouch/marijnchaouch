@@ -561,7 +561,7 @@
     if (preview) p = Object.assign({}, p, { layout: preview });
 
     document.title = p.title + ' \u2014 Marijn Chaouch';
-    paint(p);
+    /* projectkleuren staan uit: alle pagina's in de huisstijl. Weer aan: paint(p); */
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
     host.innerHTML = caseMarkup(p, n);
