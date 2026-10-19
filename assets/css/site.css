@@ -1287,3 +1287,11 @@ body.case {
   .look-6 .card-row { order: 4; margin: 0 0 24px; }
   .look-6 .card-title { margin-bottom: 0; }
 }
+
+/* work op telefoon, alleen bovenaan: "Work" staat vrij, het eerste project is kleiner en zonder intro */
+@media (max-width: 719px) {
+  .head { padding-bottom: 56px; }
+  .grid > .card:first-child .card-title { font-size: clamp(28px, 8.4vw, 36px); line-height: .94; letter-spacing: -0.04em; }
+  .grid > .card:first-child .card-row { margin: 12px 0 18px; }
+  .grid > .card:first-child .card-row p { display: none; }
+}
