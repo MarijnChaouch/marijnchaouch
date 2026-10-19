@@ -1959,3 +1959,83 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
 @media (min-width: 1100px) {
   .duo-top { height: calc(100svh - 120px - 14vw); }
 }
+
+/* ================= strak systeem (oktober 2026): overschrijft eerdere varianten ================= */
+
+/* ---- work: één raster, elke kaart gelijk ---- */
+.grid { display: grid; grid-template-columns: 1fr; gap: 56px; padding-bottom: 64px; }
+.grid > .card { grid-column: auto; margin-top: 0; padding-top: 0; border: 0; }
+.card .corners { display: flex; justify-content: space-between; margin: 0 0 10px; font-size: 11px; font-weight: 600; color: #8C857C; }
+.card-num { display: none; }
+.card-title { order: 3; font-size: clamp(26px, 7.4vw, 34px); line-height: 1; letter-spacing: -0.04em; text-transform: none; text-align: left; margin: 0; }
+.card-title span, .card-title span + span { display: inline; text-align: left; padding: 0; }
+.card-row { order: 4; display: flex; justify-content: space-between; gap: 16px; margin: 8px 0 14px; font-size: 12px; color: var(--mid); }
+.card-row span { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.card-row b, .card-row i { display: inline; font-style: normal; font-weight: inherit; }
+.card-row i::before { content: "\00b7\00a0"; }
+.card-row p { display: none; }
+.card .shot { order: 5; margin: 0; aspect-ratio: 4 / 5; }
+.card .shot img, .card .shot video { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 719px) {
+  .grid > .card:first-child .card-title { font-size: clamp(26px, 7.4vw, 34px); }
+  .head { padding-bottom: 32px; }
+}
+@media (min-width: 720px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px 20px; }
+  .card-title { font-size: clamp(26px, 2.6vw, 38px); }
+}
+@media (min-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 88px 24px; }
+}
+
+/* ---- beelden onder een project: net raster, vaste verhoudingen ---- */
+.case .stack, .case:not(.case-contents) .stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding-top: 48px;
+}
+.case .stack .item, .case:not(.case-contents) .stack .item,
+.case:not(.case-contents) .stack .item:nth-child(n) {
+  grid-column: auto;
+  width: auto;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--frame);
+}
+.case .stack .item.full, .case:not(.case-contents) .stack .item.full { aspect-ratio: 3 / 2; }
+.case .stack .item > div, .case:not(.case-contents) .stack .item > div { width: 100%; height: 100%; }
+.case .stack .item img, .case .stack .item video,
+.case:not(.case-contents) .stack .item img, .case:not(.case-contents) .stack .item video {
+  width: 100%; height: 100%; max-height: none; object-fit: cover;
+}
+.case .stack .item::after { content: none; }
+@media (min-width: 720px) {
+  .case .stack, .case:not(.case-contents) .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-top: 72px; }
+  .case .stack .item.full, .case:not(.case-contents) .stack .item.full,
+  .case:not(.case-contents) .stack .item.full:nth-child(n) { grid-column: 1 / -1; }
+}
+
+/* ---- kop (headline): hoofdbeeld schermbreed ---- */
+.lay-headline .head-visual { width: 100vw; margin-left: calc(50% - 50vw); }
+.lay-headline .head-visual .case-img { height: calc(100svh - 96px); }
+.lay-headline .head-visual img, .lay-headline .head-visual video { width: 100%; height: 100%; max-height: none; object-fit: cover; }
+.lay-headline h1 { margin-top: 32px; }
+.head-about { max-width: 900px; }
+@media (min-width: 720px) {
+  .lay-headline .head-visual { width: auto; margin-left: 0; }
+  .lay-headline .head-visual .case-img { height: calc(100svh - 120px); }
+}
+
+/* work: titels, regels en beelden per rij op één lijn */
+@media (min-width: 720px) {
+  .grid { row-gap: 0; }
+  .grid > .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; align-items: end; }
+  .grid > .card .shot { margin-bottom: 72px; }
+  .grid > .card .corners { align-self: start; }
+  .grid > .card .card-row { align-self: start; }
+}
+
+@media (min-width: 1100px) { .grid > .card .shot { margin-bottom: 88px; } }

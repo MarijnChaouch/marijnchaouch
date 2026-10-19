@@ -69,13 +69,12 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 ## Projectpagina's
 
-- De achtergrondkleur per project (`color` en `ink` in `data/projects.json`) staat uit op Marijns verzoek: alle pagina's
-  hebben de lichte achtergrond met zwarte tekst. Weer aanzetten: de regel `paint(p)` in `project()` in `site.js`.
-- Opzetten (`layout`): split, editorial, index, panel, cover, columns, number, headline, caption, contents, poster, gallery.
-- Optioneel veld `agency` per project; verschijnt als 'Agency' bij de gegevens.
-  Fotoprojecten hebben `poster` (Marijns favoriet, naar een referentie met drie foto's en een enorme titel), videoprojecten `number`.
-  Bekijk een andere opzet met `?layout=` achter het adres. Titels met `data-fit` worden in `site.js` precies op breedte gezet.
-- De beelden onder een project staan in hun eigen vorm (niets bijsnijden) en verspringen links/rechts.
+- Drie stijlen (Marijn vond meer varianten rommelig): `poster` (foto's bovenaan, grote titel; Mizuno met `posterFrames: 2`),
+  `gallery` (twee beelden schermvullend naast elkaar, tekst eronder) en `headline` (titel op breedte, 4 kolommen gegevens,
+  hoofdbeeld schermbreed). Oude layouts bestaan nog in `site.js` maar worden niet gebruikt.
+- Geen achtergrondkleuren per project (`paint(p)` staat uit).
+- Beelden onder een project: raster van 2 kolommen, `span: half` = 4:5, `span: full` = 3:2 over de volle breedte.
+- Optioneel veld `agency` verschijnt als 'Agency' bij de gegevens.
 
 ## About en Contact
 
@@ -85,10 +84,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 ## Opmaak van Work
 
-- Elk project op Work heeft een eigen opzet (`look-1` t/m `look-6`): 1 verspringende titel, 2 alles rechts,
-  3 titel op één regel, 4 groot nummer, 5 hoofdletters, 6 inspringend. Tekst staat altijd boven het beeld (wens van Marijn).
-- Elk project heeft een `"look"` (1 t/m 6) in `data/projects.json`, gekozen op de vorm van het omslagbeeld:
-  1, 3, 4 = staand 4:5; 2 = vierkant; 5 = breed 16:9; 6 = staand 3:4. Kies bij een nieuw project een look die bij het beeld past,
-  anders wordt het beeld bijgesneden. Zonder `look` wisselt hij met de plek in de lijst.
-- De plek op de pagina (breedte en positie in het raster van 12 kolommen) hangt af van de positie in de lijst (`slot-a` t/m `slot-f`).
-- Previews zijn gemaakt van de originele video's (staan in de git-geschiedenis, commit 847f3a7). Mizuno en Snipes zijn maar 406x720.
+- Strak raster: 1 kolom telefoon, 2 tablet, 3 desktop; elke kaart gelijk (nummer en soort, titel, klant en jaar, beeld 4:5).
+  Het veld `look` wordt niet meer gebruikt. Tekst staat altijd boven het beeld.

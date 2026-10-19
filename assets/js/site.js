@@ -628,7 +628,7 @@
       (p.kind === 'video' ? 'Video' : 'Photo') + '</span></div>' +
       '<p class="card-num">' + no + '</p>' +
       '<p class="card-title">' + title + '</p>' +
-      '<div class="card-row"><span>' + esc(p.client) + '<br>' + esc(p.year) + '</span>' + intro + '</div>';
+      '<div class="card-row"><span><b>' + esc(p.client) + '</b> <i>' + esc(p.year) + '</i></span>' + intro + '</div>';
   }
 
   function grid() {
@@ -639,7 +639,8 @@
       host.innerHTML = '';
       P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
         /* opzet volgt het project, de plek op de pagina wisselt per positie */
-        var a = el('a', 'card look-' + look(p) + ' slot-' + 'abcdef'.charAt(P.indexOf(p) % 6));
+        /* alle kaarten dezelfde opbouw, in een strak raster */
+        var a = el('a', 'card');
         a.href = link(p);
         a.appendChild(el('div', 'card-ed', editorial(p)));
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
