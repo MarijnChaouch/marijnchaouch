@@ -661,8 +661,8 @@
   }
 
   /* kop per project: nummer en soort, groot nummer, titel in twee delen, klant en intro */
-  function editorial(p) {
-    var no = ('0' + (P.indexOf(p) + 1)).slice(-2);
+  function editorial(p, pos) {
+    var no = ('0' + ((pos == null ? P.indexOf(p) : pos) + 1)).slice(-2);
     var words = String(p.title || '').split(' ');
     var cut = Math.max(1, Math.floor(words.length / 2));
     var title = '<span>' + esc(words.slice(0, cut).join(' ')) + '</span>' +
@@ -679,14 +679,35 @@
     var host = document.querySelector('[data-grid]');
     if (!host) return;
 
+    /* kolommen zoals in de CSS: 3 desktop, 2 tablet, 1 telefoon */
+    function columns() {
+      return window.matchMedia('(min-width: 1100px)').matches ? 3 : window.matchMedia('(min-width: 720px)').matches ? 2 : 1;
+    }
+
+    /* dambord: video en foto wisselen af, in de rij en in de kolom; volgorde binnen elke soort blijft gelijk */
+    function checker(list, cols) {
+      var vids = list.filter(function (p) { return p.kind === 'video'; });
+      var pics = list.filter(function (p) { return p.kind !== 'video'; });
+      var start = vids.length >= pics.length ? 0 : 1;
+      return list.map(function (x, k) {
+        var wantVid = (Math.floor(k / cols) + k % cols + start) % 2 === 0;
+        var a = wantVid ? vids : pics, b = wantVid ? pics : vids;
+        return (a.length ? a : b).shift();
+      });
+    }
+
+    var current = 'all', cols = columns();
+
     function draw(kind) {
+      current = kind;
       host.innerHTML = '';
-      P.filter(function (p) { return kind === 'all' || p.kind === kind; }).forEach(function (p, n) {
-        /* opzet volgt het project, de plek op de pagina wisselt per positie */
-        /* alle kaarten dezelfde opbouw, in een strak raster */
+      var list = P.filter(function (p) { return kind === 'all' || p.kind === kind; });
+      if (kind === 'all') list = checker(list, cols);
+      list.forEach(function (p, n) {
+        /* alle kaarten dezelfde opbouw, in een strak raster; nummer volgt de plek */
         var a = el('a', 'card');
         a.href = link(p);
-        a.appendChild(el('div', 'card-ed', editorial(p)));
+        a.appendChild(el('div', 'card-ed', editorial(p, n)));
         a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
         a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
         host.appendChild(a);
@@ -703,6 +724,13 @@
     });
 
     draw('all');
+
+    /* ander aantal kolommen (draaien, venster groter of kleiner): dambord opnieuw leggen */
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { var c = columns(); if (c !== cols) { cols = c; draw(current); } }, 150);
+    });
   }
 
   /* projectpagina */

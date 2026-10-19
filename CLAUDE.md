@@ -90,3 +90,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 - Strak raster: 1 kolom telefoon, 2 tablet, 3 desktop; elke kaart gelijk (nummer en soort, titel, klant en jaar, beeld 4:5).
   Het veld `look` wordt niet meer gebruikt. Tekst staat altijd boven het beeld.
+- Volgorde op Work is een dambord (video/foto wisselen af in rij en kolom, per aantal kolommen); nummers volgen de plek.
+  Binnen elke soort blijft de volgorde uit `projects.json`.
