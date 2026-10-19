@@ -162,7 +162,7 @@
 
   /* gegevens als rijen: label links, waarde rechts */
   function factRows(p) {
-    return [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+    return [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
       .filter(function (r) { return r[1]; })
       .map(function (r) { return '<div class="fact-row"><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; })
       .join('');
@@ -170,7 +170,7 @@
 
   /* gegevens als kolommen: klein label met de waarde eronder */
   function factCols(p) {
-    return [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+    return [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
       .filter(function (r) { return r[1]; })
       .map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; })
       .join('');
@@ -223,12 +223,29 @@
 
     var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>';
 
+    /* galerij: twee grote beelden naast elkaar van rand tot rand, kleine witte tekst erover,
+       daaronder een grote alinea in hoofdletters over de hele breedte */
+    if (layout === 'gallery') {
+      var g = p.media || [];
+      var second = g[0] ? shot(g[0].type, g[0].src, p.title, 'gallery-shot', g[0]) : '';
+      return '<div class="lay lay-gallery">' +
+        '<div class="gallery-shots">' +
+          '<div class="gallery-first">' + shot(p.heroType || 'image', p.heroSrc, p.title, 'gallery-shot', { poster: p.heroPoster }) +
+            '<div class="gallery-over">' + esc(p.title) + '<br>' + esc(p.client) + '<br>' + esc(p.year) + '</div></div>' +
+          second +
+        '</div>' +
+        '<div class="gallery-text">' +
+          (p.intro && p.intro !== p.title ? '<p class="gallery-big">' + esc(p.intro) + '</p>' : '<p class="gallery-big">' + esc(p.title) + '</p>') +
+          '<div class="gallery-facts">' + back + factCols(p) + '</div>' +
+        '</div></div>';
+    }
+
     /* poster: drie foto's naast elkaar, kleine gegevens in hoofdletters, enorme titel onderaan, tekst langs de rand */
     if (layout === 'poster') {
       var m = p.media || [];
       var shots = [shot(p.heroType || 'image', p.heroSrc, p.title, 'poster-shot', { poster: p.heroPoster })];
       m.slice(0, 2).forEach(function (x) { shots.push(shot(x.type, x.src, p.title, 'poster-shot', x)); });
-      var info = [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+      var info = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
         .filter(function (r) { return r[1]; });
       return '<div class="lay lay-poster">' +
         '<div class="poster-shots">' + shots.join('') + '</div>' +
@@ -266,7 +283,7 @@
 
     /* inhoud: als een inhoudsopgave, gegevens als lange regels, beelden daarna als genummerd contactvel */
     if (layout === 'contents') {
-      var rowsC = [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+      var rowsC = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
         .filter(function (r) { return r[1]; })
         .map(function (r) { return '<div class="cont-row"><span>' + r[0] + '</span><i></i><b>' + esc(r[1]) + '</b></div>'; })
         .join('');
@@ -650,7 +667,7 @@
     var stack = document.querySelector('[data-stack]');
     if (stack) {
       stack.innerHTML = '';
-      var used = p.layout === 'split' ? 1 : p.layout === 'poster' ? 2 : 0;
+      var used = p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? 2 : 0;
       (p.media || []).slice(used).forEach(function (m) {
         /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */
         var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);

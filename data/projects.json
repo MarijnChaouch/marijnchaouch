@@ -268,6 +268,44 @@
       "title": "Sunnery James & Ryan Marciano",
       "reel": false,
       "year": "2024"
+    },
+    {
+      "title": "TCS Marathon Amsterdam",
+      "slug": "tcs-marathon-amsterdam",
+      "look": 1,
+      "client": "Mizuno Running",
+      "year": "2026",
+      "kind": "photo",
+      "role": "Photography",
+      "deliverables": "",
+      "agency": "The Sport",
+      "intro": "Race day at the TCS Amsterdam Marathon for Mizuno Running, shot with The Sport.",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "gallery",
+      "reel": false,
+      "cover": "/media/tcs_amsterdam_01.jpg",
+      "heroType": "image",
+      "heroSrc": "/media/tcs_amsterdam_01.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/tcs_amsterdam_02.jpg",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "/media/tcs_amsterdam_03.jpg",
+          "span": "half"
+        },
+        {
+          "type": "image",
+          "src": "/media/tcs_amsterdam_04.jpg",
+          "span": "half"
+        }
+      ]
     }
   ]
 }

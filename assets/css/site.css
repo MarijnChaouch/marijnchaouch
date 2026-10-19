@@ -1749,3 +1749,52 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
 }
 
 .lay-headline h1 span, .lay-poster h1 span { display: inline-block; }
+
+/* gallery: twee beelden van rand tot rand, witte tekst erover, grote alinea in hoofdletters */
+.lay-gallery { padding-bottom: 32px; }
+.gallery-shots {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.gallery-first { position: relative; }
+.gallery-shot { aspect-ratio: 4 / 5; overflow: hidden; background: var(--frame); }
+.gallery-shot img, .gallery-shot video { width: 100%; height: 100%; object-fit: cover; }
+.gallery-over {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #FAF9F7;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(0, 0, 0, .25);
+  pointer-events: none;
+}
+.gallery-text { padding-top: 18px; }
+.gallery-big {
+  margin: 0;
+  font-size: clamp(22px, 6.4vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.gallery-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 28px; font-size: 12px; }
+.gallery-facts .back { grid-column: 1 / -1; margin: 0; }
+.gallery-facts div { display: flex; flex-direction: column; gap: 3px; }
+.gallery-facts span { color: var(--casemute); font-weight: 600; font-size: 11px; }
+.gallery-facts b { font-weight: 700; }
+
+@media (min-width: 720px) {
+  .gallery-shots { grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 6px; }
+  .gallery-shot { aspect-ratio: auto; height: calc(100svh - 120px); }
+  .gallery-over { top: 14px; left: 14px; font-size: clamp(14px, 1.3vw, 20px); }
+  .gallery-text { padding-top: 24px; }
+  .gallery-big { font-size: clamp(30px, 3.3vw, 60px); line-height: .98; }
+  .gallery-facts { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 40px; font-size: 13px; }
+  .gallery-facts .back { grid-column: auto; }
+}
