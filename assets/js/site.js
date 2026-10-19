@@ -12,13 +12,12 @@
   /* stilstaand beeld naast elke video: naam-poster.jpg */
   function poster(src) { return String(src || '').replace(/\.mp4$/i, '-poster.jpg'); }
 
-  /* video's pas laden en afspelen als ze in beeld zijn, en pauzeren als ze weg zijn */
+  /* video's pauzeren als ze uit beeld zijn en weer starten als ze terugkomen */
   var seen = window.IntersectionObserver ? new IntersectionObserver(function (list) {
     list.forEach(function (e) {
       var v = e.target;
       v.inview = e.isIntersecting;
       if (e.isIntersecting) {
-        if (!v.getAttribute('src')) v.src = v.getAttribute('data-src');
         var go = v.play();
         if (go && go.catch) go.catch(function () {});
       } else if (!v.controls) {
@@ -28,10 +27,8 @@
   }, { rootMargin: '200px 0px' }) : null;
 
   function watch(v) {
-    if (seen) { seen.observe(v); return; }
     v.inview = true;
-    v.src = v.getAttribute('data-src');
-    v.autoplay = true;
+    if (seen) seen.observe(v);
   }
 
   function media(type, src, label, cls, opts) {
@@ -53,15 +50,15 @@
         box.appendChild(v);
         box.appendChild(el('button', 'playbtn', '<span class="sr">Play</span>'));
       } else {
-        /* iPhone speelt alleen vanzelf af met muted, autoplay en playsinline als echte attributen */
-        v.muted = true; v.defaultMuted = true;
+        /* iPhone speelt alleen vanzelf af met muted, autoplay en playsinline; de bron staat er meteen in */
+        v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true;
         v.setAttribute('muted', '');
         v.setAttribute('loop', '');
         v.setAttribute('autoplay', '');
-        v.setAttribute('preload', 'none');
-        v.setAttribute('data-src', src);
+        v.setAttribute('preload', 'auto');
+        v.src = src;
         box.appendChild(v);
-        watch(v);
+        if (!opts.manual) watch(v);
       }
     } else {
       var i = document.createElement('img');
@@ -119,7 +116,7 @@
         return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + still +
           ' preload="metadata" playsinline></video><button class="playbtn"><span class="sr">Play</span></button></div>';
       }
-      return '<div class="' + cls + '"><video data-src="' + esc(src) + '"' + still + ' muted loop autoplay playsinline webkit-playsinline preload="none"></video></div>';
+      return '<div class="' + cls + '"><video src="' + esc(src) + '"' + still + ' muted loop autoplay playsinline webkit-playsinline preload="auto"></video></div>';
     }
     return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(label) + '" loading="lazy"></div>';
   }
@@ -274,16 +271,21 @@
     if (!items.length) items = P.slice(0, 6);
     if (!items.length) return;
 
-    var track = el('div', 'reel-track');
-    items.concat([items[0]]).forEach(function (p) {
-      var cell = el('div', 'reel-cell');
-      cell.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame'));
-      var cap = el('a', 'reel-cap', esc(p.title));
-      cap.href = link(p);
-      cell.appendChild(cap);
-      track.appendChild(cell);
+    /* één vast kader: de projecten vloeien in elkaar over, met naam en teller eronder */
+    var stage = el('div', 'reel-stage');
+    var cells = items.map(function (p) {
+      var cell = el('a', 'reel-cell');
+      cell.href = link(p);
+      cell.appendChild(media(coverType(p), cover(p), p.title, 'reel-frame', { manual: true }));
+      /* alleen het zichtbare beeld speelt; de andere stoppen zodra ze vanzelf willen starten */
+      var v = cell.querySelector('video');
+      if (v) v.addEventListener('play', function () { if (!cell.classList.contains('on')) v.pause(); });
+      stage.appendChild(cell);
+      return cell;
     });
-    host.appendChild(track);
+    var caption = el('div', 'reel-caption');
+    host.appendChild(stage);
+    host.appendChild(caption);
 
     var names = items.map(function (p) {
       var b = el('b', '', esc(p.title));
@@ -294,138 +296,38 @@
       return b;
     });
 
-    function size() {
-      var h = host.clientHeight || window.innerHeight;
-      if (!h) return;
-      var ratio = window.innerWidth >= 1100 ? 0.72 : 0.62;
-      var fh = Math.round(h * ratio);
-      var top = Math.round((h - fh) / 2);
+    var i = 0;
+    var count = ('0' + items.length).slice(-2);
 
-      /* hoogte van het bijschrift dat onder het beeld meeloopt */
-      var cap = track.querySelector('.reel-cap');
-      var capH = (cap && cap.offsetParent) ? Math.ceil(cap.getBoundingClientRect().height) + 10 : 0;
-
-      /* op telefoon en tablet houdt het beeld altijd afstand van de tekst */
-      if (window.innerWidth < 1100) {
-        var base = host.getBoundingClientRect().top;
-        var left = document.querySelector('.home-left');
-        var right = document.querySelector('.home-right');
-        var low = (right && right.offsetParent) ? right : document.querySelector('.home .foot');
-        var gap = 28;
-        var from = left ? Math.round(left.getBoundingClientRect().bottom - base) + gap : top;
-        var to = low ? Math.round(low.getBoundingClientRect().top - base) - gap : h;
-        var room = to - from - capH;
-        if (room > 200) {
-          top = from;
-          fh = room;
-        } else {
-          top = Math.max(from, top);
-          fh = Math.min(fh, Math.max(200, h - top - capH - 24));
-        }
-      }
-
-      track.style.setProperty('--step', h + 'px');
-      track.style.gap = (h - fh - capH) + 'px';
-      track.style.paddingTop = top + 'px';
-      Array.prototype.forEach.call(track.children, function (cell) {
-        var f = cell.querySelector ? cell.querySelector('.reel-frame') : null;
-        (f || cell).style.height = fh + 'px';
-      });
-    }
-
-    size();
-
-    var t;
-    function resize() { clearTimeout(t); t = setTimeout(size, 150); }
-    window.addEventListener('resize', resize);
-    if (window.ResizeObserver) { new ResizeObserver(resize).observe(host); }
-
-    var i = 0, travel = 1500, wait = 3500;
-
-    function paint() {
-      track.style.setProperty('--i', i);
-      var active = i % items.length;
-      names.forEach(function (n, k) { n.classList.toggle('on', k === active); });
-    }
-
-    paint();
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || items.length < 2) return;
-
-    /* video's die de browser heeft gepauzeerd weer aanzetten */
-    function wake() {
-      Array.prototype.forEach.call(track.querySelectorAll('video'), function (v) {
-        if (v.paused && v.inview && v.getAttribute('src') && !v.hasAttribute('controls')) {
+    function show() {
+      cells.forEach(function (cell, k) {
+        cell.classList.toggle('on', k === i);
+        var v = cell.querySelector('video');
+        if (!v) return;
+        if (k === i) {
+          v.currentTime = 0;
           var go = v.play();
           if (go && go.catch) go.catch(function () {});
+        } else {
+          v.pause();
         }
       });
+      names.forEach(function (n, k) { n.classList.toggle('on', k === i); });
+      caption.innerHTML = '<a href="' + link(items[i]) + '">' + esc(items[i].title) + '</a>' +
+        '<span>' + ('0' + (i + 1)).slice(-2) + ' / ' + count + '</span>';
     }
 
-    /* één klok, geen losse timers die kunnen blijven hangen */
-    var timer = null, blurOff = null, step = null;
+    show();
+    if (items.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    function clear() {
-      if (timer) { clearTimeout(timer); timer = null; }
-      if (blurOff) { clearTimeout(blurOff); blurOff = null; }
-      if (step) { clearTimeout(step); step = null; }
-    }
+    setInterval(function () {
+      if (document.hidden) return;
+      i = (i + 1) % items.length;
+      show();
+    }, 4500);
 
-    function settle() {
-      track.classList.remove('moving');
-      wake();
-    }
-
-    function advance() {
-      i += 1;
-      track.classList.add('moving');
-      paint();
-
-      if (blurOff) clearTimeout(blurOff);
-      blurOff = setTimeout(settle, travel * 0.55);
-
-      if (i >= items.length) {
-        if (step) clearTimeout(step);
-        step = setTimeout(function () {
-          track.classList.add('jump');
-          i = 0;
-          paint();
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () { track.classList.remove('jump'); });
-          });
-        }, travel);
-      }
-    }
-
-    function loop() {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(function () {
-        if (!document.hidden) advance();
-        loop();
-      }, wait);
-    }
-
-    /* het blur weghalen zodra de beweging echt klaar is */
-    track.addEventListener('transitionend', function (e) {
-      if (e.propertyName === 'transform') settle();
-    });
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { clear(); return; }
-      track.classList.remove('moving');
-      track.classList.add('jump');
-      i = 0;
-      paint();
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () { track.classList.remove('jump'); });
-      });
-      wake();
-      loop();
-    });
-
-    window.addEventListener('pageshow', wake);
-    setInterval(wake, 4000);
-
-    loop();
+    /* terug naar het tabblad: het actieve beeld weer laten spelen */
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) show(); });
   }
 
   /* work */
@@ -497,7 +399,7 @@
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
     host.innerHTML = caseMarkup(p);
-    Array.prototype.forEach.call(host.querySelectorAll('video[data-src]'), function (v) { v.muted = true; watch(v); });
+    Array.prototype.forEach.call(host.querySelectorAll('video[autoplay]'), function (v) { v.muted = true; watch(v); });
 
     var stack = document.querySelector('[data-stack]');
     if (stack) {

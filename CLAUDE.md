@@ -57,7 +57,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (eerste frame: `ffmpeg -i x.mp4 -frames:v 1 -q:v 4 x-poster.jpg`). `site.js` gebruikt dat automatisch.
 - Videoprojecten krijgen als `cover` een korte preview (`naam-preview.mp4`, 6 seconden, max 720 hoog of 960 breed,
   `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
-- `site.js` laadt en speelt video's pas als ze in beeld zijn (IntersectionObserver) en pauzeert ze daarbuiten.
+- Video's krijgen meteen hun bron met `muted`, `autoplay`, `loop` en `playsinline` als attributen; een IntersectionObserver pauzeert ze
+  alleen buiten beeld. Niet terug naar pas laden bij in beeld komen: dat speelde op Marijns iPhone niet af (oktober 2026).
+- Home: één vast kader waarin de reel-projecten in elkaar overvloeien (geen schuivende strook meer).
 - Browsers bewaren `/media/` 30 dagen (`vercel.json`). Vervang je een beeld, geef het dan een nieuwe naam (bijv. `-v2`), anders ziet een bezoeker nog de oude versie.
 
 ## Opmaak van Work
