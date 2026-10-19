@@ -68,7 +68,10 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 - De achtergrondkleur per project (`color` en `ink` in `data/projects.json`) staat uit op Marijns verzoek: alle pagina's
   hebben de lichte achtergrond met zwarte tekst. Weer aanzetten: de regel `paint(p)` in `project()` in `site.js`.
-- Opzetten (`layout`): split, editorial, index, panel, cover, columns, number. Bekijk een andere opzet met `?layout=` achter het adres.
+- Opzetten (`layout`): split, editorial, index, panel, cover, columns, number, headline, caption, contents, poster.
+  Fotoprojecten hebben `poster` (Marijns favoriet, naar een referentie met drie foto's en een enorme titel), videoprojecten `number`.
+  Bekijk een andere opzet met `?layout=` achter het adres. Titels met `data-fit` worden in `site.js` precies op breedte gezet.
+- De beelden onder een project staan in hun eigen vorm (niets bijsnijden) en verspringen links/rechts.
 
 ## Opmaak van Work
 

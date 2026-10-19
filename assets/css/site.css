@@ -1570,3 +1570,182 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
   z-index: 2;
 }
 .home-also-sheet .home { overflow: visible; }
+
+/* ---------- projectpagina: opzetten headline, caption, contents en poster ---------- */
+
+/* beeld in zijn eigen vorm, nooit hoger dan het scherm */
+.head-visual .case-img, .cap-visual .case-img, .cont-visual .case-img { height: auto; background: transparent; }
+.head-visual img, .head-visual video,
+.cap-visual img, .cap-visual video,
+.cont-visual img, .cont-visual video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100svh - 120px);
+  object-fit: contain;
+}
+
+/* headline */
+.lay-headline { display: flex; flex-direction: column; padding-bottom: 40px; }
+.lay-headline h1 {
+  margin: 48px 0 24px;
+  font-size: 120px;
+  font-weight: 700;
+  line-height: .84;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+.head-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; margin-bottom: 32px; }
+.head-facts div { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; border-top: 1px solid var(--casefade); font-size: 13px; }
+.head-facts span { color: var(--casemute); font-weight: 600; font-size: 11px; }
+.head-facts b { font-weight: 700; }
+.head-about { margin-top: 28px; }
+
+/* caption */
+.lay-caption { display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px; }
+.cap-visual { margin-top: 24px; }
+.cap-text { display: grid; grid-template-columns: 1fr; gap: 16px; font-size: 13px; line-height: 1.45; }
+.cap-fig { font-weight: 600; color: var(--casemute); }
+.lay-caption h1 { margin: 0 0 8px; font-size: clamp(22px, 5.6vw, 30px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
+.cap-main p { margin: 0; max-width: 46ch; }
+
+/* contents */
+.lay-contents { display: flex; flex-direction: column; padding-bottom: 32px; }
+.lay-contents h1 {
+  margin: 48px 0 20px;
+  font-size: clamp(44px, 13vw, 160px);
+  font-weight: 700;
+  line-height: .86;
+  letter-spacing: -0.055em;
+}
+.cont-intro { margin: 0 0 28px; font-size: clamp(17px, 4.6vw, 24px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; max-width: 34ch; }
+.cont-rows { display: flex; flex-direction: column; margin-bottom: 32px; }
+.cont-row { display: flex; align-items: baseline; gap: 12px; padding: 8px 0; font-size: 14px; }
+.cont-row span { color: var(--casemute); font-weight: 600; }
+.cont-row i { flex: 1; border-bottom: 1px solid var(--casefade); transform: translateY(-4px); }
+.cont-row b { font-weight: 700; text-align: right; }
+.case-contents .stack { counter-reset: fig; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px; }
+.case-contents .stack .item { position: relative; counter-increment: fig; aspect-ratio: 4 / 5; }
+.case-contents .stack .item > div { height: 100%; }
+.case-contents .stack .item img, .case-contents .stack .item video { height: 100%; object-fit: cover; }
+.case-contents .stack .item::after {
+  content: counter(fig, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--casemute);
+}
+
+/* poster */
+.lay-poster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 72px);
+  padding: 8px 0 20px;
+}
+.poster-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.poster-shot { aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); }
+.poster-shot img, .poster-shot video { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.poster-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.poster-back { text-align: right; }
+.poster-back .back { margin: 0; font-size: 10px; text-transform: uppercase; }
+.poster-intro {
+  margin: 14px 0 0;
+  margin-left: calc((100% - 12px) / 3 + 6px);
+  max-width: 44ch;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+.lay-poster h1 {
+  margin: auto 0 0;
+  padding-top: 40px;
+  font-size: 120px;
+  font-weight: 700;
+  line-height: .78;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.poster-foot {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.poster-foot span:last-child { text-align: right; }
+.poster-edge {
+  position: absolute;
+  top: 8px;
+  right: calc(var(--pad) * -1 + 4px);
+  writing-mode: vertical-rl;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .head-facts { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 48px; }
+  .lay-headline h1 { margin: 64px 0 36px; }
+  .head-about { margin-top: 40px; }
+
+  .lay-caption { gap: 24px; }
+  .cap-visual { margin-top: 32px; }
+  .cap-visual .case-img { display: flex; justify-content: center; }
+  .cap-text { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1.4fr); gap: 32px; padding-top: 14px; border-top: 1px solid var(--casefade); }
+
+  .lay-contents h1 { margin: 64px 0 28px; }
+  .cont-intro { margin-bottom: 40px; }
+  .cont-row { font-size: 16px; padding: 10px 0; }
+  .case-contents .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 20px; }
+
+  .lay-poster { min-height: calc(100svh - 84px); padding-right: 22px; }
+  .poster-shots, .poster-info, .poster-foot { gap: 10px; }
+  .poster-info, .poster-foot, .poster-intro { font-size: 12px; }
+  .poster-back .back { font-size: 12px; }
+  .poster-intro { margin-left: calc((100% - 20px) / 3 + 10px); }
+  .poster-edge { display: block; right: 0; font-size: 9px; }
+}
+
+@media (min-width: 1100px) {
+  .lay-poster { min-height: calc(100svh - 120px); }
+}
+
+/* ---------- beelden onder elk project: verspringend, in hun eigen vorm ---------- */
+
+.case:not(.case-contents) .stack { grid-template-columns: 1fr; gap: 28px; }
+.case:not(.case-contents) .stack .item { background: transparent; }
+.case:not(.case-contents) .stack .item > div { height: auto; }
+.case:not(.case-contents) .stack .item img,
+.case:not(.case-contents) .stack .item video { height: auto; max-height: calc(100svh - 96px); object-fit: contain; }
+.case:not(.case-contents) .stack .item:nth-child(even) { width: 72%; margin-left: auto; }
+
+@media (min-width: 720px) {
+  .case:not(.case-contents) .stack { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: start; }
+  .case:not(.case-contents) .stack .item:nth-child(even) { width: auto; margin-left: 0; }
+  .case:not(.case-contents) .stack .item:nth-child(3n+1) { grid-column: 2 / span 6; }
+  .case:not(.case-contents) .stack .item:nth-child(3n+2) { grid-column: 9 / span 4; margin-top: 18vh; }
+  .case:not(.case-contents) .stack .item:nth-child(3n+3) { grid-column: 4 / span 7; }
+  .case:not(.case-contents) .stack .item.full { grid-column: 1 / -1; margin-top: 0; }
+}
+
+.lay-headline h1 span, .lay-poster h1 span { display: inline-block; }

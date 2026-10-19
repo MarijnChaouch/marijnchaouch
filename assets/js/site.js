@@ -168,6 +168,28 @@
       .join('');
   }
 
+  /* gegevens als kolommen: klein label met de waarde eronder */
+  function factCols(p) {
+    return [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+      .filter(function (r) { return r[1]; })
+      .map(function (r) { return '<div><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; })
+      .join('');
+  }
+
+  /* titels met data-fit precies zo groot maken dat ze de hele breedte vullen */
+  function fit(root) {
+    Array.prototype.forEach.call((root || document).querySelectorAll('[data-fit]'), function (h) {
+      var span = h.firstElementChild;
+      if (!span) return;
+      h.style.fontSize = '';
+      var size = parseFloat(getComputedStyle(h).fontSize);
+      var w = span.getBoundingClientRect().width;
+      if (w > 0) h.style.fontSize = (size * h.clientWidth / w * 0.995) + 'px';
+    });
+  }
+  var fitTimer;
+  window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(fit, 120); });
+
   function caseMarkup(p, n) {
     var b = pieces(p);
     var back = '<a class="back" href="work.html">Back to work</a>';
@@ -196,6 +218,63 @@
         '<div class="col-row"><span>Client</span><p>' + esc(p.client) + (p.year ? ', ' + esc(p.year) : '') + '</p></div>' +
         (p.deliverables ? '<div class="col-row"><span>Delivered</span><p>' + esc(p.deliverables) + '</p></div>' : '') +
         '<div class="col-visual">' + b.hero + '</div>' +
+        '</div>';
+    }
+
+    var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>';
+
+    /* poster: drie foto's naast elkaar, kleine gegevens in hoofdletters, enorme titel onderaan, tekst langs de rand */
+    if (layout === 'poster') {
+      var m = p.media || [];
+      var shots = [shot(p.heroType || 'image', p.heroSrc, p.title, 'poster-shot', { poster: p.heroPoster })];
+      m.slice(0, 2).forEach(function (x) { shots.push(shot(x.type, x.src, p.title, 'poster-shot', x)); });
+      var info = [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+        .filter(function (r) { return r[1]; });
+      return '<div class="lay lay-poster">' +
+        '<div class="poster-shots">' + shots.join('') + '</div>' +
+        '<div class="poster-info">' +
+          '<div class="poster-labels">' + info.map(function (r) { return r[0] + ':'; }).join('<br>') + '</div>' +
+          '<div class="poster-values">' + info.map(function (r) { return esc(r[1]); }).join('<br>') + '</div>' +
+          '<div class="poster-back">' + back + '</div>' +
+        '</div>' +
+        (p.intro && p.intro !== p.title ? '<p class="poster-intro">' + esc(p.intro) + '</p>' : '') +
+        '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' +
+        '<div class="poster-foot"><span>' + esc(p.client) + '</span><span>' + esc(p.deliverables || kind) + '</span><span>' + no + '</span></div>' +
+        '<div class="poster-edge">Marijn Chaouch \u2014 Photography and Film</div>' +
+        '</div>';
+    }
+
+    /* kop: de titel vult de hele breedte, gegevens in kolommen, beeld, dan label met intro */
+    if (layout === 'headline') {
+      return '<div class="lay lay-headline">' + corners +
+        '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' +
+        '<div class="head-facts">' + factCols(p) + '</div>' +
+        '<div class="head-visual">' + b.hero + '</div>' +
+        (p.intro ? '<div class="col-row head-about"><span>About</span><p>' + esc(p.intro) + '</p></div>' : '') +
+        '</div>';
+    }
+
+    /* bijschrift: groot beeld, daaronder een rustig bijschrift zoals in een fotoboek */
+    if (layout === 'caption') {
+      return '<div class="lay lay-caption">' + corners +
+        '<div class="cap-visual">' + b.hero + '</div>' +
+        '<div class="cap-text"><span class="cap-fig">Fig. ' + no + '</span>' +
+          '<div class="cap-main"><h1>' + esc(p.title) + '</h1>' + (p.intro ? '<p>' + esc(p.intro) + '</p>' : '') + '</div>' +
+          '<div class="cap-facts">' + factRows(p) + '</div>' +
+        '</div></div>';
+    }
+
+    /* inhoud: als een inhoudsopgave, gegevens als lange regels, beelden daarna als genummerd contactvel */
+    if (layout === 'contents') {
+      var rowsC = [['Client', p.client], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+        .filter(function (r) { return r[1]; })
+        .map(function (r) { return '<div class="cont-row"><span>' + r[0] + '</span><i></i><b>' + esc(r[1]) + '</b></div>'; })
+        .join('');
+      return '<div class="lay lay-contents">' + corners +
+        '<h1>' + esc(p.title) + '</h1>' +
+        (p.intro ? '<p class="cont-intro">' + esc(p.intro) + '</p>' : '') +
+        '<div class="cont-rows">' + rowsC + '</div>' +
+        '<div class="cont-visual">' + b.hero + '</div>' +
         '</div>';
     }
 
@@ -565,15 +644,16 @@
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
     host.innerHTML = caseMarkup(p, n);
+    fit(host);
     Array.prototype.forEach.call(host.querySelectorAll('video[autoplay]'), function (v) { v.muted = true; watch(v); });
 
     var stack = document.querySelector('[data-stack]');
     if (stack) {
       stack.innerHTML = '';
-      var used = (p.layout === 'split') ? 1 : 0;
+      var used = p.layout === 'split' ? 1 : p.layout === 'poster' ? 2 : 0;
       (p.media || []).slice(used).forEach(function (m) {
+        /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */
         var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);
-        box.style.aspectRatio = m.span === 'full' ? '16 / 9' : '4 / 5';
         stack.appendChild(box);
       });
     }
