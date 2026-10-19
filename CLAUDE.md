@@ -18,7 +18,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Hosting: Vercel, project `marijnchaouch` in het team `cineaworks-3435` (Hobby, gratis).
 - Gekoppeld aan GitHub `MarijnChaouch/marijnchaouch`, branch `main`.
   Elke push naar `main` staat binnen een minuut live.
-- Pushen = live. Laat Marijn eerst zien wat er verandert en vraag akkoord voor je pusht.
+- Pushen = live. Marijn wil (19-10-2026) geen testversie en geen akkoordvraag meer: wijzigingen die hij vraagt direct
+  naar `main` pushen en daarna live controleren. Wel kort laten zien wat er veranderd is.
 - Controleren kan altijd op https://marijnchaouch.vercel.app
 
 ## Domein
