@@ -112,6 +112,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Gedeelde klassen: `.head h1` paginatitel, `.statement-x` grote zin, `.body-x` lopende tekst, `.rows`/`.row` label+waarde,
   `.u-link`. Footer `.foot` op elke pagina.
 - Home (Aino): eerst twee uitgelichte projecten, dan de zin en links, dan 'Marijn Chaouch' groot onderaan.
-- Work heeft een Grid/Index-schakelaar (`?view=index`); Index toont klant, project, soort, jaar, met beeld dat de muis volgt.
-- About is roze (`--about-bg` in `body.page-about`), naar Basic/One; Contact licht met gegevens als `.rows`.
+- Work (naar Basic/One): bovenaan de index-tabel (klant, project, soort, jaar; kleine hoofdletters, beeld volgt de muis),
+  daaronder het raster, onderaan 'Marijn Chaouch' groot. Geen grote titel 'Work' meer.
+- About naar Basic/One: eerste scherm roze (`--about-bg`) met portret dat langzamer meeschuift (`parallax()`), dan het verhaal
+  groot op wit, dan vijf kolommen in kleine hoofdletters. Contact licht met gegevens als `.rows`.
 - Testscripts: oude headless Chrome-processen op poort 9333/9334 kunnen oude pagina's tonen; eerst opruimen.

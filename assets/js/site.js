@@ -897,14 +897,13 @@
     var current = 'all', cols = columns();
     var view = new URLSearchParams(location.search).get('view') === 'index' ? 'index' : (store('workview') || 'grid');
 
-    /* index: alle projecten als regels met klant, project, soort en jaar; beeld volgt de muis */
-    function drawIndex(list) {
-      host.className = 'work-index';
-      var head = el('div', 'wi-row wi-head', '<span>Client</span><span>Project</span><span>Type</span><span>Year</span>');
-      host.appendChild(head);
+    /* index bovenaan (naar Basic/One): klant, project, soort, jaar; het beeld volgt de muis */
+    function drawIndex(target, list) {
+      target.innerHTML = '';
+      target.appendChild(el('div', 'wi-row wi-head', '<span>Client</span><span>Project</span><span>Type</span><span>Year</span>'));
       var prev = el('div', 'wi-preview');
       list.forEach(function (p) {
-        var a = el('a', 'wi-row', '<span>' + esc(p.client) + '</span><b>' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span><span>' + esc(p.year) + '</span>');
+        var a = el('a', 'wi-row', '<span>' + esc(p.client) + '</span><span>' + esc(p.title) + '</span><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span><span>' + esc(p.year) + '</span>');
         a.href = link(p);
         a.addEventListener('mouseenter', function () {
           prev.innerHTML = '';
@@ -912,19 +911,18 @@
           prev.classList.add('on');
         });
         a.addEventListener('mouseleave', function () { prev.classList.remove('on'); });
-        host.appendChild(a);
+        target.appendChild(a);
       });
-      host.appendChild(prev);
-      host.onmousemove = function (e) { prev.style.transform = 'translate(' + (e.clientX + 24) + 'px,' + (e.clientY - 120) + 'px)'; };
+      document.body.appendChild(prev);
+      target.onmousemove = function (e) { prev.style.transform = 'translate(' + (e.clientX + 24) + 'px,' + (e.clientY - 120) + 'px)'; };
     }
+    var indexHost = document.querySelector('[data-index]');
+    if (indexHost) drawIndex(indexHost, P);
 
     function draw(kind) {
       current = kind;
       host.innerHTML = '';
-      host.className = 'grid';
-      host.onmousemove = null;
       var list = P.filter(function (p) { return kind === 'all' || p.kind === kind; });
-      if (view === 'index') { drawIndex(list); return; }
       if (kind === 'all') list = checker(list, cols);
       list.forEach(function (p, n) {
         /* alle kaarten dezelfde opbouw, in een strak raster; nummer volgt de plek */
@@ -1011,6 +1009,16 @@
     }
   }
 
+  /* about: portret schuift langzamer mee dan de pagina */
+  function parallax() {
+    var n = document.querySelector('[data-parallax]');
+    if (!n || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tick = false;
+    function set() { n.style.transform = 'translate3d(0,' + (-window.scrollY * 0.22) + 'px,0)'; tick = false; }
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(set); } }, { passive: true });
+    set();
+  }
+
   function load(url) {
     return fetch(url).then(function (r) { return r.json(); });
   }
@@ -1028,6 +1036,7 @@
         P = ((out[0] && out[0].projects) || []).filter(function (p) { return !p.hidden; });
         S = out[1] || {};
         texts();
+        parallax();
         fit();
         if (!homeStyles()) reel();
         grid();
