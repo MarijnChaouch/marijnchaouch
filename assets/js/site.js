@@ -684,7 +684,7 @@
   /* ---------- homepage-stijlen om uit te kiezen (?kies op de homepage toont de keuzebalk) ---------- */
 
   var HOME_STYLES = [
-    ['', 'Huidig'], ['marthens', 'Marthens'], ['nothing', 'Nothing'], ['nonverbal', 'Non-Verbal'],
+    ['', 'Huidig'], ['nothing', 'Nothing'], ['nonverbal', 'Non-Verbal'],
     ['inara', 'Inara'], ['aino', 'Aino'], ['studioform', 'Studioform']
   ];
 
