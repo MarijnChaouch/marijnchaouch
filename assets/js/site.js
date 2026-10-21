@@ -698,8 +698,9 @@
     var q = new URLSearchParams(location.search);
     if (q.has('kies')) store('homepick-bar', '1');
     if (q.get('stijl') != null) store('homepick', q.get('stijl'));
-    var pick = store('homepick') || '';
-    if (store('homepick-bar')) chooser(pick);
+    /* de link zelf telt altijd, ook als de browser niets mag opslaan */
+    var pick = q.get('stijl') != null ? q.get('stijl') : (store('homepick') || '');
+    if (q.has('kies') || store('homepick-bar')) chooser(pick);
     if (!pick || !homeBuilders[pick]) return false;
 
     var by = function (slug) { return P.filter(function (p) { return p.slug === slug; })[0] || P[0]; };
@@ -796,7 +797,7 @@
   function chooser(pick) {
     var bar = el('div', 'hv-chooser');
     bar.innerHTML = '<span>Home-stijl</span>' + HOME_STYLES.map(function (s) {
-      return '<a href="index.html?stijl=' + s[0] + '"' + (s[0] === pick ? ' class="on"' : '') + '>' + s[1] + '</a>';
+      return '<a href="index.html?kies&stijl=' + s[0] + '"' + (s[0] === pick ? ' class="on"' : '') + '>' + s[1] + '</a>';
     }).join('') + '<a class="hv-close" href="index.html" title="Balk verbergen">\u00d7</a>';
     bar.querySelector('.hv-close').addEventListener('click', function (e) { e.preventDefault(); store('homepick-bar', null); store('homepick', null); location.href = 'index.html'; });
     document.body.appendChild(bar);
