@@ -710,9 +710,25 @@
     document.body.classList.add('hv-on', 'hv-is-' + pick);
     fit(box);
     soundButtons(box);
-    if (pick === 'aino') clock(box.querySelector('[data-clock]'));
     if (pick === 'marthens') swap(box);
     return true;
+  }
+
+  /* uitgelichte projecten: de gekozen slugs, aangevuld zodat video en foto afwisselen */
+  function pickFeatured(by, slugs, n) {
+    var out = slugs.map(function (sl) { return P.filter(function (p) { return p.slug === sl; })[0]; }).filter(Boolean);
+    P.forEach(function (p) { if (out.length < n && out.indexOf(p) < 0) out.push(p); });
+    return out.slice(0, n);
+  }
+
+  /* kaart in dezelfde opbouw als op Work: nummer en soort, beeld, titel, klant en jaar */
+  function feature(p) {
+    var no = ('0' + (P.indexOf(p) + 1)).slice(-2);
+    return '<a class="hv-card" href="' + link(p) + '">' +
+      '<span class="hv-meta"><span>' + no + '</span><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span></span>' +
+      '<span class="hv-frame">' + shot(coverType(p), cover(p), p.title, 'hv-shot') + '</span>' +
+      '<span class="hv-title">' + esc(p.title) + '</span>' +
+      '<span class="hv-sub2">' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></a>';
   }
 
   function pic(p, cls, label) {
@@ -753,19 +769,21 @@
         '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u2014 2026</p><p>Photography<br>&amp; Film</p></div>';
     },
     aino: function (by) {
-      var a = by('nike-x-jd'), b = by('fila-ss24');
-      return '<h1 class="hv-big" data-fit><span>marijnchaouch</span></h1>' +
-        '<div class="hv-mono-row"><span>Photography &amp; Film \u2014 ' + esc(S.location || '') + '</span><b data-clock></b></div>' +
-        '<div class="hv-two">' + pic(a, 'hv-case', 'Case: ' + a.title) + pic(b, 'hv-case', 'Case: ' + b.title) + '</div>' +
-        '<p class="hv-state">' + esc(S.aboutIntro || '') + ' <a href="about.html">Read more</a></p>';
+      var feat = pickFeatured(by, ['mizuno-neo-accera', 'nike-x-jd'], 2);
+      return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+        '<div class="hv-line"><span>' + esc(S.tagline || 'Photographer and filmmaker based in Amsterdam.') + '</span>' +
+          '<a href="contact.html">' + esc(S.status || 'Available for commissions') + '</a></div>' +
+        '<div class="hv-feat hv-feat-2">' + feat.map(feature).join('') + '</div>' +
+        '<div class="hv-outro"><p>' + esc(S.aboutIntro || '') + '</p>' +
+          '<div class="hv-links"><a href="about.html">About</a><a href="work.html">All work (' + P.length + ')</a></div></div>';
     },
     studioform: function (by) {
-      return '<p class="hv-lead">' + esc(S.tagline || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
-        '<h1 class="hv-big" data-fit><span>Chaouch\u00ae</span></h1>' +
-        '<div class="hv-three">' + ['transavia', 'fila-ss24', 'tcs-marathon-amsterdam'].map(function (s) {
-          var p = by(s);
-          return '<div class="hv-col">' + pic(p) + '<a class="hv-sub" href="' + link(p) + '"><span>' + ('0' + (P.indexOf(p) + 1)).slice(-2) + '</span>' + esc(p.title) + '</a></div>';
-        }).join('') + '</div>';
+      var feat = pickFeatured(by, ['mizuno-neo-accera', 'tcs-marathon-amsterdam', 'ravi-nagarkar'], 3);
+      return '<div class="hv-top"><p class="hv-lead">' + esc(S.tagline || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
+          '<p class="hv-avail">' + esc(S.status || 'Available for commissions') + '<br><a href="mailto:' + esc(S.email || '') + '">' + esc(S.email || '') + '</a></p></div>' +
+        '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+        '<div class="hv-feat hv-feat-3">' + feat.map(feature).join('') + '</div>' +
+        '<div class="hv-more"><span>Selected work</span><a href="work.html">All work (' + P.length + ') &rarr;</a></div>';
     }
   };
 

@@ -91,7 +91,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 ## Homepage-stijlen (keuze)
 
 - Homepage-stijlen in `homeBuilders` in `site.js`; in de keuzebalk staan alleen nog Aino en Studioform
-  (Marthens, Nothing, Non-Verbal en Inara afgevallen; code staat er nog). `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
+  (Marthens, Nothing, Non-Verbal en Inara afgevallen; code staat er nog).
+  Aino en Studioform zijn herbouwd in de huisstijl (naam groot zoals 'Work', kaarten zoals op Work via `feature()`);
+  uitgelichte projecten via `pickFeatured()`. Geen monospace, geen ®, geen klok. `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
   (localStorage). Bezoekers zien de standaard (`data-home` op `<main>` in index.html) tot Marijn kiest.
 - Test lokaal op een andere poort dan 8765: daar draait een server van een ander project van Marijn.
 

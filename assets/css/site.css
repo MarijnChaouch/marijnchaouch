@@ -2444,3 +2444,65 @@ body.has-chooser .hv { padding-bottom: 72px; }
   .rue-light .rue-about { height: auto; min-height: 0; }
   .rue-light .rue-photo { height: calc(100svh - 120px - 16vw); min-height: 460px; }
 }
+
+/* ================= homepage Aino en Studioform: eigen versie in de huisstijl ================= */
+body.hv-is-aino { background: var(--paper); }
+.hv-name { margin: 0; font-size: 120px; font-weight: 700; line-height: .84; letter-spacing: -0.055em; white-space: nowrap; }
+.hv-name > span { display: inline-block; }
+
+/* kaarten zoals op Work */
+.hv-feat { display: grid; grid-template-columns: 1fr; gap: 40px; }
+.hv-card { display: flex; flex-direction: column; min-width: 0; color: var(--ink); }
+.hv-meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+.hv-frame { display: block; overflow: hidden; background: var(--frame); aspect-ratio: 4 / 5; }
+.hv-frame .hv-shot { width: 100%; height: 100%; }
+.hv-frame img, .hv-frame video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, 0, .2, 1); }
+.hv-title { margin-top: 12px; font-size: clamp(20px, 5.6vw, 26px); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; }
+.hv-sub2 { margin-top: 4px; font-size: 12px; font-weight: 600; color: var(--mid); }
+@media (hover: hover) { .hv-card:hover .hv-frame img, .hv-card:hover .hv-frame video { transform: scale(1.03); } }
+
+/* aino */
+.hv-aino .hv-line { display: flex; justify-content: space-between; gap: 16px; margin: 14px 0 28px; font-size: 13px; font-weight: 600; color: var(--mid); }
+.hv-aino .hv-line a { color: var(--ink); white-space: nowrap; }
+.hv-aino .hv-outro { display: flex; flex-direction: column; gap: 18px; margin-top: 48px; }
+.hv-aino .hv-outro p { margin: 0; font-size: clamp(20px, 5.4vw, 30px); font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; max-width: 34ch; }
+.hv-links { display: flex; gap: 24px; font-size: 14px; font-weight: 700; }
+.hv-links a { border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+
+/* studioform */
+.hv-studioform .hv-top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px; }
+.hv-studioform .hv-lead { margin: 0; max-width: 34ch; font-size: clamp(17px, 4.6vw, 22px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
+.hv-studioform .hv-avail { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--mid); }
+.hv-studioform .hv-avail a { color: var(--ink); }
+.hv-studioform .hv-feat { margin-top: 26px; }
+.hv-more { display: flex; justify-content: space-between; align-items: baseline; margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 700; }
+.hv-more span { color: #8C857C; font-weight: 600; }
+
+@media (min-width: 720px) {
+  .hv-feat-2 { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .hv-feat-3 { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .hv-title { font-size: clamp(22px, 2.2vw, 32px); }
+  .hv-aino .hv-feat-2 .hv-frame { aspect-ratio: auto; height: calc(100svh - 84px - 14vw - 150px); min-height: 360px; max-height: 76svh; }
+  .hv-aino .hv-outro { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 40px; margin-top: 72px; }
+  .hv-aino .hv-outro p { font-size: clamp(24px, 2.4vw, 38px); }
+  .hv-studioform .hv-top { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 40px; }
+  .hv-studioform .hv-avail { text-align: right; }
+  .hv-studioform .hv-feat-3 .hv-frame { aspect-ratio: auto; height: calc(100svh - 84px - 14vw - 260px); min-height: 300px; max-height: 70svh; }
+}
+@media (min-width: 1100px) {
+  .hv-aino .hv-feat-2 .hv-frame { height: calc(100svh - 120px - 12vw - 140px); }
+  .hv-studioform .hv-feat-3 .hv-frame { height: calc(100svh - 120px - 12vw - 250px); }
+}
+
+/* about: portret binnen de marges, in eigen vorm, iets kleiner */
+.rue-light .rue-about { margin: 0; }
+.rue-light .rue-photo { background: transparent; overflow: visible; aspect-ratio: auto; height: auto; }
+.rue-light .rue-photo > div { height: auto; }
+.rue-light .rue-photo img { width: 100%; height: auto; max-height: 64svh; object-fit: contain; object-position: right top; }
+@media (min-width: 720px) {
+  .rue-light .rue-about { height: auto; min-height: 0; align-items: flex-start; }
+  .rue-light .rue-panel { padding-right: 40px; }
+  .rue-light .rue-photo { width: 34%; height: auto; }
+  .rue-light .rue-photo img { max-height: 64svh; }
+}
+@media (min-width: 1100px) { .rue-light .rue-photo { width: 30%; height: auto; min-height: 0; } }
