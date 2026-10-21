@@ -917,7 +917,12 @@
       target.onmousemove = function (e) { prev.style.transform = 'translate(' + (e.clientX + 24) + 'px,' + (e.clientY - 120) + 'px)'; };
     }
     var indexHost = document.querySelector('[data-index]');
-    if (indexHost) drawIndex(indexHost, P);
+    /* index: nieuwste jaar bovenaan, daarbinnen op alfabet (klant, dan project) */
+    if (indexHost) drawIndex(indexHost, P.slice().sort(function (a, b) {
+      return (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0) ||
+        String(a.client).localeCompare(String(b.client), 'nl', { sensitivity: 'base' }) ||
+        String(a.title).localeCompare(String(b.title), 'nl', { sensitivity: 'base' });
+    }));
 
     function draw(kind) {
       current = kind;
