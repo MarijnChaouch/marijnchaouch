@@ -84,14 +84,14 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 ## About en Contact
 
-- Beide in de donkere RUE-stijl (naar het RUE Proposal-template dat Marijn mooi vindt): donkere achtergrond, lichtgrijze tekst,
+- Licht zoals Work (`rue-light`), grote titel bovenaan in dezelfde stijl als 'Work'. Eerder in de donkere RUE-stijl (naar het RUE Proposal-template dat Marijn mooi vindt): donkere achtergrond, lichtgrijze tekst,
   portret in zwart-wit, een groot woord ('About', 'CONTACT') op breedte gezet met `data-fit`.
 - Geen genummerde, gecentreerde kolommen ('1 Services'): Marijn vindt die niet mooi. Koppen als grote tekst mag wel.
 
 ## Homepage-stijlen (keuze)
 
-- Zes extra homepage-stijlen in `homeBuilders` in `site.js`: marthens, nothing, nonverbal, inara, aino, studioform
-  (naar referenties van Marijn). `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
+- Homepage-stijlen in `homeBuilders` in `site.js`; in de keuzebalk staan alleen nog Aino en Studioform
+  (Marthens, Nothing, Non-Verbal en Inara afgevallen; code staat er nog). `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
   (localStorage). Bezoekers zien de standaard (`data-home` op `<main>` in index.html) tot Marijn kiest.
 - Test lokaal op een andere poort dan 8765: daar draait een server van een ander project van Marijn.
 

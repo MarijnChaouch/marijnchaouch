@@ -684,8 +684,7 @@
   /* ---------- homepage-stijlen om uit te kiezen (?kies op de homepage toont de keuzebalk) ---------- */
 
   var HOME_STYLES = [
-    ['', 'Huidig'], ['nothing', 'Nothing'], ['nonverbal', 'Non-Verbal'],
-    ['inara', 'Inara'], ['aino', 'Aino'], ['studioform', 'Studioform']
+    ['', 'Huidig'], ['aino', 'Aino'], ['studioform', 'Studioform']
   ];
 
   function store(k, v) {

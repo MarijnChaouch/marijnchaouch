@@ -2424,3 +2424,23 @@ body.has-chooser .hv { padding-bottom: 72px; }
   .hv-marthens .hv-swap { width: auto; height: calc(100svh - 120px - 16vw - 90px); min-height: 300px; }
 }
 @media (min-width: 720px) { .hv-studioform .hv-pic { height: calc(100svh - 120px - 19vw - 170px); min-height: 260px; } }
+
+/* about en contact licht zoals work, titel bovenaan zoals 'Work' */
+.rue-page.rue-light { --rue: var(--paper); --rueink: var(--ink); --ruemute: #8C857C; --rueline: var(--line); }
+.rue-light .bar nav a { color: var(--soft); }
+.rue-light .bar nav a.on, .rue-light .bar .mark { color: var(--ink); }
+.rue-light .burger span { background: var(--ink); }
+.rue-light .ph { background: var(--frame); }
+.rue-light .rue-about { min-height: 0; }
+.rue-light .rue-panel { justify-content: flex-start; }
+.rue-light .rue-copy { margin-top: 0; }
+.rue-light .rue-contact { min-height: 0; padding-top: 0; }
+.rue-light .rue-list { margin-top: 48px; }
+@media (min-width: 720px) {
+  .rue-light .rue-about { height: calc(100svh - 84px - 22vw); min-height: 420px; }
+  .rue-light .rue-photo { height: 100%; }
+}
+@media (min-width: 1100px) {
+  .rue-light .rue-about { height: auto; min-height: 0; }
+  .rue-light .rue-photo { height: calc(100svh - 120px - 16vw); min-height: 460px; }
+}
