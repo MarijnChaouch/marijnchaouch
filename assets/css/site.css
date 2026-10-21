@@ -2766,3 +2766,16 @@ body.page-about { --about-bg: #F6C7CE; background: var(--paper); }
   .wi .wi-row span, .wi .wi-row span:first-child, .wi .wi-row span:last-child { grid-row: auto; grid-column: auto; font-size: inherit; }
   .wi .wi-head { display: grid; }
 }
+
+/* home studioform: tekst over de hele breedte onder de projecten */
+.hv-studioform { min-height: 0; padding-bottom: 0; }
+.hv-studioform .hv-name { margin-bottom: 18px; }
+.hv-studioform .hv-feat { margin-top: 0; }
+.hv-long { margin: 64px 0 0; font-size: clamp(28px, 8vw, 40px); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; }
+.hv-studioform .hv-more { justify-content: flex-start; gap: 24px; margin: 32px 0 0; padding: 0; border: 0; }
+@media (min-width: 720px) {
+  .hv-studioform .hv-name { margin-bottom: 28px; }
+  .hv-studioform .hv-feat-3 .hv-frame { height: min(56svh, calc(100svh - 120px - 16vw - 150px)); min-height: 300px; max-height: none; }
+  .hv-long { margin-top: 120px; font-size: clamp(36px, 4.4vw, 76px); line-height: 1.06; }
+  .hv-studioform .hv-more { margin-top: 40px; }
+}

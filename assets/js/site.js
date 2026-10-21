@@ -807,12 +807,12 @@
         '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>';
     },
     studioform: function (by) {
+      /* naam groot bovenaan, drie uitgelichte projecten, daaronder de tekst over de hele breedte */
       var feat = pickFeatured(by, ['mizuno-neo-accera', 'tcs-marathon-amsterdam', 'ravi-nagarkar'], 3);
-      return '<div class="hv-top"><p class="hv-lead">' + esc(S.tagline || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
-          '<p class="hv-avail">' + esc(S.status || 'Available for commissions') + '<br><a href="mailto:' + esc(S.email || '') + '">' + esc(S.email || '') + '</a></p></div>' +
-        '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+      return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
         '<div class="hv-feat hv-feat-3">' + feat.map(feature).join('') + '</div>' +
-        '<div class="hv-more"><span>Selected work</span><a href="work.html">All work (' + P.length + ') &rarr;</a></div>';
+        '<p class="hv-long">' + esc(S.aboutIntro || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
+        '<div class="hv-more"><a class="u-link" href="about.html">About</a><a class="u-link" href="work.html">All work (' + P.length + ')</a></div>';
     }
   };
 

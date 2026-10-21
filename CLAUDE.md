@@ -94,7 +94,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (Marthens, Nothing, Non-Verbal en Inara afgevallen; code staat er nog).
   Aino en Studioform zijn herbouwd in de huisstijl (naam groot zoals 'Work', kaarten zoals op Work via `feature()`);
   uitgelichte projecten via `pickFeatured()`. Geen monospace, geen ®, geen klok. `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
-  (localStorage). Standaard voor iedereen is Aino (`data-style="aino"` op `<main>` in index.html, sinds 21-10-2026); 'Huidig' = de oude home.
+  (localStorage). Standaard voor iedereen is Studioform (`data-style="studioform"` op `<main>` in index.html, sinds 21-10-2026); 'Huidig' = de oude home.
 - Test lokaal op een andere poort dan 8765: daar draait een server van een ander project van Marijn.
 
 ## Opmaak van Work
@@ -111,7 +111,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   de rest eronder afwisselend links/rechts. Nieuwe beelden: `ratio` (breedte/hoogte) meegeven.
 - Gedeelde klassen: `.head h1` paginatitel, `.statement-x` grote zin, `.body-x` lopende tekst, `.rows`/`.row` label+waarde,
   `.u-link`. Footer `.foot` op elke pagina.
-- Home (Aino): eerst twee uitgelichte projecten, dan de zin en links, dan 'Marijn Chaouch' groot onderaan.
+- Home (Studioform, standaard sinds 21-10-2026 via `data-style` in index.html): 'Marijn Chaouch' groot bovenaan, drie uitgelichte
+  projecten (Mizuno, TCS, Ravi), daaronder de tekst groot over de hele breedte en links naar About en Work.
 - Work (naar Basic/One): bovenaan de index-tabel (klant, project, soort, jaar; kleine hoofdletters, beeld volgt de muis),
   daaronder het raster, onderaan 'Marijn Chaouch' groot. Geen grote titel 'Work' meer.
 - About naar Basic/One: eerste scherm roze (`--about-bg`) met portret dat langzamer meeschuift (`parallax()`), dan het verhaal
