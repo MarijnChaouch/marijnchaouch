@@ -2396,3 +2396,31 @@ body.has-chooser .hv { padding-bottom: 72px; }
 }
 @media (min-width: 1100px) { .hv-nonverbal { height: calc(100svh - 120px); } }
 @media (min-width: 720px) { .hv-nonverbal .hv-word > span.w-b { color: #FAF9F7; } }
+
+/* ---- verder uitgewerkt: studioform, aino, marthens ---- */
+.hv-studioform .hv-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.hv-studioform .hv-sub { display: flex; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: -0.01em; }
+.hv-studioform .hv-sub span { color: #8C857C; font-variant-numeric: tabular-nums; }
+@media (min-width: 720px) {
+  .hv-studioform .hv-pic { height: calc(100svh - 120px - 19vw - 120px); }
+  .hv-studioform .hv-sub { font-size: 13px; }
+}
+
+.hv-aino .hv-mono-row { display: flex; justify-content: space-between; gap: 16px; margin: 10px 0 14px; }
+.hv-aino .hv-two { gap: 10px; }
+.hv-aino .hv-case { aspect-ratio: 3 / 4; }
+.hv-aino .hv-state { margin-top: 22px; max-width: 30ch; }
+@media (min-width: 720px) {
+  .hv-aino .hv-case { aspect-ratio: auto; height: calc(100svh - 120px - 15vw - 40px); min-height: 380px; }
+  .hv-aino .hv-state { max-width: 36ch; font-size: clamp(22px, 2.2vw, 34px); }
+}
+
+.hv-marthens .hv-swap { position: relative; width: min(66vw, 340px); aspect-ratio: 4 / 5; }
+.hv-marthens .hv-swap .hv-pic { position: absolute; inset: 0; width: 100%; opacity: 0; transition: opacity .9s ease; }
+.hv-marthens .hv-swap .hv-pic.on { opacity: 1; z-index: 1; }
+.hv-marthens .hv-swap .hv-center { aspect-ratio: auto; }
+.hv-marthens .hv-swap { filter: grayscale(1) contrast(1.05); z-index: 1; }
+@media (min-width: 720px) {
+  .hv-marthens .hv-swap { width: auto; height: calc(100svh - 120px - 16vw - 90px); min-height: 300px; }
+}
+@media (min-width: 720px) { .hv-studioform .hv-pic { height: calc(100svh - 120px - 19vw - 170px); min-height: 260px; } }

@@ -711,6 +711,7 @@
     fit(box);
     soundButtons(box);
     if (pick === 'aino') clock(box.querySelector('[data-clock]'));
+    if (pick === 'marthens') swap(box);
     return true;
   }
 
@@ -720,12 +721,17 @@
   }
 
   var homeBuilders = {
-    marthens: function (by) {
+    marthens: function () {
+      /* portret wisselt door de fotoprojecten, zwart-wit; teller en projectnaam onderaan */
+      var list = P.filter(function (p) { return coverType(p) !== 'video'; });
       return '<div class="hv-corners"><span>Photography<br>and Film</span><span>Marijn Chaouch 2026</span><span>Amsterdam,<br>NL</span></div>' +
-        '<div class="hv-stage">' + pic(by('tcs-marathon-amsterdam'), 'hv-center') +
+        '<div class="hv-stage"><div class="hv-swap">' + list.map(function (p, k) {
+          return '<a class="hv-pic hv-center' + (k ? '' : ' on') + '" href="' + link(p) + '" data-title="' + esc(p.title) + '" data-no="' + ('0' + (P.indexOf(p) + 1)).slice(-2) + '">' +
+            shot('image', cover(p), p.title, 'hv-shot') + '</a>';
+        }).join('') + '</div>' +
         '<h1 class="hv-big" data-fit><span>CHAOUCH</span></h1></div>' +
         '<p class="hv-caption">' + esc(S.aboutIntro || S.tagline || '') + '</p>' +
-        '<div class="hv-corners hv-bottom"><span>' + esc(S.status || '') + '</span><a href="work.html">Work &rarr;</a></div>';
+        '<div class="hv-corners hv-bottom"><span data-swap-title></span><span data-swap-no></span></div>';
     },
     nothing: function (by) {
       return '<div class="hv-grid"><div class="hv-name"><h1>marijn chaouch</h1><span>photography and film</span></div>' +
@@ -747,20 +753,33 @@
         '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u2014 2026</p><p>Photography<br>&amp; Film</p></div>';
     },
     aino: function (by) {
-      var a = by('nike-x-jd'), b = by('fila-ss24'), sv = (S.services || []).map(esc).join('<br>');
+      var a = by('nike-x-jd'), b = by('fila-ss24');
       return '<h1 class="hv-big" data-fit><span>marijnchaouch</span></h1>' +
-        '<div class="hv-mono-row"><span>Photography &amp; Film<br><b data-clock></b></span><span><a href="work.html">Work</a><br><a href="about.html">About</a></span>' +
-          '<span>' + esc(S.location || '') + '<br>' + esc(S.status || '') + '</span><span><a href="contact.html">Contact</a><br><a href="mailto:' + esc(S.email || '') + '">Email</a></span></div>' +
+        '<div class="hv-mono-row"><span>Photography &amp; Film \u2014 ' + esc(S.location || '') + '</span><b data-clock></b></div>' +
         '<div class="hv-two">' + pic(a, 'hv-case', 'Case: ' + a.title) + pic(b, 'hv-case', 'Case: ' + b.title) + '</div>' +
-        '<div class="hv-bottom-row"><p class="hv-state">' + esc(S.aboutIntro || '') + ' <a href="about.html">Read more</a></p>' +
-          '<div class="hv-services"><span>Services</span><span>' + sv + '</span></div></div>';
+        '<p class="hv-state">' + esc(S.aboutIntro || '') + ' <a href="about.html">Read more</a></p>';
     },
     studioform: function (by) {
       return '<p class="hv-lead">' + esc(S.tagline || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
         '<h1 class="hv-big" data-fit><span>Chaouch\u00ae</span></h1>' +
-        '<div class="hv-three">' + pic(by('transavia')) + pic(by('fila-ss24')) + pic(by('tcs-marathon-amsterdam')) + '</div>';
+        '<div class="hv-three">' + ['transavia', 'fila-ss24', 'tcs-marathon-amsterdam'].map(function (s) {
+          var p = by(s);
+          return '<div class="hv-col">' + pic(p) + '<a class="hv-sub" href="' + link(p) + '"><span>' + ('0' + (P.indexOf(p) + 1)).slice(-2) + '</span>' + esc(p.title) + '</a></div>';
+        }).join('') + '</div>';
     }
   };
+
+  function swap(box) {
+    var pics = box.querySelectorAll('.hv-swap .hv-pic'), t = box.querySelector('[data-swap-title]'), c = box.querySelector('[data-swap-no]');
+    var i = 0, total = ('0' + P.length).slice(-2);
+    function show() {
+      Array.prototype.forEach.call(pics, function (p, k) { p.classList.toggle('on', k === i); });
+      if (t && pics[i]) t.textContent = pics[i].getAttribute('data-title');
+      if (c && pics[i]) c.textContent = 'P. ' + pics[i].getAttribute('data-no') + '/' + total;
+    }
+    show();
+    if (pics.length > 1) setInterval(function () { if (!document.hidden) { i = (i + 1) % pics.length; show(); } }, 3200);
+  }
 
   function clock(n) {
     if (!n) return;
