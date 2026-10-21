@@ -115,7 +115,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   projecten (Mizuno, TCS, Ravi), daaronder de tekst groot over de hele breedte en links naar About en Work.
 - Work (naar Basic/One): bovenaan links een vast voorbeeldbeeld en rechts de index-tabel (klant, project, soort, jaar; kleine hoofdletters,
   nieuwste jaar eerst, dan klant op alfabet; hover wisselt het voorbeeldbeeld),
-  daaronder het raster, onderaan 'Marijn Chaouch' groot. Geen grote titel 'Work' meer.
+  daaronder het raster, onderaan 'Marijn Chaouch' groot. Op de telefoon geen index (alleen raster). Geen grote titel 'Work' meer.
 - About naar Basic/One: eerste scherm roze (`--about-bg`) met portret in het midden; het roze vlak is sticky, de tekst schuift eroverheen en de foto schuift half zo snel
   omhoog (`parallax()`), precies als het voorbeeld, dan het verhaal
   groot op wit, dan vijf kolommen in kleine hoofdletters. Contact licht met gegevens als `.rows`.
