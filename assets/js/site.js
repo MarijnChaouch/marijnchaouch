@@ -1028,8 +1028,11 @@
   function parallax() {
     var n = document.querySelector('[data-parallax]');
     if (!n || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    /* het roze vlak blijft staan (sticky); de foto schuift half zo snel omhoog en blijft zo boven de tekst in beeld */
+    var hero = n.closest('.ab4-hero');
+    var start = hero ? hero.getBoundingClientRect().top + window.scrollY : 0;
     var tick = false;
-    function set() { n.style.transform = 'translate3d(0,' + (-window.scrollY * 0.22) + 'px,0)'; tick = false; }
+    function set() { n.style.transform = 'translate3d(0,' + (-Math.max(0, window.scrollY - start) * 0.5) + 'px,0)'; tick = false; }
     window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(set); } }, { passive: true });
     set();
   }
