@@ -681,6 +681,109 @@
     document.addEventListener('visibilitychange', function () { if (!document.hidden) show(); });
   }
 
+  /* ---------- homepage-stijlen om uit te kiezen (?kies op de homepage toont de keuzebalk) ---------- */
+
+  var HOME_STYLES = [
+    ['', 'Huidig'], ['marthens', 'Marthens'], ['nothing', 'Nothing'], ['nonverbal', 'Non-Verbal'],
+    ['inara', 'Inara'], ['aino', 'Aino'], ['studioform', 'Studioform']
+  ];
+
+  function store(k, v) {
+    try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; }
+  }
+
+  function homeStyles() {
+    var main = document.querySelector('main.home');
+    if (!main) return false;
+    var q = new URLSearchParams(location.search);
+    if (q.has('kies')) store('homepick-bar', '1');
+    if (q.get('stijl') != null) store('homepick', q.get('stijl'));
+    var pick = store('homepick') || '';
+    if (store('homepick-bar')) chooser(pick);
+    if (!pick || !homeBuilders[pick]) return false;
+
+    var by = function (slug) { return P.filter(function (p) { return p.slug === slug; })[0] || P[0]; };
+    var row = main.querySelector('.home-row');
+    var box = el('div', 'hv hv-' + pick);
+    box.innerHTML = homeBuilders[pick](by);
+    row.parentNode.insertBefore(box, row);
+    document.body.classList.add('hv-on', 'hv-is-' + pick);
+    fit(box);
+    soundButtons(box);
+    if (pick === 'aino') clock(box.querySelector('[data-clock]'));
+    return true;
+  }
+
+  function pic(p, cls, label) {
+    return '<a class="hv-pic ' + (cls || '') + '" href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hv-shot') +
+      (label ? '<span class="hv-label">' + esc(label) + '</span>' : '') + '</a>';
+  }
+
+  var homeBuilders = {
+    marthens: function (by) {
+      return '<div class="hv-corners"><span>Photography<br>and Film</span><span>Marijn Chaouch 2026</span><span>Amsterdam,<br>NL</span></div>' +
+        '<div class="hv-stage">' + pic(by('tcs-marathon-amsterdam'), 'hv-center') +
+        '<h1 class="hv-big" data-fit><span>CHAOUCH</span></h1></div>' +
+        '<p class="hv-caption">' + esc(S.aboutIntro || S.tagline || '') + '</p>' +
+        '<div class="hv-corners hv-bottom"><span>' + esc(S.status || '') + '</span><a href="work.html">Work &rarr;</a></div>';
+    },
+    nothing: function (by) {
+      return '<div class="hv-grid"><div class="hv-name"><h1>marijn chaouch</h1><span>photography and film</span></div>' +
+        pic(by('mizuno-neo-accera'), 'hv-main') + '</div>' +
+        '<p class="hv-mono">' + esc(S.aboutIntro || '') + '</p>';
+    },
+    nonverbal: function (by) {
+      return '<div class="hv-split">' + pic(by('personal-project'), 'hv-left') +
+        '<div class="hv-right"><div class="hv-tags"><span>[Photography]</span><span>[Film]</span><span>[Amsterdam]</span></div>' +
+        '<h2>Welcome to<br>Marijn Chaouch\u2019s world</h2>' +
+        '<p>' + esc(S.aboutIntro || '') + '</p><p>' + esc(S.aboutThree || '') + '</p>' +
+        '<a class="hv-link" href="work.html">See the work</a></div></div>' +
+        '<div class="hv-word"><span class="w-a" data-fit><span>CHAOUCH</span></span><span class="w-b" data-fit aria-hidden="true"><span>CHAOUCH</span></span></div>';
+    },
+    inara: function (by) {
+      var p = by('sjrm');
+      return '<h1 class="hv-big" data-fit><span>MARIJN CHAOUCH</span></h1>' +
+        '<div class="hv-mid">' + pic(p, 'hv-small') + '<span class="hv-cap">' + esc(p.title) + '</span></div>' +
+        '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u2014 2026</p><p>Photography<br>&amp; Film</p></div>';
+    },
+    aino: function (by) {
+      var a = by('nike-x-jd'), b = by('fila-ss24'), sv = (S.services || []).map(esc).join('<br>');
+      return '<h1 class="hv-big" data-fit><span>marijnchaouch</span></h1>' +
+        '<div class="hv-mono-row"><span>Photography &amp; Film<br><b data-clock></b></span><span><a href="work.html">Work</a><br><a href="about.html">About</a></span>' +
+          '<span>' + esc(S.location || '') + '<br>' + esc(S.status || '') + '</span><span><a href="contact.html">Contact</a><br><a href="mailto:' + esc(S.email || '') + '">Email</a></span></div>' +
+        '<div class="hv-two">' + pic(a, 'hv-case', 'Case: ' + a.title) + pic(b, 'hv-case', 'Case: ' + b.title) + '</div>' +
+        '<div class="hv-bottom-row"><p class="hv-state">' + esc(S.aboutIntro || '') + ' <a href="about.html">Read more</a></p>' +
+          '<div class="hv-services"><span>Services</span><span>' + sv + '</span></div></div>';
+    },
+    studioform: function (by) {
+      return '<p class="hv-lead">' + esc(S.tagline || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
+        '<h1 class="hv-big" data-fit><span>Chaouch\u00ae</span></h1>' +
+        '<div class="hv-three">' + pic(by('transavia')) + pic(by('fila-ss24')) + pic(by('tcs-marathon-amsterdam')) + '</div>';
+    }
+  };
+
+  function clock(n) {
+    if (!n) return;
+    function tick() {
+      try {
+        n.textContent = new Intl.DateTimeFormat('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Amsterdam' })
+          .format(new Date()).replace(',', '').toUpperCase();
+      } catch (e) { n.textContent = ''; }
+    }
+    tick(); setInterval(tick, 1000);
+  }
+
+  /* keuzebalk: alleen zichtbaar na ?kies, onthouden in deze browser */
+  function chooser(pick) {
+    var bar = el('div', 'hv-chooser');
+    bar.innerHTML = '<span>Home-stijl</span>' + HOME_STYLES.map(function (s) {
+      return '<a href="index.html?stijl=' + s[0] + '"' + (s[0] === pick ? ' class="on"' : '') + '>' + s[1] + '</a>';
+    }).join('') + '<a class="hv-close" href="index.html" title="Balk verbergen">\u00d7</a>';
+    bar.querySelector('.hv-close').addEventListener('click', function (e) { e.preventDefault(); store('homepick-bar', null); store('homepick', null); location.href = 'index.html'; });
+    document.body.appendChild(bar);
+    document.body.classList.add('has-chooser');
+  }
+
   /* work */
 
   /* elk project een eigen opzet: look 1 t/m 6 wisselt per project, of kies er een met "look" in projects.json */
@@ -823,7 +926,7 @@
         S = out[1] || {};
         texts();
         fit();
-        reel();
+        if (!homeStyles()) reel();
         grid();
         project();
       })

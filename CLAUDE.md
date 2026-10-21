@@ -88,6 +88,13 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   portret in zwart-wit, een groot woord ('About', 'CONTACT') op breedte gezet met `data-fit`.
 - Geen genummerde, gecentreerde kolommen ('1 Services'): Marijn vindt die niet mooi. Koppen als grote tekst mag wel.
 
+## Homepage-stijlen (keuze)
+
+- Zes extra homepage-stijlen in `homeBuilders` in `site.js`: marthens, nothing, nonverbal, inara, aino, studioform
+  (naar referenties van Marijn). `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
+  (localStorage). Bezoekers zien de standaard (`data-home` op `<main>` in index.html) tot Marijn kiest.
+- Test lokaal op een andere poort dan 8765: daar draait een server van een ander project van Marijn.
+
 ## Opmaak van Work
 
 - Strak raster: 1 kolom telefoon, 2 tablet, 3 desktop; elke kaart gelijk (nummer en soort, titel, klant en jaar, beeld 4:5).
