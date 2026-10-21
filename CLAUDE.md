@@ -121,3 +121,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   omhoog (`parallax()`), precies als het voorbeeld, dan het verhaal
   groot op wit, dan vijf kolommen in kleine hoofdletters. Contact licht met gegevens als `.rows`.
 - Testscripts: oude headless Chrome-processen op poort 9333/9334 kunnen oude pagina's tonen; eerst opruimen.
+
+## Kop en homepage-varianten (21-10-2026)
+
+- Kop op elke pagina: links 'MARIJN CHAOUCH  PHOTOGRAPHY AND FILM' (link naar home), rechts 'MENU' / 'CLOSE' (telefoon/tablet).
+- Keuzebalk (`?kies`) bevat: Nu (studioform), Feed, Cover, Reels, Stapel, Lijst (mobile-first varianten in `homeBuilders`).

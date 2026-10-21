@@ -713,7 +713,7 @@
   /* ---------- homepage-stijlen om uit te kiezen (?kies op de homepage toont de keuzebalk) ---------- */
 
   var HOME_STYLES = [
-    ['', 'Huidig'], ['aino', 'Aino'], ['studioform', 'Studioform']
+    ['studioform', 'Nu'], ['feed', 'Feed'], ['cover', 'Cover'], ['reels', 'Reels'], ['stack', 'Stapel'], ['list', 'Lijst']
   ];
 
   function store(k, v) {
@@ -767,7 +767,62 @@
       (label ? '<span class="hv-label">' + esc(label) + '</span>' : '') + '</a>';
   }
 
+  /* gedeeld slot voor de homepage-varianten: zin en grote tik-rijen */
+  function homeTail() {
+    return '<p class="hv-long">' + esc(S.aboutIntro || '') + '</p>' +
+      '<nav class="hv-more hv-rows"><a href="work.html"><span>All work</span><i>' + P.length + ' projects \u2192</i></a>' +
+      '<a href="about.html"><span>About</span><i>\u2192</i></a><a href="contact.html"><span>Contact</span><i>\u2192</i></a></nav>';
+  }
+  function bigSrc(p) { return p.coverPhone || cover(p); }
+  function bigType(p) { return p.coverPhone ? 'video' : coverType(p); }
+  function no2(p) { return ('0' + (P.indexOf(p) + 1)).slice(-2); }
+  function ordered() {
+    /* video en foto om en om, nieuwste eerst */
+    var v = P.filter(function (p) { return p.kind === 'video'; }), f = P.filter(function (p) { return p.kind !== 'video'; }), out = [];
+    while (v.length || f.length) { if (v.length) out.push(v.shift()); if (f.length) out.push(f.shift()); }
+    return out;
+  }
+
   var homeBuilders = {
+    feed: function () {
+      return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+        '<div class="hvf">' + ordered().map(function (p) {
+          return '<a class="hvf-item" href="' + link(p) + '">' + shot(bigType(p), bigSrc(p), p.title, 'hvf-shot') +
+            '<span class="hvf-cap"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></span></a>';
+        }).join('') + '</div>' + homeTail();
+    },
+    cover: function (by) {
+      var hero = by('mizuno-neo-accera');
+      return '<a class="hvc-hero" href="' + link(hero) + '">' + shot(bigType(hero), bigSrc(hero), hero.title, 'hvc-shot') +
+          '<span class="hvc-name">Marijn<br>Chaouch</span><span class="hvc-tag">' + esc(S.tagline || '') + '</span></a>' +
+        '<div class="hvc-grid">' + ordered().map(function (p) {
+          return '<a href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hvc-thumb') + '<b>' + esc(p.title) + '</b><span>' + esc(p.year) + '</span></a>';
+        }).join('') + '</div>' + homeTail();
+    },
+    reels: function () {
+      var list = ordered();
+      return list.map(function (p, k) {
+        return '<a class="hvr-panel" href="' + link(p) + '">' + shot(bigType(p), bigSrc(p), p.title, 'hvr-shot') +
+          '<span class="hvr-cap"><span>' + ('0' + (k + 1)).slice(-2) + ' / ' + ('0' + list.length).slice(-2) + '</span><b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></span></a>';
+      }).join('') + '<div class="hvr-end">' + homeTail() + '</div>';
+    },
+    stack: function () {
+      return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+        '<div class="hvs">' + ordered().map(function (p) {
+          return '<a class="hvs-card" href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hvs-shot') +
+            '<span class="hvs-cap"><span>' + no2(p) + '</span><b>' + esc(p.title) + '</b><span>' + esc(p.year) + '</span></span></a>';
+        }).join('') + '</div>' + homeTail();
+    },
+    list: function () {
+      var byYear = P.slice().sort(function (a, b) { return (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0) || String(a.title).localeCompare(String(b.title)); });
+      return '<p class="hvl-intro">' + esc(S.tagline || '') + '</p>' +
+        '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
+        '<div class="hvl">' + byYear.map(function (p) {
+          return '<a class="hvl-row" href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hvl-thumb') +
+            '<span class="hvl-t"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + '</span></span><span class="hvl-y">' + esc(p.year) + '</span></a>';
+        }).join('') + '</div>' + homeTail();
+    },
+
     marthens: function () {
       /* portret wisselt door de fotoprojecten, zwart-wit; teller en projectnaam onderaan */
       var list = P.filter(function (p) { return coverType(p) !== 'video'; });
