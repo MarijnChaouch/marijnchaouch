@@ -2506,3 +2506,4 @@ body.hv-is-aino { background: var(--paper); }
   .rue-light .rue-photo img { max-height: 64svh; }
 }
 @media (min-width: 1100px) { .rue-light .rue-photo { width: 30%; height: auto; min-height: 0; } }
+@media (max-width: 719px) { .hv-aino .hv-line { display: none; } .hv-aino .hv-feat { margin-top: 22px; } }
