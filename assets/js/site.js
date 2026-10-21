@@ -741,6 +741,7 @@
     fit(box);
     soundButtons(box);
     if (pick === 'marthens') swap(box);
+    swipeCount(box);
     return true;
   }
 
@@ -810,9 +811,11 @@
       /* naam groot bovenaan, drie uitgelichte projecten, daaronder de tekst over de hele breedte */
       var feat = pickFeatured(by, ['mizuno-neo-accera', 'tcs-marathon-amsterdam', 'ravi-nagarkar'], 3);
       return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
-        '<div class="hv-feat hv-feat-3">' + feat.map(feature).join('') + '</div>' +
+        '<div class="hv-feat hv-feat-3" data-swipe>' + feat.map(feature).join('') + '</div>' +
+        '<div class="hv-count" data-count><span>01</span> / ' + ('0' + feat.length).slice(-2) + '</div>' +
         '<p class="hv-long">' + esc(S.aboutIntro || '') + ' ' + esc(S.aboutThree || '') + '</p>' +
-        '<div class="hv-more"><a class="u-link" href="about.html">About</a><a class="u-link" href="work.html">All work (' + P.length + ')</a></div>';
+        '<nav class="hv-more"><a href="work.html"><span>All work</span><i>' + P.length + ' projects \u2192</i></a>' +
+          '<a href="about.html"><span>About</span><i>\u2192</i></a><a href="contact.html"><span>Contact</span><i>\u2192</i></a></nav>';
     }
   };
 
@@ -826,6 +829,22 @@
     }
     show();
     if (pics.length > 1) setInterval(function () { if (!document.hidden) { i = (i + 1) % pics.length; show(); } }, 3200);
+  }
+
+  /* teller bij de swipe-rij op de telefoon */
+  function swipeCount(box) {
+    var row = box.querySelector('[data-swipe]'), out = box.querySelector('[data-count] span');
+    if (!row || !out) return;
+    var t;
+    row.addEventListener('scroll', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var card = row.firstElementChild;
+        if (!card) return;
+        var k = Math.round(row.scrollLeft / (card.getBoundingClientRect().width + 10));
+        out.textContent = ('0' + (Math.min(k, row.children.length - 1) + 1)).slice(-2);
+      }, 60);
+    }, { passive: true });
   }
 
   function clock(n) {

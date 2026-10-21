@@ -112,7 +112,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Gedeelde klassen: `.head h1` paginatitel, `.statement-x` grote zin, `.body-x` lopende tekst, `.rows`/`.row` label+waarde,
   `.u-link`. Footer `.foot` op elke pagina.
 - Home (Studioform, standaard sinds 21-10-2026 via `data-style` in index.html): 'Marijn Chaouch' groot bovenaan, drie uitgelichte
-  projecten (Mizuno, TCS, Ravi), daaronder de tekst groot over de hele breedte en links naar About en Work.
+  projecten (Mizuno, TCS, Ravi), daaronder de tekst groot over de hele breedte en links naar Work, About en Contact.
+  Telefoon: projecten als swipe-rij (scroll-snap, teller 01/03), links als grote tik-rijen met pijl.
 - Work (naar Basic/One): bovenaan links een vast voorbeeldbeeld en rechts de index-tabel (klant, project, soort, jaar; kleine hoofdletters,
   nieuwste jaar eerst, dan klant op alfabet; hover wisselt het voorbeeldbeeld),
   daaronder het raster, onderaan 'Marijn Chaouch' groot. Op de telefoon geen index (alleen raster). Geen grote titel 'Work' meer.

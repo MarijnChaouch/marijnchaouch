@@ -2846,3 +2846,38 @@ html:has(body.page-about) { background: linear-gradient(#F6C7CE 50%, #FAF9F7 50%
   .ab4-hero { height: calc(100svh - 72px); padding: 0 0 72px; box-sizing: content-box; height: calc(100svh - 144px); align-items: center; }
   .ab4-img { width: 60vw; }
 }
+
+/* ---------- home op de telefoon: swipen, grote tik-rijen ---------- */
+.hv-count { display: none; }
+.hv-studioform .hv-more { display: flex; flex-direction: column; gap: 0; margin-top: 40px; padding: 0; border: 0; }
+.hv-studioform .hv-more a {
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 56px; padding: 0; border-top: 1px solid var(--line);
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink);
+}
+.hv-studioform .hv-more a:last-child { border-bottom: 1px solid var(--line); }
+.hv-studioform .hv-more i { font-style: normal; font-size: 14px; font-weight: 600; color: var(--mid); }
+@media (max-width: 719px) {
+  .hv-studioform .hv-name { margin-bottom: 14px; }
+  .hv-studioform .hv-feat-3 {
+    display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-left: var(--pad);
+    margin: 0 calc(var(--pad) * -1); padding: 0 var(--pad);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .hv-studioform .hv-feat-3::-webkit-scrollbar { display: none; }
+  .hv-studioform .hv-feat-3 .hv-card { flex: 0 0 84%; scroll-snap-align: start; }
+  .hv-studioform .hv-feat-3 .hv-frame { aspect-ratio: 4 / 5; max-height: 62svh; }
+  .hv-studioform .hv-title { font-size: 22px; }
+  .hv-count { display: block; margin-top: 16px; font-size: 12px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+  .hv-count span { color: var(--ink); }
+  .hv-long { margin-top: 48px; font-size: 24px; line-height: 1.18; letter-spacing: -0.02em; }
+}
+@media (min-width: 720px) {
+  .hv-studioform .hv-more { flex-direction: row; gap: 32px; margin-top: 40px; }
+  .hv-studioform .hv-more a, .hv-studioform .hv-more a:last-child { min-height: 0; border: 0; font-size: 14px; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; gap: 8px; }
+  .hv-studioform .hv-more i { display: none; }
+}
+.hv-studioform .hv-more { align-items: stretch; }
+.hv-studioform .hv-more span { color: var(--ink); font-weight: 700; }
+@media (min-width: 720px) { .hv-studioform .hv-more { align-items: center; } }
