@@ -698,7 +698,8 @@
     if (q.has('kies')) store('homepick-bar', '1');
     if (q.get('stijl') != null) store('homepick', q.get('stijl'));
     /* de link zelf telt altijd, ook als de browser niets mag opslaan */
-    var pick = q.get('stijl') != null ? q.get('stijl') : (store('homepick') || '');
+    /* standaard voor iedereen: data-style op <main> in index.html; ?stijl= of een eigen keuze gaat voor */
+    var pick = q.get('stijl') != null ? q.get('stijl') : (store('homepick') != null ? store('homepick') : (main.getAttribute('data-style') || ''));
     if (q.has('kies') || store('homepick-bar')) chooser(pick);
     if (!pick || !homeBuilders[pick]) return false;
 

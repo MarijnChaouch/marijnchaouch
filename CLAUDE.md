@@ -94,7 +94,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (Marthens, Nothing, Non-Verbal en Inara afgevallen; code staat er nog).
   Aino en Studioform zijn herbouwd in de huisstijl (naam groot zoals 'Work', kaarten zoals op Work via `feature()`);
   uitgelichte projecten via `pickFeatured()`. Geen monospace, geen ®, geen klok. `?kies` op de homepage toont een keuzebalk; de keuze geldt alleen in die browser
-  (localStorage). Bezoekers zien de standaard (`data-home` op `<main>` in index.html) tot Marijn kiest.
+  (localStorage). Standaard voor iedereen is Aino (`data-style="aino"` op `<main>` in index.html, sinds 21-10-2026); 'Huidig' = de oude home.
 - Test lokaal op een andere poort dan 8765: daar draait een server van een ander project van Marijn.
 
 ## Opmaak van Work
