@@ -116,6 +116,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Work (naar Basic/One): bovenaan links een vast voorbeeldbeeld en rechts de index-tabel (klant, project, soort, jaar; kleine hoofdletters,
   nieuwste jaar eerst, dan klant op alfabet; hover wisselt het voorbeeldbeeld),
   daaronder het raster, onderaan 'Marijn Chaouch' groot. Geen grote titel 'Work' meer.
-- About naar Basic/One: eerste scherm roze (`--about-bg`) met portret dat langzamer meeschuift (`parallax()`), dan het verhaal
+- About naar Basic/One: eerste scherm roze (`--about-bg`) met portret in het midden (geen parallax: liet een leeg roze vlak achter), dan het verhaal
   groot op wit, dan vijf kolommen in kleine hoofdletters. Contact licht met gegevens als `.rows`.
 - Testscripts: oude headless Chrome-processen op poort 9333/9334 kunnen oude pagina's tonen; eerst opruimen.
