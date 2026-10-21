@@ -6,17 +6,19 @@
         {
           "type": "video",
           "src": "/media/rocks.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.0
         },
         {
           "type": "video",
           "src": "/media/13.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.7778
         }
       ],
       "caption": "For mizunorunningeurope we went to Gran Canaria to shoot the Neo Accera trail shoe. @NataliaMastrota was one of the first to test the Neo Accera in the hills of Tejeda, Gran Canaria.",
       "ink": "#FAF9F7",
-      "layout": "poster",
+      "layout": "standard",
       "heroSrc": "/media/trailrun_recap-_final-.mp4",
       "slug": "mizuno-neo-accera",
       "posterFrames": 2,
@@ -33,7 +35,8 @@
       "cover": "/media/trailrun_recap-_final--preview-v2.mp4",
       "title": "Mizuno Neo Accera",
       "reel": true,
-      "year": "2026"
+      "year": "2026",
+      "heroRatio": 0.5639
     },
     {
       "color": "#C92C1D",
@@ -41,17 +44,19 @@
         {
           "type": "image",
           "src": "/media/nikexjd_21.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.667
         },
         {
           "type": "image",
           "src": "/media/21.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         }
       ],
       "caption": "Campaign stills shot across one morning in the city.",
       "ink": "#FAF9F7",
-      "layout": "poster",
+      "layout": "standard",
       "heroSrc": "/media/nikexjd_14.jpg",
       "slug": "nike-x-jd",
       "look": 3,
@@ -65,7 +70,8 @@
       "cover": "/media/nikexjd_14.jpg",
       "title": "Nike X JD",
       "reel": true,
-      "year": "2024"
+      "year": "2024",
+      "heroRatio": 0.6665
     },
     {
       "color": "#F7CE46",
@@ -73,17 +79,19 @@
         {
           "type": "image",
           "src": "/media/screenshot-2026-09-04-at-15.05.18.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.7889
         },
         {
           "type": "image",
           "src": "/media/screenshot-2026-09-04-at-15.06.43.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.7809
         }
       ],
       "caption": "Shot in Spain, where rocky terrains, red-toned water streams and warm earth tones shape the landscape, the campaign captures movement through the environment.",
       "ink": "#14110F",
-      "layout": "headline",
+      "layout": "standard",
       "heroSrc": "/media/main_final.mp4",
       "slug": "hi-tec",
       "coverPhone": "/media/main_final-phone.mp4",
@@ -98,7 +106,8 @@
       "cover": "/media/main_final-preview-v2.mp4",
       "title": "Hi Tec",
       "reel": true,
-      "year": "2026"
+      "year": "2026",
+      "heroRatio": 1.7778
     },
     {
       "color": "#000000",
@@ -106,22 +115,25 @@
         {
           "type": "image",
           "src": "/media/fila_ss24_thespot_16.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/fila_ss24_thespot_25-copy.jpg",
-          "span": "full"
+          "span": "full",
+          "ratio": 1.5004
         },
         {
           "type": "image",
           "src": "/media/screenshot-2026-09-04-at-16.58.48.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.8075
         }
       ],
       "caption": "Shot the official FILA Fall/Winter 2024 collection",
       "ink": "#FAF9F7",
-      "layout": "poster",
+      "layout": "standard",
       "heroSrc": "/media/denieuwe_vernissage-02.jpg",
       "slug": "fila-ss24",
       "look": 4,
@@ -135,7 +147,8 @@
       "cover": "/media/denieuwe_vernissage-02.jpg",
       "title": "Fila SS24",
       "reel": true,
-      "year": "2024"
+      "year": "2024",
+      "heroRatio": 0.6665
     },
     {
       "color": "#D92F8A",
@@ -143,22 +156,25 @@
         {
           "type": "video",
           "src": "/media/reel-1.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.0
         },
         {
           "type": "video",
           "src": "/media/reel-2.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 1.0
         },
         {
           "span": "half",
           "type": "video",
-          "src": "/media/reel-3.mp4"
+          "src": "/media/reel-3.mp4",
+          "ratio": 1.0
         }
       ],
       "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
-      "layout": "center",
+      "layout": "standard",
       "heroSrc": "/media/teaser.mp4",
       "slug": "pal-sporting-goods",
       "coverPhone": "/media/teaser-phone.mp4",
@@ -174,7 +190,8 @@
       "title": "PAL Sporting Goods",
       "reel": true,
       "year": "2026",
-      "ratio": "1 / 1"
+      "ratio": "1 / 1",
+      "heroRatio": 1.0
     },
     {
       "color": "#31c760",
@@ -182,22 +199,25 @@
         {
           "type": "image",
           "src": "/media/transavia_23.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/transavia_13.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "span": "full",
           "src": "/media/transavia_cabin.jpg",
-          "type": "image"
+          "type": "image",
+          "ratio": 1.2303
         }
       ],
       "caption": "sick project to be involved in!🛩️",
       "ink": "#FAF9F7",
-      "layout": "gallery",
+      "layout": "standard",
       "heroSrc": "/media/transavia_19.jpg",
       "slug": "transavia",
       "look": 6,
@@ -211,7 +231,8 @@
       "cover": "/media/transavia_19.jpg",
       "title": "Transavia",
       "reel": true,
-      "year": "2024"
+      "year": "2024",
+      "heroRatio": 0.6665
     },
     {
       "color": "#0F1011",
@@ -219,17 +240,19 @@
         {
           "type": "video",
           "src": "/media/Provoke_BTS_SnipesXKappa_2.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5639
         },
         {
           "type": "video",
           "src": "/media/Provoke_BTS_SnipesXKappa_3.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5639
         }
       ],
       "caption": "Shot across the run up to the tournament.",
       "ink": "#FAF9F7",
-      "layout": "film",
+      "layout": "standard",
       "heroSrc": "/media/Provoke_BTS_SnipesXKappa_1.mp4",
       "slug": "snipes-x-kappa",
       "look": 3,
@@ -244,7 +267,8 @@
       "title": "Snipes X Kappa",
       "reel": false,
       "year": "2026",
-      "ratio": "9 / 16"
+      "ratio": "9 / 16",
+      "heroRatio": 0.5639
     },
     {
       "color": "#ffffff",
@@ -252,12 +276,13 @@
         {
           "type": "image",
           "src": "/media/denieuwe_vernissage-01.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         }
       ],
       "caption": "",
       "ink": "#14110F",
-      "layout": "headline",
+      "layout": "standard",
       "heroSrc": "/media/17102023_presskit_brazil_shotbymarijn-14.jpg",
       "slug": "sjrm",
       "look": 4,
@@ -271,7 +296,8 @@
       "cover": "/media/denieuwe_vernissage-01.jpg",
       "title": "Sunnery James & Ryan Marciano",
       "reel": false,
-      "year": "2024"
+      "year": "2024",
+      "heroRatio": 0.6665
     },
     {
       "title": "TCS Marathon Amsterdam",
@@ -288,7 +314,7 @@
       "article": "",
       "color": "",
       "ink": "#14110F",
-      "layout": "gallery",
+      "layout": "standard",
       "reel": false,
       "cover": "/media/tcs_amsterdam_02.jpg",
       "heroType": "image",
@@ -297,19 +323,23 @@
         {
           "type": "image",
           "src": "/media/tcs_amsterdam_02.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.8
         },
         {
           "type": "image",
           "src": "/media/tcs_amsterdam_03.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.8
         },
         {
           "type": "image",
           "src": "/media/tcs_amsterdam_04.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.8001
         }
-      ]
+      ],
+      "heroRatio": 0.8
     },
     {
       "title": "Personal Project",
@@ -325,7 +355,7 @@
       "article": "",
       "color": "",
       "ink": "#14110F",
-      "layout": "gallery",
+      "layout": "standard",
       "reel": false,
       "cover": "/media/morocco_driver.jpg",
       "heroType": "image",
@@ -334,49 +364,59 @@
         {
           "type": "image",
           "src": "/media/morocco_driver.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/morocco_docker.jpg",
-          "span": "full"
+          "span": "full",
+          "ratio": 1.25
         },
         {
           "type": "image",
           "src": "/media/morocco_thumbs_up.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/morocco_dancer.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/morocco_waiter.jpg",
-          "span": "full"
+          "span": "full",
+          "ratio": 1.4993
         },
         {
           "type": "image",
           "src": "/media/morocco_balcony.jpg",
-          "span": "full"
+          "span": "full",
+          "ratio": 1.5004
         },
         {
           "type": "image",
           "src": "/media/morocco_portrait.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/morocco_blur.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         },
         {
           "type": "image",
           "src": "/media/morocco_bus_driver.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.6665
         }
-      ]
+      ],
+      "heroRatio": 1.4993
     },
     {
       "title": "Ravi Nagarkar",
@@ -391,7 +431,7 @@
       "article": "",
       "color": "",
       "ink": "#14110F",
-      "layout": "film",
+      "layout": "standard",
       "reel": false,
       "cover": "/media/ravi_main-preview.mp4",
       "heroType": "video",
@@ -400,15 +440,18 @@
         {
           "type": "video",
           "src": "/media/ravi_render.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5625
         },
         {
           "type": "video",
           "src": "/media/ravi_ring.mp4",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5625
         }
       ],
-      "ratio": "9 / 16"
+      "ratio": "9 / 16",
+      "heroRatio": 0.5625
     },
     {
       "title": "Nike x Patta",
@@ -423,7 +466,7 @@
       "article": "",
       "color": "",
       "ink": "#14110F",
-      "layout": "center",
+      "layout": "standard",
       "ratio": "9 / 16",
       "reel": false,
       "cover": "/media/patta_main-preview.mp4",
@@ -433,19 +476,23 @@
         {
           "type": "image",
           "src": "/media/patta_still_01.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5625
         },
         {
           "type": "image",
           "src": "/media/patta_still_02.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5625
         },
         {
           "type": "image",
           "src": "/media/patta_still_03.jpg",
-          "span": "half"
+          "span": "half",
+          "ratio": 0.5625
         }
-      ]
+      ],
+      "heroRatio": 0.5625
     }
   ]
 }

@@ -261,6 +261,35 @@
         '</div>';
     }
 
+    /* standaard: titel, intro en gegevens, daaronder de beelden naast elkaar zolang ze passen (nooit schermvullend) */
+    if (layout === 'standard') {
+      var factsS = [['Client', p.client], ['Agency', p.agency], ['Year', p.year], ['Role', p.role], ['Deliverables', p.deliverables]]
+        .filter(function (r) { return r[1]; })
+        .map(function (r) { return '<div class="row"><span>' + r[0] + '</span><b>' + esc(r[1]) + '</b></div>'; }).join('');
+      var items = [{ type: p.heroType || 'image', src: p.heroSrc, ratio: p.heroRatio || 0.8, poster: p.heroPoster }]
+        .concat((p.media || []).filter(function (m) { return m.src; }));
+      var wide = window.matchMedia('(min-width: 720px)').matches;
+      var avail = Math.min(window.innerWidth, 1800) - 2 * (window.innerWidth >= 1100 ? 28 : 20);
+      var h = window.innerHeight * 0.76, used = 0, total = 0;
+      if (wide) {
+        items.some(function (m, k) {
+          var w = (m.ratio || 0.8) * h + (k ? 10 : 0);
+          if (k && (total + w > avail || k > 2)) return true;
+          total += w; used = k + 1; return false;
+        });
+      } else used = 1;
+      p._heroUsed = used - 1;
+      var hero = items.slice(0, used).map(function (m) {
+        return '<div class="pj-item" style="aspect-ratio:' + (m.ratio || 0.8) + ';--r:' + (m.ratio || 0.8) + '">' + shot(m.type, m.src, p.title, 'pj-shot', m) + '</div>';
+      }).join('');
+      return '<div class="lay pj">' +
+        '<div class="pj-head"><h1>' + esc(p.title) + '</h1>' +
+          '<div class="pj-info">' + (p.intro && p.intro !== p.title ? '<p class="statement-x">' + esc(p.intro) + '</p>' : '<span></span>') +
+          '<div class="rows">' + factsS + '</div></div></div>' +
+        '<div class="pj-hero">' + hero + '</div>' +
+        '</div>';
+    }
+
     var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>';
 
     /* midden: de film in het midden, links titel en klant, rechts de tekst als citaat, kleine regels onderaan */
@@ -770,13 +799,12 @@
         '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u2014 2026</p><p>Photography<br>&amp; Film</p></div>';
     },
     aino: function (by) {
+      /* eerst het werk, daaronder de tekst en als afsluiter de naam over de hele breedte */
       var feat = pickFeatured(by, ['mizuno-neo-accera', 'nike-x-jd'], 2);
-      return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
-        '<div class="hv-line"><span>' + esc(S.tagline || 'Photographer and filmmaker based in Amsterdam.') + '</span>' +
-          '<a href="contact.html">' + esc(S.status || 'Available for commissions') + '</a></div>' +
-        '<div class="hv-feat hv-feat-2">' + feat.map(feature).join('') + '</div>' +
-        '<div class="hv-outro"><p>' + esc(S.aboutIntro || '') + '</p>' +
-          '<div class="hv-links"><a href="about.html">About</a><a href="work.html">All work (' + P.length + ')</a></div></div>';
+      return '<div class="hv-feat hv-feat-2">' + feat.map(feature).join('') + '</div>' +
+        '<div class="hv-outro"><p class="statement-x">' + esc(S.aboutIntro || '') + '</p>' +
+          '<div class="hv-links"><a class="u-link" href="work.html">All work (' + P.length + ')</a><a class="u-link" href="about.html">About</a><a class="u-link" href="contact.html">Contact</a></div></div>' +
+        '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>';
     },
     studioform: function (by) {
       var feat = pickFeatured(by, ['mizuno-neo-accera', 'tcs-marathon-amsterdam', 'ravi-nagarkar'], 3);
@@ -867,11 +895,36 @@
     }
 
     var current = 'all', cols = columns();
+    var view = new URLSearchParams(location.search).get('view') === 'index' ? 'index' : (store('workview') || 'grid');
+
+    /* index: alle projecten als regels met klant, project, soort en jaar; beeld volgt de muis */
+    function drawIndex(list) {
+      host.className = 'work-index';
+      var head = el('div', 'wi-row wi-head', '<span>Client</span><span>Project</span><span>Type</span><span>Year</span>');
+      host.appendChild(head);
+      var prev = el('div', 'wi-preview');
+      list.forEach(function (p) {
+        var a = el('a', 'wi-row', '<span>' + esc(p.client) + '</span><b>' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span><span>' + esc(p.year) + '</span>');
+        a.href = link(p);
+        a.addEventListener('mouseenter', function () {
+          prev.innerHTML = '';
+          prev.appendChild(media(coverType(p), cover(p), p.title, 'wi-shot', { manual: true }));
+          prev.classList.add('on');
+        });
+        a.addEventListener('mouseleave', function () { prev.classList.remove('on'); });
+        host.appendChild(a);
+      });
+      host.appendChild(prev);
+      host.onmousemove = function (e) { prev.style.transform = 'translate(' + (e.clientX + 24) + 'px,' + (e.clientY - 120) + 'px)'; };
+    }
 
     function draw(kind) {
       current = kind;
       host.innerHTML = '';
+      host.className = 'grid';
+      host.onmousemove = null;
       var list = P.filter(function (p) { return kind === 'all' || p.kind === kind; });
+      if (view === 'index') { drawIndex(list); return; }
       if (kind === 'all') list = checker(list, cols);
       list.forEach(function (p, n) {
         /* alle kaarten dezelfde opbouw, in een strak raster; nummer volgt de plek */
@@ -883,6 +936,17 @@
         host.appendChild(a);
       });
     }
+
+    var views = document.querySelectorAll('[data-view]');
+    Array.prototype.forEach.call(views, function (b) {
+      b.classList.toggle('on', b.getAttribute('data-view') === view);
+      b.addEventListener('click', function () {
+        view = b.getAttribute('data-view');
+        store('workview', view);
+        Array.prototype.forEach.call(views, function (x) { x.classList.toggle('on', x === b); });
+        draw(current);
+      });
+    });
 
     var buttons = document.querySelectorAll('[data-filter]');
     Array.prototype.forEach.call(buttons, function (b) {
@@ -930,10 +994,11 @@
     var stack = document.querySelector('[data-stack]');
     if (stack) {
       stack.innerHTML = '';
-      var used = p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? (p.posterFrames === 2 ? 1 : 2) : 0;
-      (p.media || []).filter(function (m) { return !(p.layout === 'poster' && m.src === p.posterUnder); }).slice(used).forEach(function (m) {
+      var used = p.layout === 'standard' ? (p._heroUsed || 0) : p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? (p.posterFrames === 2 ? 1 : 2) : 0;
+      (p.media || []).filter(function (m) { return m.src && !(p.layout === 'poster' && m.src === p.posterUnder); }).slice(used).forEach(function (m) {
         /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */
-        var box = media(m.type, m.src, p.title, 'item' + (m.span === 'full' ? ' full' : ''), m);
+        var box = media(m.type, m.src, p.title, 'item' + ((m.span === 'full' || (m.ratio || 0) > 1.2) ? ' full' : ''), m);
+        if (m.ratio) box.style.setProperty('--r', m.ratio);
         stack.appendChild(box);
       });
       soundButtons(stack);

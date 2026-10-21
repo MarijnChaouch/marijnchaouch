@@ -103,3 +103,15 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   Het veld `look` wordt niet meer gebruikt. Tekst staat altijd boven het beeld.
 - Volgorde op Work is een dambord (video/foto wisselen af in rij en kolom, per aantal kolommen); nummers volgen de plek.
   Binnen elke soort blijft de volgorde uit `projects.json`.
+
+## Systeem (21-10-2026, gestroomlijnd)
+
+- Alle projectpagina's gebruiken `layout: "standard"`: titel, intro links + gegevens (`.rows`) rechts, dan de beelden
+  naast elkaar op ~76% schermhoogte zolang ze passen (op basis van `heroRatio` en `ratio` per beeld in projects.json),
+  de rest eronder afwisselend links/rechts. Nieuwe beelden: `ratio` (breedte/hoogte) meegeven.
+- Gedeelde klassen: `.head h1` paginatitel, `.statement-x` grote zin, `.body-x` lopende tekst, `.rows`/`.row` label+waarde,
+  `.u-link`. Footer `.foot` op elke pagina.
+- Home (Aino): eerst twee uitgelichte projecten, dan de zin en links, dan 'Marijn Chaouch' groot onderaan.
+- Work heeft een Grid/Index-schakelaar (`?view=index`); Index toont klant, project, soort, jaar, met beeld dat de muis volgt.
+- About is roze (`--about-bg` in `body.page-about`), naar Basic/One; Contact licht met gegevens als `.rows`.
+- Testscripts: oude headless Chrome-processen op poort 9333/9334 kunnen oude pagina's tonen; eerst opruimen.
