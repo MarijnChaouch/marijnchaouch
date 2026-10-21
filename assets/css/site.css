@@ -2803,3 +2803,12 @@ body.page-about { --about-bg: #F6C7CE; background: var(--paper); }
   .wi .wi-table .wi-row:not(.wi-head):hover { opacity: 1; }
 }
 @media (min-width: 1100px) { .wi-side { grid-column: 1 / span 2; } }
+
+/* telefoon: about-roze alleen zo hoog als nodig, index zonder kopregel */
+@media (max-width: 719px) {
+  .ab4-hero { height: auto; padding-top: 32px; }
+  .ab4-img { width: 72vw; margin-bottom: -40px; }
+  .ab4-body { padding-top: 64px; }
+  .wi .wi-head { display: none; }
+  .wi { padding-top: 24px; }
+}
