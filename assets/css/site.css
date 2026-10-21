@@ -2812,3 +2812,20 @@ body.page-about { --about-bg: #F6C7CE; background: var(--paper); }
   .wi .wi-head { display: none; }
   .wi { padding-top: 24px; }
 }
+
+/* about-roze precies als het voorbeeld: foto een kwart van de breedte, midden in het scherm */
+.ab4-hero { align-items: center; }
+.ab4-img { margin-bottom: 0; }
+@media (max-width: 719px) {
+  .ab4-hero { padding: 40px 0 48px; }
+  .ab4-img { width: 56vw; margin-bottom: 0; }
+  .ab4-body { padding-top: 40px; }
+}
+@media (min-width: 720px) {
+  .ab4-hero { height: calc(100svh - 84px); padding-bottom: 84px; box-sizing: content-box; height: calc(100svh - 168px); }
+  .ab4-img { width: 25vw; max-width: 440px; margin-bottom: 0; }
+}
+@media (min-width: 1100px) {
+  .ab4-hero { height: calc(100svh - 240px); padding-bottom: 120px; }
+}
+@media (min-width: 1100px) { .ab4-hero { height: calc(100svh - 192px); padding-bottom: 96px; } }
