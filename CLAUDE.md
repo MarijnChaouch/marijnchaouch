@@ -113,7 +113,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   `.u-link`. Footer `.foot` op elke pagina.
 - Home (Studioform, standaard sinds 21-10-2026 via `data-style` in index.html): 'Marijn Chaouch' groot bovenaan, drie uitgelichte
   projecten (Mizuno, TCS, Ravi), daaronder de tekst groot over de hele breedte en links naar About en Work.
-- Work (naar Basic/One): bovenaan de index-tabel (klant, project, soort, jaar; kleine hoofdletters, beeld volgt de muis),
+- Work (naar Basic/One): bovenaan links een vast voorbeeldbeeld en rechts de index-tabel (klant, project, soort, jaar; kleine hoofdletters,
+  nieuwste jaar eerst, dan klant op alfabet; hover wisselt het voorbeeldbeeld),
   daaronder het raster, onderaan 'Marijn Chaouch' groot. Geen grote titel 'Work' meer.
 - About naar Basic/One: eerste scherm roze (`--about-bg`) met portret dat langzamer meeschuift (`parallax()`), dan het verhaal
   groot op wit, dan vijf kolommen in kleine hoofdletters. Contact licht met gegevens als `.rows`.

@@ -897,24 +897,34 @@
     var current = 'all', cols = columns();
     var view = new URLSearchParams(location.search).get('view') === 'index' ? 'index' : (store('workview') || 'grid');
 
-    /* index bovenaan (naar Basic/One): klant, project, soort, jaar; het beeld volgt de muis */
+    /* index bovenaan (naar Basic/One): links een vast voorbeeldbeeld, rechts klant, project, soort, jaar */
     function drawIndex(target, list) {
       target.innerHTML = '';
-      target.appendChild(el('div', 'wi-row wi-head', '<span>Client</span><span>Project</span><span>Type</span><span>Year</span>'));
-      var prev = el('div', 'wi-preview');
+      var side = el('a', 'wi-side');
+      var frame = el('div', 'wi-frame');
+      var cap = el('div', 'wi-cap');
+      side.appendChild(frame); side.appendChild(cap);
+      var table = el('div', 'wi-table');
+      table.appendChild(el('div', 'wi-row wi-head', '<span>Client</span><span>Project</span><span>Type</span><span>Year</span>'));
+      var current = null;
+      function show(p) {
+        if (current === p) return;
+        current = p;
+        frame.innerHTML = '';
+        frame.appendChild(media(coverType(p), cover(p), p.title, 'wi-shot'));
+        cap.innerHTML = '<b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span>';
+        side.href = link(p);
+      }
       list.forEach(function (p) {
         var a = el('a', 'wi-row', '<span>' + esc(p.client) + '</span><span>' + esc(p.title) + '</span><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span><span>' + esc(p.year) + '</span>');
         a.href = link(p);
-        a.addEventListener('mouseenter', function () {
-          prev.innerHTML = '';
-          prev.appendChild(media(coverType(p), cover(p), p.title, 'wi-shot', { manual: true }));
-          prev.classList.add('on');
-        });
-        a.addEventListener('mouseleave', function () { prev.classList.remove('on'); });
-        target.appendChild(a);
+        a.addEventListener('mouseenter', function () { show(p); });
+        a.addEventListener('focus', function () { show(p); });
+        table.appendChild(a);
       });
-      document.body.appendChild(prev);
-      target.onmousemove = function (e) { prev.style.transform = 'translate(' + (e.clientX + 24) + 'px,' + (e.clientY - 120) + 'px)'; };
+      target.appendChild(side);
+      target.appendChild(table);
+      if (list.length) show(list[0]);
     }
     var indexHost = document.querySelector('[data-index]');
     /* index: nieuwste jaar bovenaan, daarbinnen op alfabet (klant, dan project) */
