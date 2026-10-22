@@ -3034,7 +3034,14 @@ body.hv-is-reels .wrap > .home { padding-top: 0; }
 .hvp-cap b { font-size: 15px; letter-spacing: -0.01em; }
 .hvp-cell:hover .hvp-cap { opacity: 1; }
 .hvp-text { align-self: center; max-width: 52ch; margin: 0 0 20px; text-align: center; font-size: 12px; line-height: 1.45; color: #8C857C; }
-body.hv-is-panoramis .bar .mark { visibility: hidden; }
+/* panoramis: de kop links wordt '© 2026 Marijn Chaouch / Photography and Film', klein en grijs, op één lijn met het menu */
+body.hv-is-panoramis .bar .mark { flex-direction: column; align-items: flex-start; gap: 0; font-size: 11px; font-weight: 500; line-height: 1.35; letter-spacing: 0; text-transform: none; color: #8C857C; }
+body.hv-is-panoramis .bar .mark b { font-size: inherit; font-weight: inherit; letter-spacing: inherit; }
+body.hv-is-panoramis .bar .mark b::before { content: "\00a9  2026 "; }
+body.hv-is-panoramis .bar .mark span { opacity: 1; }
+@media (min-width: 1100px) { body.hv-is-panoramis .bar .mark { font-size: 13px; } }
+.hvp-top { grid-template-columns: 1fr; justify-items: center; }
+.hvp-meta { display: block; margin-top: 10px; }
 body.hv-is-panoramis .foot { display: none !important; }
 @media (max-width: 719px) { .hvp-top span { display: none; } .hvp-top { grid-template-columns: 1fr; } .hvp-cell { width: 62vw; } }
 
@@ -3063,3 +3070,4 @@ body.hv-is-panoramis .foot { display: none !important; }
   .hv-panoramis { flex: 1 1 auto; min-height: 0; }
   .hvp-cell { width: min(28vw, 400px, 46svh); }
 }
+@media (min-width: 1100px) { body.hv-is-panoramis .bar { align-items: flex-start; } body.hv-is-panoramis .bar nav a { line-height: 1.35; } }

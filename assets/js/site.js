@@ -800,9 +800,10 @@
         return '<a class="hvp-cell" href="' + link(p) + '" draggable="false">' + shot(coverType(p), cover(p), p.title, 'hvp-shot') +
           '<span class="hvp-cap"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></span></a>';
       }).join('');
-      return '<div class="hvp-top"><span>\u00a9 2026 Marijn Chaouch<br>Photography and Film</span><h1>Marijn Chaouch<sup>\u2122</sup></h1><span>' + esc(S.location || '') + '<br>' + esc(S.status || '') + '</span></div>' +
+      /* links boven staat de kop (mark) op één lijn met het menu; plaats en status onder de tekst, niet in de hero */
+      return '<div class="hvp-top"><h1>Marijn Chaouch<sup>\u2122</sup></h1></div>' +
         '<div class="hvp-strip" data-strip><div class="hvp-track">' + cells + '</div></div>' +
-        '<p class="hvp-text">' + esc(S.aboutIntro || '') + '</p>';
+        '<p class="hvp-text">' + esc(S.aboutIntro || '') + '<span class="hvp-meta">' + esc(S.location || '') + ' \u00b7 ' + esc(S.status || '') + '</span></p>';
     },
     gallery: function () {
       /* naar 'Curated (works)': grote kop in het midden, link, onderaan een rij genummerde beeldjes */

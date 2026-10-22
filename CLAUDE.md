@@ -127,6 +127,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Kop op elke pagina: links 'MARIJN CHAOUCH  PHOTOGRAPHY AND FILM' (link naar home), rechts 'MENU' / 'CLOSE' (telefoon/tablet).
 - Homepage vast (22-10-2026): telefoon Lijst (combi), desktop Panoramis. De keuzebalk is weg; opgeslagen keuzes tellen niet meer.
   `?stijl=<naam>` werkt nog om een variant te bekijken (wordt niet bewaard). Andere varianten staan nog in `homeBuilders`.
+- Panoramis: links in de kop '© 2026 Marijn Chaouch / Photography and Film' (de mark, klein en grijs) op één lijn met het menu; plaats en status onder de tekst onderaan, niet in de hero.
 - Panoramis op desktop is één scherm: de pagina scrolt niet, scrollen/slepen beweegt alleen de strook (`strip()` luistert op window).
 - Per apparaat een eigen standaard (22-10-2026): desktop `data-style="panoramis"` (vastgezet 22-10-2026), telefoon (<720px) `data-style-mobile="list"`
   op `<main>` in index.html. De keuze in de balk wordt per apparaat bewaard (`homepick-d` / `homepick-m` in localStorage).
