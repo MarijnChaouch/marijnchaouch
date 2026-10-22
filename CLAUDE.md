@@ -195,3 +195,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Laden zonder flits (22-10-2026): de oude vaste home-inhoud (`.home-row`) is standaard verborgen (alleen bij `hv-fallback` zichtbaar);
   footer, grote naam, 'volgend project' en placeholders (`.ph`) zijn onzichtbaar tot `body.ready` (gezet na het opbouwen of bij offline()).
 - Home-links onderaan (All work / About / Contact) als volle rijen zonder pijltjes.
+- About scrollen (22-10-2026, Marijn: 'trippy en glitchy'): foto-parallax alleen met muis (desktop) en dan via `lenis.on('scroll')`
+  in hetzelfde frame (eerst liep hij een frame achter); op telefoon/tablet geen parallax. Geen fade-ins op About.

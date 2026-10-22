@@ -1267,16 +1267,19 @@
   }
 
   /* about: portret schuift langzamer mee dan de pagina */
+  var paraSet = null, paraLenis = false;
   function parallax() {
     var n = document.querySelector('[data-parallax]');
     if (!n || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    /* het roze vlak blijft staan (sticky); de foto schuift half zo snel omhoog en blijft zo boven de tekst in beeld */
+    /* telefoon/tablet: geen meeschuivende foto (haperde bij scrollen); het roze vlak blijft staan en de tekst schuift eroverheen */
+    if (!window.matchMedia('(pointer: fine)').matches) { n.style.willChange = 'auto'; return; }
+    /* desktop: de foto schuift half zo snel omhoog; met vloeiend scrollen in hetzelfde beeld als de pagina (anders loopt hij achter) */
     var hero = n.closest('.ab4-hero');
     var start = hero ? hero.getBoundingClientRect().top + window.scrollY : 0;
     var tick = false;
-    function set() { n.style.transform = 'translate3d(0,' + (-Math.max(0, window.scrollY - start) * 0.5) + 'px,0)'; tick = false; }
-    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(set); } }, { passive: true });
-    set();
+    paraSet = function () { n.style.transform = 'translate3d(0,' + (-Math.max(0, window.scrollY - start) * 0.5).toFixed(1) + 'px,0)'; tick = false; };
+    window.addEventListener('scroll', function () { if (paraLenis || tick) return; tick = true; requestAnimationFrame(paraSet); }, { passive: true });
+    paraSet();
   }
 
   /* beweging bij scrollen: tekst glijdt omhoog in beeld, beelden openen als een gordijn, grote titels komen woord voor woord uit een masker.
@@ -1309,7 +1312,8 @@
     });
     /* beelden zelf bewegen niet (Marijn vond het openen van de beelden irritant) */
     all('.wi-row, .card .card-ed, .card .meta, .pj-info, .ab4-big, .ab4-logos h2, .ab4-logos li, .ab4-col, ' +
-        '.ct2 .statement-x, .ct2 .row, .foot, .next, .hvp-text').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'up'); });
+        '.ct2 .statement-x, .ct2 .row, .foot, .next, .hvp-text')
+      .filter(function (n) { return !(n.closest && n.closest('.page-about')); }).forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'up'); });
 
     var io = new IntersectionObserver(function (list) {
       var k = 0;
@@ -1332,6 +1336,7 @@
     if (!window.matchMedia('(pointer: fine) and (min-width: 1100px)').matches) return;
     if (document.body.classList.contains('hv-is-panoramis')) return;
     var lenis = new window.Lenis({ lerp: 0.18, wheelMultiplier: 1 });
+    if (paraSet) { paraLenis = true; lenis.on('scroll', function () { paraSet(); }); }
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
   }
 
