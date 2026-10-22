@@ -359,10 +359,12 @@
       } else used = 1;
       /* heroCount: zoveel beelden naast elkaar; de rij wordt dan lager zodat ze passen */
       var heroH = '';
-      if (wide && p.heroCount) {
-        used = Math.min(p.heroCount, items.length);
+      if (wide && p.heroCount) used = Math.min(p.heroCount, items.length);
+      /* past de rij niet in de breedte (smal of hoog venster, of heroCount), dan wordt hij lager in plaats van over de rand te lopen */
+      if (wide) {
         var sum = items.slice(0, used).reduce(function (a, m) { return a + (m.ratio || 0.8); }, 0);
-        heroH = ' style="height:' + Math.round(Math.min(h, (avail - 10 * (used - 1)) / sum)) + 'px"';
+        var fitH = (avail - 10 * (used - 1)) / sum;
+        if (fitH < h) heroH = ' style="height:' + Math.round(fitH) + 'px"';
       }
       p._heroUsed = used - 1;
       var hero = items.slice(0, used).map(function (m) {
