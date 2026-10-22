@@ -713,7 +713,7 @@
   /* ---------- homepage-stijlen om uit te kiezen (?kies op de homepage toont de keuzebalk) ---------- */
 
   var HOME_STYLES = [
-    ['studioform', 'Nu'], ['feed', 'Feed'], ['cover', 'Cover'], ['reels', 'Reels'], ['stack', 'Stapel'], ['list', 'Lijst']
+    ['studioform', 'Studioform'], ['panoramis', 'Panoramis'], ['list', 'Lijst'], ['portrait', 'Portret'], ['magazine', 'Magazine'], ['gallery', 'Galerij'], ['reels', 'Reels'], ['stack', 'Stapel']
   ];
 
   function store(k, v) {
@@ -724,11 +724,14 @@
     var main = document.querySelector('main.home');
     if (!main) return false;
     var q = new URLSearchParams(location.search);
+    /* telefoon en desktop hebben elk hun eigen homepage (data-style-mobile / data-style) en eigen keuze */
+    var phone = window.matchMedia('(max-width: 719px)').matches;
+    var key = phone ? 'homepick-m' : 'homepick-d';
     if (q.has('kies')) store('homepick-bar', '1');
-    if (q.get('stijl') != null) store('homepick', q.get('stijl'));
+    if (q.get('stijl') != null) store(key, q.get('stijl'));
+    var def = (phone && main.getAttribute('data-style-mobile')) || main.getAttribute('data-style') || '';
     /* de link zelf telt altijd, ook als de browser niets mag opslaan */
-    /* standaard voor iedereen: data-style op <main> in index.html; ?stijl= of een eigen keuze gaat voor */
-    var pick = q.get('stijl') != null ? q.get('stijl') : (store('homepick') != null ? store('homepick') : (main.getAttribute('data-style') || ''));
+    var pick = q.get('stijl') != null ? q.get('stijl') : (store(key) != null ? store(key) : def);
     if (q.has('kies') || store('homepick-bar')) chooser(pick);
     if (!pick || !homeBuilders[pick]) return false;
 
@@ -742,6 +745,7 @@
     soundButtons(box);
     if (pick === 'marthens') swap(box);
     swipeCount(box);
+    if (pick === 'panoramis') strip(box.querySelector('[data-strip]'));
     return true;
   }
 
@@ -783,7 +787,56 @@
     return out;
   }
 
+  function rowsList(list) {
+    return '<div class="hvx">' + list.map(function (p) {
+      return '<a class="hvx-row" href="' + link(p) + '"><span class="hvx-t"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + '<br>' + esc(p.year) + '</span></span>' +
+        shot(coverType(p), cover(p), p.title, 'hvx-thumb') + '</a>';
+    }).join('') + '</div>';
+  }
+  function byYear() {
+    return P.slice().sort(function (a, b) { return (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0) || String(a.title).localeCompare(String(b.title)); });
+  }
+
   var homeBuilders = {
+    panoramis: function () {
+      /* desktop naar Panoramis: één scherm, alle projecten als rij vierkanten van rand tot rand, sleepbaar */
+      var list = ordered();
+      var cells = list.concat(list).map(function (p) {
+        return '<a class="hvp-cell" href="' + link(p) + '" draggable="false">' + shot(coverType(p), cover(p), p.title, 'hvp-shot') +
+          '<span class="hvp-cap"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></span></a>';
+      }).join('');
+      return '<div class="hvp-top"><span>\u00a9 2026 Marijn Chaouch<br>Photography and Film</span><h1>Marijn Chaouch<sup>\u2122</sup></h1><span>' + esc(S.location || '') + '<br>' + esc(S.status || '') + '</span></div>' +
+        '<div class="hvp-strip" data-strip><div class="hvp-track">' + cells + '</div></div>' +
+        '<p class="hvp-text">' + esc(S.aboutIntro || '') + '</p>';
+    },
+    gallery: function () {
+      /* naar 'Curated (works)': grote kop in het midden, link, onderaan een rij genummerde beeldjes */
+      var years = P.map(function (p) { return parseInt(p.year, 10) || 0; }).filter(Boolean);
+      var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
+      var list = ordered();
+      return '<div class="hvg-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1>' +
+        '<a class="hvg-open" href="work.html">Open work</a>' +
+        '<div class="hvg-row" data-swipe>' + list.map(function (p, k) {
+          return '<a href="' + link(p) + '"><span>' + ('0' + (k + 1)).slice(-2) + '</span>' + shot(coverType(p), cover(p), p.title, 'hvg-thumb') + '</a>';
+        }).join('') + '</div></div>' + homeTail();
+    },
+    portrait: function () {
+      return '<div class="hvo-first"><div class="hvo-photo">' + shot('image', S.portrait || '', 'Marijn Chaouch', 'hvo-shot') + '</div>' +
+        '<h1 class="hvo-name" data-fit><span>Marijn Chaouch</span></h1></div>' +
+        '<h2 class="hvx-head">Selected<br>work</h2>' + rowsList(byYear()) + homeTail();
+    },
+    magazine: function () {
+      var list = ordered();
+      return list.map(function (p, k) {
+        var prev = list[(k - 1 + list.length) % list.length], next = list[(k + 1) % list.length];
+        return '<article class="hvm">' +
+          '<a class="hvm-img" href="' + link(p) + '">' + shot(bigType(p), bigSrc(p), p.title, 'hvm-shot') + '<span class="hvm-pill">' + (p.kind === 'video' ? 'Film' : 'Photography') + '</span></a>' +
+          '<a class="hvm-text" href="' + link(p) + '"><span class="hvm-kicker">' + esc(p.client) + '</span><h2>' + esc(p.title) + '</h2>' +
+          '<span class="hvm-cred"><span>' + esc(p.role || '') + (p.agency ? '<br>Agency: ' + esc(p.agency) : '') + '</span><span>' + esc(p.year) + '</span></span></a>' +
+          '<nav class="hvm-nav"><a href="' + link(prev) + '">Previous</a><a href="work.html">All work</a><a href="' + link(next) + '">Next</a></nav>' +
+          '</article>';
+      }).join('') + homeTail();
+    },
     feed: function () {
       return '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
         '<div class="hvf">' + ordered().map(function (p) {
@@ -814,13 +867,8 @@
         }).join('') + '</div>' + homeTail();
     },
     list: function () {
-      var byYear = P.slice().sort(function (a, b) { return (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0) || String(a.title).localeCompare(String(b.title)); });
-      return '<p class="hvl-intro">' + esc(S.tagline || '') + '</p>' +
-        '<h1 class="hv-name" data-fit><span>Marijn Chaouch</span></h1>' +
-        '<div class="hvl">' + byYear.map(function (p) {
-          return '<a class="hvl-row" href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hvl-thumb') +
-            '<span class="hvl-t"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + '</span></span><span class="hvl-y">' + esc(p.year) + '</span></a>';
-        }).join('') + '</div>' + homeTail();
+      /* naar 'Selected work': grote kop, rijen met dikke lijn, titel groot links en beeld rechts */
+      return '<h1 class="hvx-head">Selected<br>work</h1>' + rowsList(byYear()) + homeTail();
     },
 
     marthens: function () {
@@ -886,6 +934,26 @@
     if (pics.length > 1) setInterval(function () { if (!document.hidden) { i = (i + 1) % pics.length; show(); } }, 3200);
   }
 
+  /* panoramis: rij loopt rustig door, slepen of scrollen schuift hem; oneindig door de dubbele rij */
+  function strip(el2) {
+    if (!el2) return;
+    var track = el2.firstElementChild, x = 0, v = -0.35, drag = null, moved = 0;
+    function loop() {
+      if (!drag && !document.hidden) x += v;
+      var h = track.scrollWidth / 2;
+      if (h) { if (x <= -h) x += h; if (x > 0) x -= h; }
+      track.style.transform = 'translate3d(' + x + 'px,0,0)';
+      requestAnimationFrame(loop);
+    }
+    el2.addEventListener('wheel', function (e) { x -= (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY); e.preventDefault(); }, { passive: false });
+    el2.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, start: x }; moved = 0; el2.classList.add('drag'); });
+    window.addEventListener('pointermove', function (e) { if (!drag) return; moved = Math.abs(e.clientX - drag.x); x = drag.start + (e.clientX - drag.x); });
+    window.addEventListener('pointerup', function () { drag = null; el2.classList.remove('drag'); });
+    el2.addEventListener('click', function (e) { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) v = 0;
+    requestAnimationFrame(loop);
+  }
+
   /* teller bij de swipe-rij op de telefoon */
   function swipeCount(box) {
     var row = box.querySelector('[data-swipe]'), out = box.querySelector('[data-count] span');
@@ -919,7 +987,7 @@
     bar.innerHTML = '<span>Home-stijl</span>' + HOME_STYLES.map(function (s) {
       return '<a href="index.html?kies&stijl=' + s[0] + '"' + (s[0] === pick ? ' class="on"' : '') + '>' + s[1] + '</a>';
     }).join('') + '<a class="hv-close" href="index.html" title="Balk verbergen">\u00d7</a>';
-    bar.querySelector('.hv-close').addEventListener('click', function (e) { e.preventDefault(); store('homepick-bar', null); store('homepick', null); location.href = 'index.html'; });
+    bar.querySelector('.hv-close').addEventListener('click', function (e) { e.preventDefault(); store('homepick-bar', null); store('homepick', null); store('homepick-m', null); store('homepick-d', null); location.href = 'index.html'; });
     document.body.appendChild(bar);
     document.body.classList.add('has-chooser');
   }

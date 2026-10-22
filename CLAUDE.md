@@ -125,4 +125,11 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 ## Kop en homepage-varianten (21-10-2026)
 
 - Kop op elke pagina: links 'MARIJN CHAOUCH  PHOTOGRAPHY AND FILM' (link naar home), rechts 'MENU' / 'CLOSE' (telefoon/tablet).
-- Keuzebalk (`?kies`) bevat: Nu (studioform), Feed, Cover, Reels, Stapel, Lijst (mobile-first varianten in `homeBuilders`).
+- Keuzebalk (`?kies`) bevat: Studioform, Panoramis, Lijst, Portret, Magazine, Galerij, Reels, Stapel (varianten in `homeBuilders`).
+- Per apparaat een eigen standaard (22-10-2026): desktop `data-style="studioform"`, telefoon (<720px) `data-style-mobile="list"`
+  op `<main>` in index.html. De keuze in de balk wordt per apparaat bewaard (`homepick-d` / `homepick-m` in localStorage).
+- Lijst: 'Selected work' groot, daaronder rijen met grote titel in hoofdletters en een foto rechts (`rowsList(byYear())`).
+- Portret: klein portret in het midden, naam groot en dun onderaan. Magazine: artikel-opmaak met serif-titels.
+  Galerij: 'CURATED (WORKS)'-stijl met genummerde rij. Panoramis (desktop, naar panoramis.framer.website): naam in het midden,
+  eindeloze strook vierkante beelden (`strip()`, schuift vanzelf, slepen/scrollen kan).
+- About-foto: `media/portrait_colourchart.jpg` (Marijn met colorchecker, van cinea.studio), via `portrait` in site.json.
