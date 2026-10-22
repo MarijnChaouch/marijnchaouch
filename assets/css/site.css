@@ -2899,11 +2899,11 @@ body.menu-open .burger em::after { content: "Close"; font-size: 12px; }
 @media (min-width: 720px) and (max-width: 1099px) { .bar nav { padding-top: 92px; } }
 
 /* ================= homepage-varianten (mobile first) ================= */
-.hv-rows { display: flex; flex-direction: column; margin-top: 40px; }
+.hv-rows { display: flex; flex-direction: column; align-items: stretch; margin-top: 40px; padding-top: 0; border-top: 0; }
 .hv-rows a { display: flex; justify-content: space-between; align-items: center; min-height: 56px; border-top: 1px solid var(--line); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
 .hv-rows a:last-child { border-bottom: 1px solid var(--line); }
 .hv-rows span { color: var(--ink); }
-.hv-rows i { font-style: normal; font-size: 14px; font-weight: 600; color: var(--mid); }
+.hv-rows i { font-style: normal; font-size: 14px; font-weight: 600; color: var(--mid); margin-left: 16px; }
 .hv-feed, .hv-cover, .hv-reels, .hv-stack, .hv-list { min-height: 0; padding-bottom: 0; }
 
 /* feed: van rand tot rand, titel in wit over het beeld */
@@ -3121,3 +3121,12 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
+
+/* oude vaste home-inhoud nooit even laten zien bij laden: verborgen tot de JS beslist (zie homeStyles) */
+.home-row { display: none; }
+body:not(.hv-on) .home .foot { visibility: hidden; }
+body.hv-fallback .home-row { display: flex; }
+body.hv-fallback .home .foot { visibility: visible; }
+
+/* niets van de onderkant (footer, grote naam, volgend project) laten zien voordat de pagina is opgebouwd */
+body:not(.ready) .foot, body:not(.ready) .next, body:not(.ready) .wi-word, body:not(.ready) [data-next], body:not(.ready) .ph { visibility: hidden; }

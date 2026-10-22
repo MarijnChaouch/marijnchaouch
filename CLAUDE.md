@@ -192,3 +192,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - NOOIT streepjes op de site (Marijn, 22-10-2026: 'nooit nergens'): geen — of –, ook niet in paginatitels of JS-teksten.
   Scheidingsteken is · (bijv. 'Work · Marijn Chaouch'), uitzondering: '24–26' in de kop 'Selected (Work)' op de telefoon-home mag wel (Marijn, 22-10-2026), geen koppeltekens in zijn teksten ('Hi Tec', 'red toned').
   Slugs in links (project?p=hi-tec) blijven zoals ze zijn.
+- Laden zonder flits (22-10-2026): de oude vaste home-inhoud (`.home-row`) is standaard verborgen (alleen bij `hv-fallback` zichtbaar);
+  footer, grote naam, 'volgend project' en placeholders (`.ph`) zijn onzichtbaar tot `body.ready` (gezet na het opbouwen of bij offline()).
+- Home-links onderaan (All work / About / Contact) als volle rijen zonder pijltjes.

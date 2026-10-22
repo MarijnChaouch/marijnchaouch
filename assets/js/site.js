@@ -860,8 +860,8 @@
   /* gedeeld slot voor de homepage-varianten: zin en grote tik-rijen */
   function homeTail() {
     return '<p class="hv-long">' + esc(S.aboutIntro || '') + '</p>' +
-      '<nav class="hv-more hv-rows"><a href="work.html"><span>All work</span><i>' + P.length + ' projects \u2192</i></a>' +
-      '<a href="about.html"><span>About</span><i>\u2192</i></a><a href="contact.html"><span>Contact</span><i>\u2192</i></a></nav>';
+      '<nav class="hv-more hv-rows"><a href="work.html"><span>All work</span><i>' + P.length + ' projects</i></a>' +
+      '<a href="about.html"><span>About</span></a><a href="contact.html"><span>Contact</span></a></nav>';
   }
   function bigSrc(p) { return p.coverPhone || cover(p); }
   function bigType(p) { return p.coverPhone ? 'video' : coverType(p); }
@@ -1341,6 +1341,7 @@
 
   function offline() {
     var note = document.querySelector('[data-offline]');
+    document.body.classList.add('hv-fallback', 'ready');
     if (note) note.hidden = false;
   }
 
@@ -1354,12 +1355,13 @@
         texts();
         parallax();
         fit();
-        if (!homeStyles()) reel();
+        if (!homeStyles()) { document.body.classList.add('hv-fallback'); reel(); }
         grid();
         project();
         lazyVideos();
         motion();
         smooth();
+        document.body.classList.add('ready');
       })
       .catch(offline);
   });
