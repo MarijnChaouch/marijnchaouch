@@ -146,3 +146,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Erbij 22-10-2026: `travelteq-amalfi` (Campaign, Craftsmanship en Bag 6 option 2 uit Dropbox 2024/Augustus/Travelteq amalfi; 1920x1080 met geluid)
   en `bacardi-lowlands` (aftermovie 14-9 uit 2024/Augustus/Bacardi, 1350x1080 met geluid). Lange films two-pass op ~2.6-2.9 Mbit/s
   zodat ze 12-15 MB blijven; crf gaf bij korrel 23-32 MB.
+- Previews op wens Marijn: Travelteq = tweede helft van de campagnefilm (19.2-34.8 s, zonder eindtekst), Bacardi = het avonddeel
+  (18.0-39.3 s, tot de Bacardi x Lowlands-titel). Previews mogen dus langer zijn dan 6 s als hij een stuk aanwijst.
