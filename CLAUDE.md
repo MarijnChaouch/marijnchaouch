@@ -128,7 +128,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Keuzebalk (`?kies`) bevat: Studioform, Panoramis, Lijst, Portret, Magazine, Galerij, Reels, Stapel (varianten in `homeBuilders`).
 - Per apparaat een eigen standaard (22-10-2026): desktop `data-style="panoramis"` (vastgezet 22-10-2026), telefoon (<720px) `data-style-mobile="list"`
   op `<main>` in index.html. De keuze in de balk wordt per apparaat bewaard (`homepick-d` / `homepick-m` in localStorage).
-- Lijst (combi sinds 22-10-2026): 'Selected (Work) 24–26' smal en groot midden in het eerste scherm (`.hvl-first`), daaronder rijen met grote titel in hoofdletters en een foto rechts (`rowsList(byYear())`).
+- Lijst (combi sinds 22-10-2026): 'Selected (Work) 24–26' smal en groot midden in het eerste scherm (`.hvl-first`), daaronder de kleine lijst (`.hvl-row`: beeldje links, titel, klant, jaar rechts); Marijn wil deze kleinere lijst, niet de grote rijen (`rowsList`). Bijschriften op Panoramis wit.
 - Portret: klein portret in het midden, naam groot en dun onderaan. Magazine: artikel-opmaak met serif-titels.
   Galerij: 'CURATED (WORKS)'-stijl met genummerde rij. Panoramis (desktop, naar panoramis.framer.website): naam in het midden,
   eindeloze strook vierkante beelden (`strip()`, schuift vanzelf, slepen/scrollen kan).
