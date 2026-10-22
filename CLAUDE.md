@@ -171,8 +171,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Erbij 22-10-2026: `travelteq-amalfi` (Campaign, Craftsmanship en Bag 6 option 2 uit Dropbox 2024/Augustus/Travelteq amalfi; 1920x1080 met geluid)
   en `bacardi-lowlands` (aftermovie 14-9 uit 2024/Augustus/Bacardi, 1350x1080 met geluid). Lange films two-pass op ~2.6-2.9 Mbit/s
   zodat ze 12-15 MB blijven; crf gaf bij korrel 23-32 MB.
-- Previews op wens Marijn: Travelteq = vanaf de tas die de auto in gaat (24.5-34.8 s, zonder eindtekst; preview-v4), Bacardi = het avonddeel
-  (18.0-39.3 s, tot de Bacardi x Lowlands-titel). Previews mogen dus langer zijn dan 6 s als hij een stuk aanwijst.
+- Previews op wens Marijn: Travelteq = vanaf de tas die de auto in gaat (24.5-34.8 s, zonder eindtekst; preview-v4), Bacardi = 10 s vanaf de rode DJ-booth
+  (20.2-30.2 s, lus; preview-v5). Previews mogen dus langer zijn dan 6 s als hij een stuk aanwijst.
 - Veld `heroCount` (projects.json): zoveel beelden naast elkaar bovenaan; de rij wordt dan lager zodat ze passen
   (standaard max 3). PAL Lookbook FW26 heeft `heroCount: 4` met clip 5 (meisje in camouflage) als vierde.
 - Previews (`cover`) worden op Work als 4:5 bijgesneden. Liggende films dus als staande 4:5-uitsnede maken uit het origineel
