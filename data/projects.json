@@ -274,7 +274,7 @@
       "ink": "#14110F",
       "layout": "standard",
       "reel": false,
-      "cover": "/media/mille-preview-v2.mp4",
+      "cover": "/media/mille-preview-v3.mp4",
       "heroType": "video",
       "heroSrc": "/media/mille_closeups.mp4",
       "media": [
@@ -310,7 +310,7 @@
       "year": "2024",
       "deliverables": "Campaign film, product and craftsmanship films",
       "intro": "A campaign on the Amalfi Coast for Travelteq, from the leather workshop to the road.",
-      "cover": "/media/travelteq_campaign-preview-v2.mp4",
+      "cover": "/media/travelteq_campaign-preview-v3.mp4",
       "heroSrc": "/media/travelteq_campaign.mp4",
       "media": [
         {
@@ -345,7 +345,7 @@
       "year": "2024",
       "deliverables": "Aftermovie",
       "intro": "Aftermovie for Casa Bacardi at Lowlands.",
-      "cover": "/media/bacardi_lowlands-preview-v3.mp4",
+      "cover": "/media/bacardi_lowlands-preview-v4.mp4",
       "heroSrc": "/media/bacardi_lowlands.mp4",
       "media": [],
       "ratio": "5 / 4",

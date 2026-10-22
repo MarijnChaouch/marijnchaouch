@@ -150,3 +150,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (18.0-39.3 s, tot de Bacardi x Lowlands-titel). Previews mogen dus langer zijn dan 6 s als hij een stuk aanwijst.
 - Veld `heroCount` (projects.json): zoveel beelden naast elkaar bovenaan; de rij wordt dan lager zodat ze passen
   (standaard max 3). PAL Lookbook FW26 heeft `heroCount: 4` met clip 5 (meisje in camouflage) als vierde.
+- Previews (`cover`) worden op Work als 4:5 bijgesneden. Liggende films dus als staande 4:5-uitsnede maken uit het origineel
+  (`crop=ih*4/5:ih`, 864x1080, two-pass ~1.9 Mbit/s), anders zijn ze onscherp (Marijn: 'heel erg LQ', 22-10-2026).
