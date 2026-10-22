@@ -1166,6 +1166,8 @@
     var stack = document.querySelector('[data-stack]');
     if (stack) {
       stack.innerHTML = '';
+      /* staat er bovenaan maar één beeld (links), dan begint de stapel rechts */
+      stack.classList.toggle('flip', p.layout === 'standard' && p.heroCount === 1);
       var used = p.layout === 'standard' ? (p._heroUsed || 0) : p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? (p.posterFrames === 2 ? 1 : 2) : 0;
       (p.media || []).filter(function (m) { return m.src && !(p.layout === 'poster' && m.src === p.posterUnder); }).slice(used).forEach(function (m) {
         /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */

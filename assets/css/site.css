@@ -3073,3 +3073,11 @@ body.hv-is-panoramis .foot { display: none !important; }
 body.hv-is-panoramis .bar { align-items: center; }
 .bar .hvp-name { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; font-size: clamp(28px, 3vw, 44px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; color: var(--ink); pointer-events: auto; }
 .bar .hvp-name sup { font-size: .32em; vertical-align: top; position: relative; top: .2em; margin-left: 2px; }
+
+/* stapel die rechts begint (één beeld bovenaan, heroCount 1) */
+@media (min-width: 720px) {
+  .case .stack.flip .item:nth-child(3n+1) { grid-column: 8 / span 5; margin-top: 0; }
+  .case .stack.flip .item:nth-child(3n+1) img, .case .stack.flip .item:nth-child(3n+1) video { margin-left: auto; object-position: right top; }
+  .case .stack.flip .item:nth-child(3n+2) { grid-column: 1 / span 6; margin-top: 16vh; }
+  .case .stack.flip .item:nth-child(3n+2) img, .case .stack.flip .item:nth-child(3n+2) video { margin-left: 0; object-position: left top; }
+}

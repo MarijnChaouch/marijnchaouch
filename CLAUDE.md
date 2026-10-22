@@ -152,3 +152,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (standaard max 3). PAL Lookbook FW26 heeft `heroCount: 4` met clip 5 (meisje in camouflage) als vierde.
 - Previews (`cover`) worden op Work als 4:5 bijgesneden. Liggende films dus als staande 4:5-uitsnede maken uit het origineel
   (`crop=ih*4/5:ih`, 864x1080, two-pass ~1.9 Mbit/s), anders zijn ze onscherp (Marijn: 'heel erg LQ', 22-10-2026).
+- `heroCount: 1` = één beeld bovenaan; de stapel eronder begint dan rechts (`.stack.flip`), zodat het links-rechts-links verspringt.
+  Snipes X Kappa: zo, met BTS-video 2 als eerste (Marijn vond 3 naast elkaar te vol). PAL Lookbook: clip 13 vervangen door clip 10.
