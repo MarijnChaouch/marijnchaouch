@@ -740,7 +740,12 @@
     soundButtons(box);
     if (pick === 'marthens') swap(box);
     swipeCount(box);
-    if (pick === 'panoramis') strip(box.querySelector('[data-strip]'));
+    if (pick === 'panoramis') {
+      strip(box.querySelector('[data-strip]'));
+      /* de naam staat op één lijn met de tekst links en het menu: in de kopbalk, in het midden */
+      var bar = document.querySelector('.bar'), top = box.querySelector('.hvp-top');
+      if (bar && top) { var h = top.querySelector('h1'); h.classList.add('hvp-name'); bar.appendChild(h); top.remove(); }
+    }
     return true;
   }
 
