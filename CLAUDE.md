@@ -201,3 +201,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   crop rond de ring, zonder de gele rand).
 - Drie staande video's naast elkaar vindt Marijn te druk: Snipes, Ravi, Nike x Patta en PAL Sporting Goods hebben `heroCount: 1`
   (één boven, de rest verspringend). Twee naast elkaar mag; PAL Lookbook houdt er bewust vier.
+- Veld `thumb` (projects.json): vaste stilstaande foto voor de lijst op de telefoon-home (`media/thumb_<slug>.jpg`, 640x800, 4:5),
+  door Marijn gekozen momenten (22-10-2026): Hi Tec vrouw bij gele rotsen, PAL masker-shot, PAL Lookbook franjejas, Mille gletsjer,
+  Bacardi Casa-gebouw, Snipes drie jongens, Ravi rode stenen, Nike x Patta gele capuchon. Zonder `thumb` de poster van de preview.

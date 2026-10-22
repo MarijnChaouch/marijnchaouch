@@ -107,7 +107,8 @@
       "title": "Hi Tec",
       "reel": true,
       "year": "2026",
-      "heroRatio": 1.7778
+      "heroRatio": 1.7778,
+      "thumb": "/media/thumb_hi-tec.jpg"
     },
     {
       "color": "#000000",
@@ -193,7 +194,8 @@
       "year": "2026",
       "ratio": "9 / 16",
       "heroRatio": 0.5625,
-      "heroCount": 1
+      "heroCount": 1,
+      "thumb": "/media/thumb_pal-sporting-goods.jpg"
     },
     {
       "title": "PAL Lookbook FW26",
@@ -259,7 +261,8 @@
       ],
       "ratio": "9 / 16",
       "heroRatio": 0.5625,
-      "heroCount": 4
+      "heroCount": 4,
+      "thumb": "/media/thumb_pal-lookbook-fw26.jpg"
     },
     {
       "title": "Mille Monferin",
@@ -294,7 +297,8 @@
         }
       ],
       "ratio": "5 / 4",
-      "heroRatio": 1.25
+      "heroRatio": 1.25,
+      "thumb": "/media/thumb_mille-monferin.jpg"
     },
     {
       "caption": "",
@@ -351,7 +355,8 @@
       "heroSrc": "/media/bacardi_lowlands.mp4",
       "media": [],
       "ratio": "5 / 4",
-      "heroRatio": 1.25
+      "heroRatio": 1.25,
+      "thumb": "/media/thumb_bacardi-lowlands.jpg"
     },
     {
       "color": "#31c760",
@@ -431,7 +436,8 @@
       "ratio": "9 / 16",
       "heroRatio": 0.5639,
       "heroCount": 1,
-      "agency": "Provoke"
+      "agency": "Provoke",
+      "thumb": "/media/thumb_snipes-x-kappa.jpg"
     },
     {
       "color": "#ffffff",
@@ -615,7 +621,8 @@
       ],
       "ratio": "9 / 16",
       "heroRatio": 0.5625,
-      "heroCount": 1
+      "heroCount": 1,
+      "thumb": "/media/thumb_ravi-nagarkar.jpg"
     },
     {
       "title": "Nike x Patta",
@@ -657,7 +664,8 @@
         }
       ],
       "heroRatio": 0.5625,
-      "heroCount": 1
+      "heroCount": 1,
+      "thumb": "/media/thumb_nike-x-patta.jpg"
     }
   ]
 }
