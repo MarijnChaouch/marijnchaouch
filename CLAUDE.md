@@ -203,4 +203,4 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (één boven, de rest verspringend). Twee naast elkaar mag; PAL Lookbook houdt er bewust vier.
 - Veld `thumb` (projects.json): vaste stilstaande foto voor de lijst op de telefoon-home (`media/thumb_<slug>.jpg`, 640x800, 4:5),
   door Marijn gekozen momenten (22-10-2026): Hi Tec vrouw bij gele rotsen, PAL masker-shot, PAL Lookbook franjejas, Mille gletsjer,
-  Bacardi Casa-gebouw, Snipes drie jongens, Ravi rode stenen, Nike x Patta gele capuchon. Zonder `thumb` de poster van de preview.
+  Bacardi Casa-gebouw, Snipes drie jongens, Ravi rode stenen, Nike x Patta gele capuchon, Mizuno rots-silhouet. Zonder `thumb` de poster van de preview.
