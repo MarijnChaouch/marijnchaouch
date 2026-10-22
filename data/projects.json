@@ -499,10 +499,9 @@
         },
         {
           "type": "video",
-          "src": "/media/tcs_mizuno_edit.mp4",
+          "src": "/media/tcs_mizuno_edit-v2.mp4",
           "span": "feature",
-          "ratio": 0.8,
-          "play": "click"
+          "ratio": 0.8
         },
         {
           "type": "image",
