@@ -126,7 +126,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 
 - Kop op elke pagina: links 'MARIJN CHAOUCH  PHOTOGRAPHY AND FILM' (link naar home), rechts 'MENU' / 'CLOSE' (telefoon/tablet).
 - Keuzebalk (`?kies`) bevat: Studioform, Panoramis, Lijst, Portret, Magazine, Galerij, Reels, Stapel (varianten in `homeBuilders`).
-- Per apparaat een eigen standaard (22-10-2026): desktop `data-style="studioform"`, telefoon (<720px) `data-style-mobile="list"`
+- Per apparaat een eigen standaard (22-10-2026): desktop `data-style="panoramis"` (vastgezet 22-10-2026), telefoon (<720px) `data-style-mobile="list"`
   op `<main>` in index.html. De keuze in de balk wordt per apparaat bewaard (`homepick-d` / `homepick-m` in localStorage).
 - Lijst: 'Selected work' groot, daaronder rijen met grote titel in hoofdletters en een foto rechts (`rowsList(byYear())`).
 - Portret: klein portret in het midden, naam groot en dun onderaan. Magazine: artikel-opmaak met serif-titels.
