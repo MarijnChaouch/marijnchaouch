@@ -1349,7 +1349,7 @@
     function apply() {
       var now = new Date(), h = now.getHours(), night = h >= 19 || h < 7;
       root.classList.toggle('night', night);
-      if (meta) meta.setAttribute('content', night ? '#0F0E0D' : meta.getAttribute('data-day'));
+      if (meta) meta.setAttribute('content', night ? '#000000' : meta.getAttribute('data-day'));
       var next = new Date(now); next.setMinutes(0, 0, 0);
       next.setHours(night ? (h >= 19 ? 24 + 7 : 7) : 19);
       setTimeout(apply, Math.max(1000, next - now + 500));

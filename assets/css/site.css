@@ -3133,23 +3133,23 @@ body:not(.ready) .foot, body:not(.ready) .next, body:not(.ready) .wi-word, body:
 
 /* ---------- nacht (22-10-2026): 19:00 tot 07:00 lokale tijd van de bezoeker, gezet in <head> en in site.js ---------- */
 html.night {
-  --paper: #0F0E0D;
-  --ink: #F2EFEA;
-  --mid: #B9B3AB;
-  --soft: #948D85;
-  --frame: #1E1C1A;
-  --line: #2E2B28;
-  --about: #0F0E0D;
-  --aboutink: #F2EFEA;
+  --paper: #000000;
+  --ink: #FFFFFF;
+  --mid: #BDBDBD;
+  --soft: #8F8F8F;
+  --frame: #161616;
+  --line: #262626;
+  --about: #000000;
+  --aboutink: #FFFFFF;
   color-scheme: dark;
   background: var(--paper);
 }
 html.night body { background: var(--paper); color: var(--ink); }
-html.night .bar nav { --navline: rgba(242, 239, 234, .16); }
-html.night .case { --casemute: rgba(242, 239, 234, .5); --casefade: rgba(242, 239, 234, .08); }
-html.night body.page-about { --about-bg: #0F0E0D; }
+html.night .bar nav { --navline: rgba(255, 255, 255, .16); }
+html.night .case { --casemute: rgba(255, 255, 255, .5); --casefade: rgba(255, 255, 255, .08); }
+html.night body.page-about { --about-bg: #000000; }
 html.night:has(body.page-about) { background: var(--paper); }
-html.night .page-about .foot, html.night .page-about .bar nav a { color: rgba(242, 239, 234, .55); }
+html.night .page-about .foot, html.night .page-about .bar nav a { color: rgba(255, 255, 255, .55); }
 html.night .page-about .bar nav a.on, html.night .page-about .bar nav a:hover { color: var(--ink); }
 html.night .ab4-logos img { filter: brightness(0) invert(1); }
 html.night .hvg-title, html.night .hv-name, html.night .hvp-name { color: var(--ink); }

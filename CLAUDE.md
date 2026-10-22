@@ -207,4 +207,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Nachtstand (22-10-2026, wens Marijn): van 19:00 tot 07:00 lokale tijd van de bezoeker is de site zwart met wit (`html.night`).
   Eerste keuze via een klein script direct na `<meta charset>` in elke HTML (geen witte flits), daarna `nightClock()` in site.js
   dat precies om 07:00/19:00 wisselt en `theme-color` aanpast. Kleuren in het CSS-blok 'nacht' onderaan; grijs overal via `var(--soft)`.
-  Logo's op About worden wit (`invert`), het roze About-vlak wordt zwart. Test: `document.documentElement.classList.add('night')`.
+  Logo's op About worden wit (`invert`), het roze About-vlak wordt zwart. Nachtkleuren neutraal: #000 met #FFF, grijs #8F8F8F
+  (warm zwart #0F0E0D vond Marijn 'bruin zwart'). Test: `document.documentElement.classList.add('night')`.
