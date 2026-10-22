@@ -154,3 +154,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (`crop=ih*4/5:ih`, 864x1080, two-pass ~1.9 Mbit/s), anders zijn ze onscherp (Marijn: 'heel erg LQ', 22-10-2026).
 - `heroCount: 1` = één beeld bovenaan; de stapel eronder begint dan rechts (`.stack.flip`), zodat het links-rechts-links verspringt.
   Snipes X Kappa: zo, met BTS-video 2 als eerste (Marijn vond 3 naast elkaar te vol). PAL Lookbook: clip 13 vervangen door clip 10.
+- UX-ronde 22-10-2026 (na review): telefoonlijst toont stilstaande beelden (poster) i.p.v. video's; deelafbeelding
+  `media/share-v2.jpg` (og:image, 1200x630, q95 zonder subsampling, anders vage tekst) en favicon (`favicon.ico`, `media/icon-*.png`)
+  op alle pagina's; client en agency gescheiden (Fila/The Spot Agency, Transavia/Untold Stories, Snipes/Provoke), 'x' klein in titels;
+  menu op projectpagina's gelijk aan elders; grijs `--soft` en #8C857C naar #767069 (contrast 4.65:1).
+  Mizuno en Snipes opnieuw uit 1080x1920 originelen (`trailrun_recap-v3`, `Provoke_BTS_SnipesXKappa_N-v3`, previews `-preview-v3`).

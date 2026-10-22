@@ -881,7 +881,9 @@
       var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
       return '<div class="hvl-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1></div>' +
         '<div class="hvl">' + byYear().map(function (p) {
-          return '<a class="hvl-row" href="' + link(p) + '">' + shot(coverType(p), cover(p), p.title, 'hvl-thumb') +
+          /* klein beeldje: altijd een stilstaand beeld (bij video de poster), zo laadt de telefoon geen tien video's tegelijk */
+          var still = coverType(p) === 'video' ? poster(cover(p)) : cover(p);
+          return '<a class="hvl-row" href="' + link(p) + '">' + shot('image', still, p.title, 'hvl-thumb') +
             '<span class="hvl-t"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + '</span></span><span class="hvl-y">' + esc(p.year) + '</span></a>';
         }).join('') + '</div>' + homeTail();
     },

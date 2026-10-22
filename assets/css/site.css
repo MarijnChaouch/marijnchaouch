@@ -4,7 +4,7 @@
   --paper: #FAF9F7;
   --ink: #14110F;
   --mid: #57534E;
-  --soft: #A8A29A;
+  --soft: #767069;
   --frame: #EAE7E2;
   --line: #E2DED8;
   --pad: 14px;
@@ -132,7 +132,7 @@ body.menu-open .bar nav { opacity: 1; visibility: visible; transform: none; }
   flex-wrap: wrap;
   gap: 6px 20px;
   font-size: 12px;
-  color: #8C857C;
+  color: #767069;
   padding: 32px 0;
 }
 
@@ -273,7 +273,7 @@ body.menu-open .bar nav { opacity: 1; visibility: visible; transform: none; }
 }
 
 .ph span { font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
-.ph b { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; color: #8C857C; }
+.ph b { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; color: #767069; }
 
 /* paginakoppen */
 
@@ -938,7 +938,7 @@ body.case {
   justify-content: space-between;
   gap: 16px;
   font-size: 11px;
-  color: #8C857C;
+  color: #767069;
   padding: 0 0 24px;
 }
 
@@ -1031,7 +1031,7 @@ body.case {
     gap: 16px;
     font-size: 11px;
     font-weight: 600;
-    color: #8C857C;
+    color: #767069;
   }
 
   .page-title, .head h1 {
@@ -1096,7 +1096,7 @@ body.case {
     gap: 24px;
     font-size: 12px;
     font-weight: 600;
-    color: #8C857C;
+    color: #767069;
   }
 
   .page-title, .head h1 {
@@ -1965,7 +1965,7 @@ body.home-full:not(.menu-open) .burger span { background: #FAF9F7; }
 /* ---- work: één raster, elke kaart gelijk ---- */
 .grid { display: grid; grid-template-columns: 1fr; gap: 56px; padding-bottom: 64px; }
 .grid > .card { grid-column: auto; margin-top: 0; padding-top: 0; border: 0; }
-.card .corners { display: flex; justify-content: space-between; margin: 0 0 10px; font-size: 11px; font-weight: 600; color: #8C857C; }
+.card .corners { display: flex; justify-content: space-between; margin: 0 0 10px; font-size: 11px; font-weight: 600; color: #767069; }
 .card-num { display: none; }
 .card-title { order: 3; font-size: clamp(26px, 7.4vw, 34px); line-height: 1; letter-spacing: -0.04em; text-transform: none; text-align: left; margin: 0; }
 .card-title span, .card-title span + span { display: inline; text-align: left; padding: 0; }
@@ -2324,7 +2324,7 @@ body.hv-is-marthens { background: #EFE6D3; }
 .hv-nonverbal { --red: #D2382F; padding-bottom: 0; }
 .hv-nonverbal .hv-split { display: flex; flex-direction: column; gap: 20px; }
 .hv-nonverbal .hv-left { aspect-ratio: 4 / 5; }
-.hv-nonverbal .hv-tags { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: #8C857C; }
+.hv-nonverbal .hv-tags { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: #767069; }
 .hv-nonverbal h2 { margin: 18px 0 14px; font-size: clamp(30px, 8vw, 52px); font-weight: 600; line-height: .98; letter-spacing: -0.035em; text-transform: uppercase; }
 .hv-nonverbal .hv-right p { margin: 0 0 12px; font-size: 13px; line-height: 1.45; color: var(--mid); max-width: 52ch; }
 .hv-nonverbal .hv-link { font-size: 13px; font-weight: 700; border-bottom: 1.5px solid currentColor; }
@@ -2400,7 +2400,7 @@ body.has-chooser .hv { padding-bottom: 72px; }
 /* ---- verder uitgewerkt: studioform, aino, marthens ---- */
 .hv-studioform .hv-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .hv-studioform .hv-sub { display: flex; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: -0.01em; }
-.hv-studioform .hv-sub span { color: #8C857C; font-variant-numeric: tabular-nums; }
+.hv-studioform .hv-sub span { color: #767069; font-variant-numeric: tabular-nums; }
 @media (min-width: 720px) {
   .hv-studioform .hv-pic { height: calc(100svh - 120px - 19vw - 120px); }
   .hv-studioform .hv-sub { font-size: 13px; }
@@ -2426,7 +2426,7 @@ body.has-chooser .hv { padding-bottom: 72px; }
 @media (min-width: 720px) { .hv-studioform .hv-pic { height: calc(100svh - 120px - 19vw - 170px); min-height: 260px; } }
 
 /* about en contact licht zoals work, titel bovenaan zoals 'Work' */
-.rue-page.rue-light { --rue: var(--paper); --rueink: var(--ink); --ruemute: #8C857C; --rueline: var(--line); }
+.rue-page.rue-light { --rue: var(--paper); --rueink: var(--ink); --ruemute: #767069; --rueline: var(--line); }
 .rue-light .bar nav a { color: var(--soft); }
 .rue-light .bar nav a.on, .rue-light .bar .mark { color: var(--ink); }
 .rue-light .burger span { background: var(--ink); }
@@ -2453,7 +2453,7 @@ body.hv-is-aino { background: var(--paper); }
 /* kaarten zoals op Work */
 .hv-feat { display: grid; grid-template-columns: 1fr; gap: 40px; }
 .hv-card { display: flex; flex-direction: column; min-width: 0; color: var(--ink); }
-.hv-meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+.hv-meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: #767069; font-variant-numeric: tabular-nums; }
 .hv-frame { display: block; overflow: hidden; background: var(--frame); aspect-ratio: 4 / 5; }
 .hv-frame .hv-shot { width: 100%; height: 100%; }
 .hv-frame img, .hv-frame video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, 0, .2, 1); }
@@ -2476,7 +2476,7 @@ body.hv-is-aino { background: var(--paper); }
 .hv-studioform .hv-avail a { color: var(--ink); }
 .hv-studioform .hv-feat { margin-top: 26px; }
 .hv-more { display: flex; justify-content: space-between; align-items: baseline; margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 700; }
-.hv-more span { color: #8C857C; font-weight: 600; }
+.hv-more span { color: #767069; font-weight: 600; }
 
 @media (min-width: 720px) {
   .hv-feat-2 { grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -2530,7 +2530,7 @@ body.page { background: var(--paper); color: var(--ink); }
 .u-link { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink); border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
 .rows { display: flex; flex-direction: column; border-bottom: 1px solid var(--line); }
 .rows .row { display: grid; grid-template-columns: 34% minmax(0, 1fr); gap: 12px; padding: 12px 0 13px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.4; }
-.rows .row > span { font-size: 13px; font-weight: 600; color: #8C857C; padding-top: 1px; }
+.rows .row > span { font-size: 13px; font-weight: 600; color: #767069; padding-top: 1px; }
 .rows .row b, .rows .row a { font-weight: 600; color: var(--ink); }
 .rows .row a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .rows .row ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; font-weight: 600; }
@@ -2642,7 +2642,7 @@ body.case-standard .next { margin-top: 96px; }
 .wi-row b { font-weight: 700; letter-spacing: -0.01em; }
 .wi-row span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 .wi-head { border-top: 0; padding-top: 0; font-size: 12px; }
-.wi-head span { color: #8C857C; }
+.wi-head span { color: #767069; }
 .wi-preview { position: fixed; left: 0; top: 0; z-index: 30; width: 240px; aspect-ratio: 4 / 5; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .2s ease; background: var(--frame); }
 .wi-preview.on { opacity: 1; }
 .wi-preview .wi-shot, .wi-preview .wi-shot > * { width: 100%; height: 100%; object-fit: cover; }
@@ -2749,7 +2749,7 @@ body.page-about { --about-bg: #F6C7CE; background: var(--paper); }
 .ab4-body { padding: 32px 0 24px; }
 .ab4-big { margin: 0 0 64px; font-size: clamp(28px, 8vw, 40px); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; }
 .ab4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 16px; font-size: 11px; font-weight: 500; line-height: 1.35; text-transform: uppercase; letter-spacing: .01em; }
-.ab4-col h2 { margin: 0 0 6px; font-size: inherit; font-weight: 500; color: #8C857C; }
+.ab4-col h2 { margin: 0 0 6px; font-size: inherit; font-weight: 500; color: #767069; }
 .ab4-col h2 ~ h2 { margin-top: 18px; }
 .ab4-col p, .ab4-col ul { margin: 0 0 6px; padding: 0; list-style: none; }
 .ab4-col a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
@@ -2869,7 +2869,7 @@ html:has(body.page-about) { background: linear-gradient(#F6C7CE 50%, #FAF9F7 50%
   .hv-studioform .hv-feat-3 .hv-card { flex: 0 0 84%; scroll-snap-align: start; }
   .hv-studioform .hv-feat-3 .hv-frame { aspect-ratio: 4 / 5; max-height: 62svh; }
   .hv-studioform .hv-title { font-size: 22px; }
-  .hv-count { display: block; margin-top: 16px; font-size: 12px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+  .hv-count { display: block; margin-top: 16px; font-size: 12px; font-weight: 600; color: #767069; font-variant-numeric: tabular-nums; }
   .hv-count span { color: var(--ink); }
   .hv-long { margin-top: 48px; font-size: 24px; line-height: 1.18; letter-spacing: -0.02em; }
 }
@@ -2927,7 +2927,7 @@ body.menu-open .burger em::after { content: "Close"; font-size: 12px; }
 .hvc-thumb { aspect-ratio: 4 / 5; overflow: hidden; background: var(--frame); }
 .hvc-thumb > * { width: 100%; height: 100%; object-fit: cover; }
 .hvc-grid b { font-size: 14px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
-.hvc-grid span { font-size: 11px; font-weight: 600; color: #8C857C; }
+.hvc-grid span { font-size: 11px; font-weight: 600; color: #767069; }
 @media (min-width: 720px) { .hvc-grid { grid-template-columns: repeat(4, 1fr); gap: 40px 16px; } .hvc-hero { height: calc(100svh - 84px); } }
 
 /* reels: elk project een volledig scherm, swipen naar het volgende */
@@ -2953,7 +2953,7 @@ body.hv-is-reels .wrap > .home { padding-top: 0; }
 .hvs-card { position: sticky; top: 64px; display: block; height: calc(100svh - 96px); margin-bottom: 16px; overflow: hidden; background: var(--frame); box-shadow: 0 -12px 30px rgba(0,0,0,.08); }
 .hvs-shot, .hvs-shot > * { width: 100%; height: 100%; object-fit: cover; }
 .hvs-cap { position: absolute; left: 0; right: 0; top: 0; z-index: 1; display: flex; gap: 10px; align-items: baseline; padding: 12px 14px; background: var(--paper); color: var(--ink); }
-.hvs-cap span { font-size: 12px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+.hvs-cap span { font-size: 12px; font-weight: 600; color: #767069; font-variant-numeric: tabular-nums; }
 .hvs-cap b { flex: 1; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
 @media (min-width: 720px) { .hvs-card { top: 96px; height: calc(100svh - 140px); } }
 
@@ -2968,7 +2968,7 @@ body.hv-is-reels .wrap > .home { padding-top: 0; }
 .hvl-t { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .hvl-t b { font-size: 22px; font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
 .hvl-t span { font-size: 12px; font-weight: 600; color: var(--mid); }
-.hvl-y { font-size: 12px; font-weight: 600; color: #8C857C; font-variant-numeric: tabular-nums; }
+.hvl-y { font-size: 12px; font-weight: 600; color: #767069; font-variant-numeric: tabular-nums; }
 @media (min-width: 720px) { .hvl-row { grid-template-columns: 96px minmax(0, 1fr) auto; } .hvl-thumb { width: 96px; } .hvl-t b { font-size: clamp(28px, 3vw, 48px); } }
 
 /* keuzebalk: altijd boven de Safari-balk en alle knoppen zichtbaar op de telefoon */
@@ -3021,7 +3021,7 @@ body.hv-is-reels .wrap > .home { padding-top: 0; }
 
 /* panoramis (desktop): één scherm, naam in het midden, rij vierkanten, zin onderaan */
 .hv-panoramis { display: flex; flex-direction: column; min-height: calc(100svh - 72px); }
-.hvp-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 16px; font-size: 11px; font-weight: 500; line-height: 1.35; color: #8C857C; }
+.hvp-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 16px; font-size: 11px; font-weight: 500; line-height: 1.35; color: #767069; }
 .hvp-top span:last-child { text-align: right; }
 .hvp-top h1 { margin: 0; font-size: clamp(28px, 3vw, 44px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
 .hvp-top sup { font-size: .32em; vertical-align: top; position: relative; top: .2em; margin-left: 2px; }
@@ -3033,9 +3033,9 @@ body.hv-is-reels .wrap > .home { padding-top: 0; }
 .hvp-cap { position: absolute; left: 12px; bottom: 10px; color: #fff; display: flex; flex-direction: column; gap: 1px; font-size: 12px; opacity: 0; transition: opacity .25s ease; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
 .hvp-cap b { font-size: 15px; letter-spacing: -0.01em; }
 .hvp-cell:hover .hvp-cap { opacity: 1; }
-.hvp-text { align-self: center; max-width: 52ch; margin: 0 0 20px; text-align: center; font-size: 12px; line-height: 1.45; color: #8C857C; }
+.hvp-text { align-self: center; max-width: 52ch; margin: 0 0 20px; text-align: center; font-size: 12px; line-height: 1.45; color: #767069; }
 /* panoramis: de kop links wordt '© 2026 Marijn Chaouch / Photography and Film', klein en grijs, op één lijn met het menu */
-body.hv-is-panoramis .bar .mark { flex-direction: column; align-items: flex-start; gap: 0; font-size: 11px; font-weight: 500; line-height: 1.35; letter-spacing: 0; text-transform: none; color: #8C857C; }
+body.hv-is-panoramis .bar .mark { flex-direction: column; align-items: flex-start; gap: 0; font-size: 11px; font-weight: 500; line-height: 1.35; letter-spacing: 0; text-transform: none; color: #767069; }
 body.hv-is-panoramis .bar .mark b { font-size: inherit; font-weight: inherit; letter-spacing: inherit; }
 body.hv-is-panoramis .bar .mark b::before { content: "\00a9  2026 "; }
 body.hv-is-panoramis .bar .mark span { opacity: 1; }
@@ -3080,4 +3080,10 @@ body.hv-is-panoramis .bar { align-items: center; }
   .case .stack.flip .item:nth-child(3n+1) img, .case .stack.flip .item:nth-child(3n+1) video { margin-left: auto; object-position: right top; }
   .case .stack.flip .item:nth-child(3n+2) { grid-column: 1 / span 6; margin-top: 16vh; }
   .case .stack.flip .item:nth-child(3n+2) img, .case .stack.flip .item:nth-child(3n+2) video { margin-left: 0; object-position: left top; }
+}
+
+/* menu op projectpagina's net als overal: actief zwart, de rest grijs (22-10-2026) */
+@media (min-width: 1100px) {
+  .case .bar nav a { color: var(--soft); }
+  .case .bar nav a.on, .case .bar nav a:hover { color: var(--ink); }
 }

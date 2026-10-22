@@ -19,7 +19,7 @@
       "caption": "For mizunorunningeurope we went to Gran Canaria to shoot the Neo Accera trail shoe. @NataliaMastrota was one of the first to test the Neo Accera in the hills of Tejeda, Gran Canaria.",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/trailrun_recap-_final-.mp4",
+      "heroSrc": "/media/trailrun_recap-v3.mp4",
       "slug": "mizuno-neo-accera",
       "posterFrames": 2,
       "posterUnder": "/media/rocks.mp4",
@@ -32,7 +32,7 @@
       "kind": "video",
       "role": "Videographer",
       "article": "",
-      "cover": "/media/trailrun_recap-_final--preview-v2.mp4",
+      "cover": "/media/mizuno-preview-v3.mp4",
       "title": "Mizuno Neo Accera",
       "reel": true,
       "year": "2026",
@@ -68,7 +68,7 @@
       "role": "Photography",
       "article": "A campaign built around movement in daylight, shot across one morning in the city.",
       "cover": "/media/nikexjd_14.jpg",
-      "title": "Nike X JD",
+      "title": "Nike x JD",
       "reel": true,
       "year": "2024",
       "heroRatio": 0.6665
@@ -96,7 +96,7 @@
       "slug": "hi-tec",
       "coverPhone": "/media/main_final-phone.mp4",
       "look": 5,
-      "client": "HI TEC HTS74",
+      "client": "Hi-Tec",
       "intro": "From rocky terrains to red-toned streams.\nA campaign shaped by movement.\n\nInspired by the iconic “Walk on Water” video.\nBuilt for versatility, designed for everyday.",
       "deliverables": "Main Video + 2 Cutdowns",
       "heroType": "video",
@@ -104,7 +104,7 @@
       "role": "Videography",
       "article": "Shot in Spain, where rocky terrains, red toned water streams and warm earth tones shape the landscape, the campaign captures movement through the environment.",
       "cover": "/media/main_final-preview-v2.mp4",
-      "title": "Hi Tec",
+      "title": "Hi-Tec",
       "reel": true,
       "year": "2026",
       "heroRatio": 1.7778
@@ -137,7 +137,7 @@
       "heroSrc": "/media/denieuwe_vernissage-02.jpg",
       "slug": "fila-ss24",
       "look": 4,
-      "client": "Fila & The spot agency",
+      "client": "Fila",
       "intro": "Shot the official FILA Fall/Winter 2024 collection",
       "deliverables": "24 Photos + 5 social videos and bts",
       "heroType": "image",
@@ -148,7 +148,8 @@
       "title": "Fila SS24",
       "reel": true,
       "year": "2024",
-      "heroRatio": 0.6665
+      "heroRatio": 0.6665,
+      "agency": "The Spot Agency"
     },
     {
       "color": "#D92F8A",
@@ -379,8 +380,8 @@
       "heroSrc": "/media/transavia_19.jpg",
       "slug": "transavia",
       "look": 6,
-      "client": "Transavia Untold agency",
-      "intro": "Captured during the new @transavia ad by @untoldstories.studio sick project to be involved in!🛩️",
+      "client": "Transavia",
+      "intro": "Stills captured on set of the new Transavia campaign by Untold Stories.",
       "deliverables": "20 Stills",
       "heroType": "image",
       "kind": "photo",
@@ -390,20 +391,21 @@
       "title": "Transavia",
       "reel": true,
       "year": "2024",
-      "heroRatio": 0.6665
+      "heroRatio": 0.6665,
+      "agency": "Untold Stories"
     },
     {
       "color": "#0F1011",
       "media": [
         {
           "type": "video",
-          "src": "/media/Provoke_BTS_SnipesXKappa_1.mp4",
+          "src": "/media/Provoke_BTS_SnipesXKappa_1-v3.mp4",
           "span": "half",
           "ratio": 0.5639
         },
         {
           "type": "video",
-          "src": "/media/Provoke_BTS_SnipesXKappa_3.mp4",
+          "src": "/media/Provoke_BTS_SnipesXKappa_3-v3.mp4",
           "span": "half",
           "ratio": 0.5639
         }
@@ -411,23 +413,24 @@
       "caption": "Shot across the run up to the tournament.",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/Provoke_BTS_SnipesXKappa_2.mp4",
+      "heroSrc": "/media/Provoke_BTS_SnipesXKappa_2-v3.mp4",
       "slug": "snipes-x-kappa",
       "look": 3,
-      "client": "Snipes & Provoke",
+      "client": "Snipes",
       "intro": "Kappa x Snipes with Pepsi.de\nUnited by Attitude.",
       "deliverables": "3 BTS videos and 9 socials",
       "heroType": "video",
       "kind": "video",
       "role": "BTS and Socials videos",
       "article": "A campaign made in collaboration for the 2026 World Cup in the United States.",
-      "cover": "/media/Provoke_BTS_SnipesXKappa_1-preview-v2.mp4",
-      "title": "Snipes X Kappa",
+      "cover": "/media/snipes-preview-v3.mp4",
+      "title": "Snipes x Kappa",
       "reel": false,
       "year": "2026",
       "ratio": "9 / 16",
       "heroRatio": 0.5639,
-      "heroCount": 1
+      "heroCount": 1,
+      "agency": "Provoke"
     },
     {
       "color": "#ffffff",
@@ -467,8 +470,8 @@
       "kind": "photo",
       "role": "Photography",
       "deliverables": "",
-      "agency": "The Spot agency",
-      "intro": "Race day at the TCS Amsterdam Marathon for Mizuno Running, with The Spot agency.",
+      "agency": "The Spot Agency",
+      "intro": "Race day at the TCS Amsterdam Marathon for Mizuno Running, with The Spot Agency.",
       "caption": "",
       "article": "",
       "color": "",
