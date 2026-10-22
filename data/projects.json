@@ -288,6 +288,63 @@
       "heroRatio": 1.25
     },
     {
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "standard",
+      "reel": false,
+      "heroType": "video",
+      "kind": "video",
+      "role": "Videography",
+      "title": "Travelteq Amalfi",
+      "slug": "travelteq-amalfi",
+      "client": "Travelteq",
+      "year": "2024",
+      "deliverables": "Campaign film, product and craftsmanship films",
+      "intro": "A campaign on the Amalfi Coast for Travelteq, from the leather workshop to the road.",
+      "cover": "/media/travelteq_campaign-preview.mp4",
+      "heroSrc": "/media/travelteq_campaign.mp4",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/travelteq_craft.mp4",
+          "span": "full",
+          "ratio": 1.7778
+        },
+        {
+          "type": "video",
+          "src": "/media/travelteq_bag.mp4",
+          "span": "full",
+          "ratio": 1.7778
+        }
+      ],
+      "ratio": "16 / 9",
+      "heroRatio": 1.7778
+    },
+    {
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "standard",
+      "reel": false,
+      "heroType": "video",
+      "kind": "video",
+      "role": "Videography",
+      "title": "Bacardi x Lowlands",
+      "slug": "bacardi-lowlands",
+      "client": "Bacardi",
+      "year": "2024",
+      "deliverables": "Aftermovie",
+      "intro": "Aftermovie for Casa Bacardi at Lowlands.",
+      "cover": "/media/bacardi_lowlands-preview.mp4",
+      "heroSrc": "/media/bacardi_lowlands.mp4",
+      "media": [],
+      "ratio": "5 / 4",
+      "heroRatio": 1.25
+    },
+    {
       "color": "#31c760",
       "media": [
         {

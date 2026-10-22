@@ -143,3 +143,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   `pal-lookbook-fw26` (7 staande clips uit Dropbox 2025/December/PAL_Lookbook FW 26/V1 Shorts, zonder de muziek;
   volle 1080x1920, crf 24, bestanden `-v2`; 720p was Marijn te zacht) en `mille-monferin` (drie losse edits met geluid:
   closeups, Jeans snippet, Book; niet het interview, op wens van Marijn; client 'Minus One' afgeleid van het -1 label, nog bevestigen).
+- Erbij 22-10-2026: `travelteq-amalfi` (Campaign, Craftsmanship en Bag 6 option 2 uit Dropbox 2024/Augustus/Travelteq amalfi; 1920x1080 met geluid)
+  en `bacardi-lowlands` (aftermovie 14-9 uit 2024/Augustus/Bacardi, 1350x1080 met geluid). Lange films two-pass op ~2.6-2.9 Mbit/s
+  zodat ze 12-15 MB blijven; crf gaf bij korrel 23-32 MB.
