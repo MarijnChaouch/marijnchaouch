@@ -868,7 +868,10 @@
     },
     list: function () {
       /* naar 'Selected work': grote kop, rijen met dikke lijn, titel groot links en beeld rechts */
-      return '<h1 class="hvx-head">Selected<br>work</h1>' + rowsList(byYear()) + homeTail();
+      /* combi (22-10-2026): 'Selected (Work) 24–26' midden in het eerste scherm, daaronder de rijen */
+      var years = P.map(function (p) { return parseInt(p.year, 10) || 0; }).filter(Boolean);
+      var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
+      return '<div class="hvl-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1></div>' + rowsList(byYear()) + homeTail();
     },
 
     marthens: function () {
