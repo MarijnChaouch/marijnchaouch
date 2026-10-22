@@ -211,3 +211,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (warm zwart #0F0E0D vond Marijn 'bruin zwart'). Test: `document.documentElement.classList.add('night')`.
 - Witte scanranden (zichtbaar in de nachtstand) weggesneden bij de Morocco-foto's en tcs_amsterdam_03 (`-v2.jpg`, zelfde maat).
   Nieuwe foto's eerst checken op witte randen.
+- TCS Marathon: film 'Mizuno edit V3' (Dropbox 2026/Oktober/Mizuno Marathon, 4:5, met geluid, `tcs_mizuno_edit.mp4`) na de twee
+  hoofdfoto's als `span: "feature"` (groot, gecentreerd, ruimte eromheen) met `play: "click"` (still + speelknop, geen 'Sound on').

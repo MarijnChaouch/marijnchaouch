@@ -184,7 +184,7 @@
   function soundButtons(root) {
     Array.prototype.forEach.call(root.querySelectorAll('video'), function (v) {
       var box = v.parentElement;
-      if (!box || box.querySelector('.film-sound') || v.controls) return;
+      if (!box || box.querySelector('.film-sound') || v.controls || box.classList.contains('with-play')) return;
       box.classList.add('has-sound');
       var b = el('button', 'film-sound', 'Sound on');
       b.type = 'button';
@@ -1254,7 +1254,8 @@
       var used = p.layout === 'standard' ? (p._heroUsed || 0) : p.layout === 'split' || p.layout === 'gallery' ? 1 : p.layout === 'poster' ? (p.posterFrames === 2 ? 1 : 2) : 0;
       (p.media || []).filter(function (m) { return m.src && !(p.layout === 'poster' && m.src === p.posterUnder); }).slice(used).forEach(function (m) {
         /* beelden in hun eigen vorm, niets bijgesneden; de plek wisselt per beeld (zie .case .stack) */
-        var box = media(m.type, m.src, p.title, 'item' + ((m.span === 'full' || (m.ratio || 0) > 1.2) ? ' full' : ''), m);
+        /* span 'feature': een groot, gecentreerd blok met ruimte eromheen (bijv. de film tussen de foto's) */
+        var box = media(m.type, m.src, p.title, 'item' + (m.span === 'feature' ? ' feature' : (m.span === 'full' || (m.ratio || 0) > 1.2) ? ' full' : ''), m);
         if (m.ratio) box.style.setProperty('--r', m.ratio);
         stack.appendChild(box);
       });

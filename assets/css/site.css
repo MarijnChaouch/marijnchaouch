@@ -3155,3 +3155,13 @@ html.night .ab4-logos img { filter: brightness(0) invert(1); }
 html.night .hvg-title, html.night .hv-name, html.night .hvp-name { color: var(--ink); }
 html.night .film-sound[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 html.night .burger span { background: var(--ink); }
+
+/* uitgelicht blok in de stapel (span 'feature'): gecentreerd, zo groot als past, ruimte erboven en eronder;
+   het blok is precies zo breed als het beeld, dus de geluidsknop staat in de hoek van de video */
+.case .stack .item.feature, .case:not(.case-contents) .stack .item.feature:nth-child(n) {
+  grid-column: 1 / -1; justify-self: center; width: min(100%, calc(var(--imgmax) * var(--r, .8))); margin: 6vh 0;
+}
+.case .stack .item.feature img, .case .stack .item.feature video { width: 100%; height: auto; max-height: none; object-position: center; }
+@media (min-width: 720px) {
+  .case .stack .item.feature, .case:not(.case-contents) .stack .item.feature:nth-child(n) { grid-column: 1 / -1; margin: 10vh 0; }
+}
