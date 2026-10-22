@@ -226,6 +226,12 @@
         },
         {
           "type": "video",
+          "src": "/media/palfw26_5-v2.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
           "src": "/media/palfw26_3-v2.mp4",
           "span": "half",
           "ratio": 0.5625
@@ -250,7 +256,8 @@
         }
       ],
       "ratio": "9 / 16",
-      "heroRatio": 0.5625
+      "heroRatio": 0.5625,
+      "heroCount": 4
     },
     {
       "title": "Mille Monferin",

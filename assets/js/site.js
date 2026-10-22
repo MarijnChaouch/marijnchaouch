@@ -278,6 +278,13 @@
           total += w; used = k + 1; return false;
         });
       } else used = 1;
+      /* heroCount: zoveel beelden naast elkaar; de rij wordt dan lager zodat ze passen */
+      var heroH = '';
+      if (wide && p.heroCount) {
+        used = Math.min(p.heroCount, items.length);
+        var sum = items.slice(0, used).reduce(function (a, m) { return a + (m.ratio || 0.8); }, 0);
+        heroH = ' style="height:' + Math.round(Math.min(h, (avail - 10 * (used - 1)) / sum)) + 'px"';
+      }
       p._heroUsed = used - 1;
       var hero = items.slice(0, used).map(function (m) {
         return '<div class="pj-item" style="aspect-ratio:' + (m.ratio || 0.8) + ';--r:' + (m.ratio || 0.8) + '">' + shot(m.type, m.src, p.title, 'pj-shot', m) + '</div>';
@@ -286,7 +293,7 @@
         '<div class="pj-head"><h1>' + esc(p.title) + '</h1>' +
           '<div class="pj-info">' + (p.intro && p.intro !== p.title ? '<p class="statement-x">' + esc(p.intro) + '</p>' : '<span></span>') +
           '<div class="rows">' + factsS + '</div></div></div>' +
-        '<div class="pj-hero">' + hero + '</div>' +
+        '<div class="pj-hero"' + heroH + '>' + hero + '</div>' +
         '</div>';
     }
 
