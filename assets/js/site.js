@@ -38,7 +38,7 @@
   var lowPower = false;
   function start(v) {
     var go = v.play();
-    if (go && go.catch) go.catch(function (err) { if (err && err.name === 'NotAllowedError') asImage(v); });
+    if (go && go.catch) go.catch(function (err) { log('play geweigerd: ' + (err && err.name) + ' ' + (v.getAttribute('src') || '').split('/').pop()); if (err && err.name === 'NotAllowedError') asImage(v); });
   }
   /* iPhone in energiebesparing speelt geen video's vanzelf af, maar wel een mp4 als <img> (Safari ondersteunt dat).
      Dan ruilen we de video voor zo'n beeld; op een projectpagina brengt een tik de echte video (met geluid) terug. */
@@ -65,6 +65,24 @@
     img.parentNode.replaceChild(v, img);
     var go = v.play(); if (go && go.catch) go.catch(function () {});
   });
+  /* testweergave voor de telefoon: ?debug toont per video wat de browser doet (alleen voor ons, verandert niets aan de site) */
+  var dbg = /[?&]debug/.test(location.search) ? [] : null;
+  function log(msg) { if (dbg) { dbg.push(((performance.now() / 1000).toFixed(1)) + 's ' + msg); draw(); } }
+  function draw() {
+    if (!dbg) return;
+    var box = document.getElementById('dbg');
+    if (!box) { box = document.createElement('pre'); box.id = 'dbg'; box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;max-height:55vh;overflow:auto;margin:0;padding:8px;background:rgba(0,0,0,.85);color:#7CFC9A;font:10px/1.35 ui-monospace,Menlo,monospace;z-index:99999;white-space:pre-wrap'; document.body.appendChild(box); }
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video, img[data-video-img]'));
+    var rows = vids.map(function (v, k) {
+      var r = v.getBoundingClientRect(), vis = r.bottom > 0 && r.top < innerHeight && r.width > 0;
+      var name = (v.getAttribute('src') || v.getAttribute('data-lz') || '').split('/').pop();
+      if (v.tagName === 'IMG') return (vis ? '*' : ' ') + k + ' IMG(fallback) ' + name + (v.complete ? ' ok' : ' laden');
+      return (vis ? '*' : ' ') + k + ' ' + (v.getAttribute('src') ? (v.paused ? 'STIL' : 'SPEELT') : 'wacht') + ' rs' + v.readyState + ' ns' + v.networkState + ' t' + v.currentTime.toFixed(1) + ' ' + name;
+    });
+    box.textContent = navigator.userAgent.replace(/^Mozilla\/5.0 /, '') + '\nlowPower=' + lowPower + ' webkit=' + webkit + '\n' + rows.join('\n') + '\n--\n' + dbg.slice(-12).join('\n');
+  }
+  if (dbg) setInterval(draw, 1000);
+
   function loadVideo(v) {
     var src = v.getAttribute('data-lz');
     if (!src) return;

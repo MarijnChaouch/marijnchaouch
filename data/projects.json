@@ -5,9 +5,9 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/rocks-sq.mp4",
+          "src": "/media/rocks-v2.mp4",
           "span": "half",
-          "ratio": 1.0
+          "ratio": 0.5625
         },
         {
           "type": "video",
@@ -22,7 +22,7 @@
       "heroSrc": "/media/trailrun_recap-v3.mp4",
       "slug": "mizuno-neo-accera",
       "posterFrames": 2,
-      "posterUnder": "/media/rocks-sq.mp4",
+      "posterUnder": "/media/rocks-v2.mp4",
       "coverPhone": "/media/trailrun_recap-_final--phone.mp4",
       "look": 1,
       "client": "Mizuno",
@@ -156,29 +156,29 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/reel-1-sq.mp4",
+          "src": "/media/pal_reel-1.mp4",
           "span": "half",
-          "ratio": 1.0
+          "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/reel-2-sq.mp4",
+          "src": "/media/pal_reel-2.mp4",
           "span": "half",
-          "ratio": 1.0
+          "ratio": 0.5625
         },
         {
           "span": "half",
           "type": "video",
-          "src": "/media/reel-3-sq.mp4",
-          "ratio": 1.0
+          "src": "/media/pal_reel-3.mp4",
+          "ratio": 0.5625
         }
       ],
       "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/teaser-sq.mp4",
+      "heroSrc": "/media/pal_teaser.mp4",
       "slug": "pal-sporting-goods",
-      "coverPhone": "/media/teaser-phone-sq.mp4",
+      "coverPhone": "/media/pal_teaser-phone.mp4",
       "look": 2,
       "client": "PAL Sporting Goods",
       "intro": "SS26 for PAL Sporting Goods. On the pitch with The Amsterdam Pirates",
@@ -187,12 +187,12 @@
       "kind": "video",
       "role": "Videography",
       "article": "",
-      "cover": "/media/teaser-preview-v2-sq.mp4",
+      "cover": "/media/pal_teaser-preview.mp4",
       "title": "PAL Sporting Goods",
       "reel": true,
       "year": "2026",
-      "ratio": "1 / 1",
-      "heroRatio": 1.0
+      "ratio": "9 / 16",
+      "heroRatio": 0.5625
     },
     {
       "title": "PAL Lookbook FW26",

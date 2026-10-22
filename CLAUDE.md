@@ -81,8 +81,12 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   eerdere lui-laad-versie op Marijns iPhone niet af; deze versie roept zelf play() aan. Bij twijfel op zijn iPhone checken.)
   Energiebesparing iPhone: play() geeft NotAllowedError -> `asImage()` ruilt de video voor `<img src=...mp4>` (Safari speelt dat wel af);
   op projectpagina's brengt een tik de echte video met geluid terug. Geluidsknop kijkt opnieuw bij 'playing'.
-- Video's altijd met vierkante pixels: `setsar=1` bij encoderen. De PAL-teaser, reels, rocks en Ravi hadden SAR 9:16 e.d. en werden
-  in de browser in elkaar gedrukt; hersteld zonder hercoderen (`-bsf:v h264_metadata=sample_aspect_ratio=1/1 -aspect W:H`), bestanden `-sq`.
+- Video's altijd met vierkante pixels en in hun echte vorm: `scale=W:H,setsar=1` bij encoderen. De PAL-honkbalvideo's en rocks waren
+  ooit van staand 1080x1920 naar een vierkant geperst (SAR 9:16): opnieuw gemaakt uit de originelen (Dropbox 2026/Februari/Pal Honkbal/
+  Delivery en Mizuno Gran C/Day2/Rocks.mp4) als `pal_teaser`, `pal_reel-1..3`, `rocks-v2` (1080x1920); PAL staat nu op ratio 9/16.
+  Ravi had SAR 2816:2817, hersteld zonder hercoderen (`-sq`).
+- Telefoon: in de kop alleen 'MARIJN CHAOUCH', zonder 'Photography and Film' (Marijn: te druk).
+- `?debug` achter een url toont onderin per video wat de browser doet (laden/spelen/geblokkeerd); handig om op Marijns iPhone te checken.
 - Home: op desktop één vast kader waarin de reel-projecten overvloeien; op telefoon en tablet swipe je zelf door de projecten.
 - Blokkeert een iPhone het vanzelf afspelen (energiebesparing of 'videovoorvertoningen automatisch afspelen' uit), dan verbergt de CSS
   de iOS-afspeelknop en start `kick()` in `site.js` de video's in beeld bij elke aanraking.
