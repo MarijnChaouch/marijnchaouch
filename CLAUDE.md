@@ -76,8 +76,13 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   (eerste frame: `ffmpeg -i x.mp4 -frames:v 1 -q:v 4 x-poster.jpg`). `site.js` gebruikt dat automatisch.
 - Videoprojecten krijgen als `cover` een korte preview (`naam-preview.mp4`, 6 seconden, max 720 hoog of 960 breed,
   `-crf 26/27`, zonder geluid) plus `naam-preview-poster.jpg`. Zo laden home en Work snel; de volledige film staat alleen op de projectpagina.
-- Video's krijgen meteen hun bron met `muted`, `autoplay`, `loop` en `playsinline` als attributen; een IntersectionObserver pauzeert ze
-  alleen buiten beeld. Niet terug naar pas laden bij in beeld komen: dat speelde op Marijns iPhone niet af (oktober 2026).
+- Video's (22-10-2026, nieuw): bron in `data-lz`, geladen door `lazyVideos()` als ze binnen ~1 scherm komen (Panoramis-strook meteen),
+  daarna `start()` = play(). Werk-pagina telefoon start met ~1.5 MB i.p.v. ~25 MB; eerste video speelt meteen. (Oktober 2026 speelde een
+  eerdere lui-laad-versie op Marijns iPhone niet af; deze versie roept zelf play() aan. Bij twijfel op zijn iPhone checken.)
+  Energiebesparing iPhone: play() geeft NotAllowedError -> `asImage()` ruilt de video voor `<img src=...mp4>` (Safari speelt dat wel af);
+  op projectpagina's brengt een tik de echte video met geluid terug. Geluidsknop kijkt opnieuw bij 'playing'.
+- Video's altijd met vierkante pixels: `setsar=1` bij encoderen. De PAL-teaser, reels, rocks en Ravi hadden SAR 9:16 e.d. en werden
+  in de browser in elkaar gedrukt; hersteld zonder hercoderen (`-bsf:v h264_metadata=sample_aspect_ratio=1/1 -aspect W:H`), bestanden `-sq`.
 - Home: op desktop één vast kader waarin de reel-projecten overvloeien; op telefoon en tablet swipe je zelf door de projecten.
 - Blokkeert een iPhone het vanzelf afspelen (energiebesparing of 'videovoorvertoningen automatisch afspelen' uit), dan verbergt de CSS
   de iOS-afspeelknop en start `kick()` in `site.js` de video's in beeld bij elke aanraking.

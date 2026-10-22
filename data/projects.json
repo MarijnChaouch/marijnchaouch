@@ -5,7 +5,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/rocks.mp4",
+          "src": "/media/rocks-sq.mp4",
           "span": "half",
           "ratio": 1.0
         },
@@ -22,7 +22,7 @@
       "heroSrc": "/media/trailrun_recap-v3.mp4",
       "slug": "mizuno-neo-accera",
       "posterFrames": 2,
-      "posterUnder": "/media/rocks.mp4",
+      "posterUnder": "/media/rocks-sq.mp4",
       "coverPhone": "/media/trailrun_recap-_final--phone.mp4",
       "look": 1,
       "client": "Mizuno",
@@ -156,29 +156,29 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/reel-1.mp4",
+          "src": "/media/reel-1-sq.mp4",
           "span": "half",
           "ratio": 1.0
         },
         {
           "type": "video",
-          "src": "/media/reel-2.mp4",
+          "src": "/media/reel-2-sq.mp4",
           "span": "half",
           "ratio": 1.0
         },
         {
           "span": "half",
           "type": "video",
-          "src": "/media/reel-3.mp4",
+          "src": "/media/reel-3-sq.mp4",
           "ratio": 1.0
         }
       ],
       "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/teaser.mp4",
+      "heroSrc": "/media/teaser-sq.mp4",
       "slug": "pal-sporting-goods",
-      "coverPhone": "/media/teaser-phone.mp4",
+      "coverPhone": "/media/teaser-phone-sq.mp4",
       "look": 2,
       "client": "PAL Sporting Goods",
       "intro": "SS26 for PAL Sporting Goods. On the pitch with The Amsterdam Pirates",
@@ -187,7 +187,7 @@
       "kind": "video",
       "role": "Videography",
       "article": "",
-      "cover": "/media/teaser-preview-v2.mp4",
+      "cover": "/media/teaser-preview-v2-sq.mp4",
       "title": "PAL Sporting Goods",
       "reel": true,
       "year": "2026",
@@ -595,19 +595,19 @@
       "ink": "#14110F",
       "layout": "standard",
       "reel": false,
-      "cover": "/media/ravi_main-v2-preview.mp4",
+      "cover": "/media/ravi_main-v2-preview-sq.mp4",
       "heroType": "video",
-      "heroSrc": "/media/ravi_main-v2.mp4",
+      "heroSrc": "/media/ravi_main-v2-sq.mp4",
       "media": [
         {
           "type": "video",
-          "src": "/media/ravi_render-v2.mp4",
+          "src": "/media/ravi_render-v2-sq.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/ravi_ring-v2.mp4",
+          "src": "/media/ravi_ring-v2-sq.mp4",
           "span": "half",
           "ratio": 0.5625
         }

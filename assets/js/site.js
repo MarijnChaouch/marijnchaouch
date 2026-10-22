@@ -18,8 +18,7 @@
       var v = e.target;
       v.inview = e.isIntersecting;
       if (e.isIntersecting) {
-        var go = v.play();
-        if (go && go.catch) go.catch(function () {});
+        start(v);
       } else if (!v.controls) {
         v.pause();
       }
@@ -31,16 +30,75 @@
     if (seen) seen.observe(v);
   }
 
+  /* video's laden pas als ze bijna in beeld komen (data-lz), zodat de telefoon eerst de zichtbare video's binnenhaalt
+     en die meteen starten in plaats van na een paar seconden. De Panoramis-strook laadt alles meteen. */
+  var ua = navigator.userAgent;
+  var webkit = /iP(hone|ad|od)/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ||
+    (/Safari/.test(ua) && !/Chrome|Chromium|CriOS|Android|Edg/.test(ua));
+  var lowPower = false;
+  function start(v) {
+    var go = v.play();
+    if (go && go.catch) go.catch(function (err) { if (err && err.name === 'NotAllowedError') asImage(v); });
+  }
+  /* iPhone in energiebesparing speelt geen video's vanzelf af, maar wel een mp4 als <img> (Safari ondersteunt dat).
+     Dan ruilen we de video voor zo'n beeld; op een projectpagina brengt een tik de echte video (met geluid) terug. */
+  function asImage(v) {
+    if (!webkit || !v.parentNode || v.controls) return;
+    lowPower = true;
+    var src = v.currentSrc || v.getAttribute('src') || v.getAttribute('data-lz');
+    if (!src) return;
+    var img = document.createElement('img');
+    img.className = v.className;
+    if (v.getAttribute('style')) img.setAttribute('style', v.getAttribute('style'));
+    img.alt = '';
+    img.setAttribute('data-video-img', '');
+    img._video = v;
+    img.src = src;
+    try { v.pause(); } catch (e) {}
+    v.parentNode.replaceChild(img, v);
+  }
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest ? e.target.closest('img[data-video-img]') : null;
+    if (!img || !img._video || img.closest('a')) return;
+    var v = img._video;
+    if (!v.getAttribute('src') && v.getAttribute('data-lz')) { v.src = v.getAttribute('data-lz'); v.removeAttribute('data-lz'); }
+    img.parentNode.replaceChild(v, img);
+    var go = v.play(); if (go && go.catch) go.catch(function () {});
+  });
+  function loadVideo(v) {
+    var src = v.getAttribute('data-lz');
+    if (!src) return;
+    v.removeAttribute('data-lz');
+    v.setAttribute('preload', 'auto');
+    if (lowPower) { v.setAttribute('src', src); asImage(v); return; }
+    v.src = src;
+    watch(v);
+    start(v);
+  }
+  var near = window.IntersectionObserver ? new IntersectionObserver(function (list) {
+    list.forEach(function (e) { if (e.isIntersecting) { near.unobserve(e.target); loadVideo(e.target); } });
+  }, { rootMargin: '120% 0px' }) : null;
+  function lazyVideos(root) {
+    Array.prototype.forEach.call((root || document).querySelectorAll('video[data-lz]'), function (v) {
+      if (v._lz) return;
+      v._lz = true;
+      if (!near || (v.closest && v.closest('.hvp-strip'))) loadVideo(v); else near.observe(v);
+    });
+  }
+  /* ook video's die later worden toegevoegd (andere kolommen, filters) */
+  if (window.MutationObserver) {
+    new MutationObserver(function (list) {
+      for (var i = 0; i < list.length; i++) if (list[i].addedNodes.length) { lazyVideos(); break; }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+
   /* blokkeert de telefoon het vanzelf afspelen (bijv. energiebesparing), dan starten we bij elke aanraking
      de video's die in beeld staan: een aanraking mag dat wel */
   function kick() {
     Array.prototype.forEach.call(document.querySelectorAll('video[autoplay]'), function (v) {
       var cell = v.closest ? v.closest('.reel-cell') : null;
       var active = cell ? cell.classList.contains('on') : v.inview;
-      if (active && v.paused && !v.controls) {
-        var go = v.play();
-        if (go && go.catch) go.catch(function () {});
-      }
+      if (active && v.paused && !v.controls && v.getAttribute('src')) start(v);
     });
   }
   document.addEventListener('touchend', kick, { passive: true });
@@ -70,10 +128,10 @@
         v.setAttribute('muted', '');
         v.setAttribute('loop', '');
         v.setAttribute('autoplay', '');
-        v.setAttribute('preload', opts.lazy ? 'none' : 'auto');
-        if (opts.lazy) v.setAttribute('data-src', src); else v.src = src;
+        if (opts.lazy) { v.setAttribute('preload', 'none'); v.setAttribute('data-src', src); }
+        else if (opts.manual) { v.setAttribute('preload', 'auto'); v.src = src; }
+        else { v.setAttribute('preload', 'none'); v.setAttribute('data-lz', src); }
         box.appendChild(v);
-        if (!opts.manual) watch(v);
       }
     } else {
       var i = document.createElement('img');
@@ -116,10 +174,13 @@
       b.hidden = true;
       box.appendChild(b);
       var tries = 0;
-      (function check() {
+      function check() {
         if (hasAudio(v)) { b.hidden = false; return; }
         if (++tries < 12) setTimeout(check, 500);
-      })();
+      }
+      /* video's laden pas als ze bijna in beeld komen: daarom opnieuw kijken zodra hij speelt */
+      v.addEventListener('playing', function () { tries = 0; check(); });
+      check();
     });
   }
 
@@ -171,7 +232,7 @@
         return '<div class="' + cls + ' with-play"><video src="' + esc(src) + '"' + still +
           ' preload="metadata" playsinline></video><button class="playbtn"><span class="sr">Play</span></button></div>';
       }
-      return '<div class="' + cls + '"><video src="' + esc(src) + '"' + still + ' muted loop autoplay playsinline webkit-playsinline preload="auto"></video></div>';
+      return '<div class="' + cls + '"><video data-lz="' + esc(src) + '"' + still + ' muted loop autoplay playsinline webkit-playsinline preload="none"></video></div>';
     }
     return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(label) + '" loading="lazy"></div>';
   }
@@ -1278,6 +1339,7 @@
         if (!homeStyles()) reel();
         grid();
         project();
+        lazyVideos();
         motion();
         smooth();
       })
