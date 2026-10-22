@@ -3087,3 +3087,42 @@ body.hv-is-panoramis .bar { align-items: center; }
   .case .bar nav a { color: var(--soft); }
   .case .bar nav a.on, .case .bar nav a:hover { color: var(--ink); }
 }
+
+/* ---------- beweging (22-10-2026): alleen met JS (.mo) en zonder 'minder beweging' ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* tekst en blokken: zacht omhoog in beeld */
+.mo [data-mo="up"]:not(.mo-done) { transition: opacity 1.1s cubic-bezier(.16, 1, .3, 1) var(--mo-d, 0ms), transform 1.1s cubic-bezier(.16, 1, .3, 1) var(--mo-d, 0ms); }
+.mo [data-mo="up"]:not(.mo-in) { opacity: 0; transform: translate3d(0, 28px, 0); }
+
+/* beelden: gordijn van onder naar boven, beeld zoomt licht terug (op het beeld zelf, niet op het blok:
+   anders ziet de browser het blok als onzichtbaar en start de animatie nooit) */
+.mo [data-mo="img"]:not(.mo-done) { overflow: hidden; background: transparent; }
+.mo [data-mo="img"]:not(.mo-done) > * { transition: clip-path 1.4s cubic-bezier(.77, 0, .18, 1) var(--mo-d, 0ms), transform 1.8s cubic-bezier(.16, 1, .3, 1) var(--mo-d, 0ms); }
+.mo [data-mo="img"]:not(.mo-in) > * { clip-path: inset(100% 0 0 0); transform: scale(1.12); }
+.mo [data-mo="img"].mo-in:not(.mo-done) > * { clip-path: inset(0 0 0 0); }
+
+/* grote titels: woord voor woord uit een masker */
+.mo-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+.mo-w > span { display: inline-block; }
+.mo [data-mo="title"]:not(.mo-done) .mo-w > span { transition: transform 1.1s cubic-bezier(.16, 1, .3, 1); }
+.mo [data-mo="title"]:not(.mo-in) .mo-w > span { transform: translate3d(0, 105%, 0); }
+
+/* kaarten op Work: rustige zoom bij hover */
+@media (hover: hover) {
+  .card .shot > *, .hv-card .hv-frame img, .hv-card .hv-frame video { transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
+  .card:hover .shot > * { transform: scale(1.04); }
+}
+
+/* zachte overgang tussen pagina's (Chrome, Safari 18+) */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: mo-out .35s cubic-bezier(.4, 0, .2, 1) both; }
+::view-transition-new(root) { animation: mo-in .55s cubic-bezier(.16, 1, .3, 1) both; }
+@keyframes mo-out { to { opacity: 0; } }
+@keyframes mo-in { from { opacity: 0; transform: translate3d(0, 14px, 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

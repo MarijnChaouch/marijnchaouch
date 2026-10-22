@@ -1200,6 +1200,66 @@
     set();
   }
 
+  /* beweging bij scrollen: tekst glijdt omhoog in beeld, beelden openen als een gordijn, grote titels komen woord voor woord uit een masker.
+     Alleen als de browser het kan en de bezoeker geen 'minder beweging' heeft ingesteld; zonder JS blijft alles gewoon zichtbaar. */
+  function motion() {
+    if (!window.IntersectionObserver || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root = document.documentElement;
+    root.classList.add('mo');
+    function all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+    all('.pj-head h1, .head h1, .hvg-title, .bar .hvp-name').forEach(function (h) {
+      if (h.hasAttribute('data-fit') || h.getAttribute('data-mo')) return;
+      var n = 0;
+      (function walk(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+          if (c.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            c.textContent.split(/(\s+)/).forEach(function (w) {
+              if (!w) return;
+              if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+              var o = document.createElement('span'), i = document.createElement('span');
+              o.className = 'mo-w'; i.textContent = w; i.style.transitionDelay = (n++ * 70) + 'ms';
+              o.appendChild(i); frag.appendChild(o);
+            });
+            c.parentNode.replaceChild(frag, c);
+          } else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+        });
+      })(h);
+      h.setAttribute('data-mo', 'title');
+    });
+    all('.card .shot, .pj-item, .case .stack .item, .ct2-shots a, .hvp-cell').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'img'); });
+    all('.wi-row, .wi-side, .card .card-ed, .card .meta, .hvl-row, .pj-info, .ab4-big, .ab4-logos h2, .ab4-logos li, .ab4-col, ' +
+        '.ct2 .statement-x, .ct2 .row, .foot, .next, .hvp-text, .hv-card').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'up'); });
+
+    var io = new IntersectionObserver(function (list) {
+      var k = 0;
+      list.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = e.target;
+        io.unobserve(n);
+        n.style.setProperty('--mo-d', Math.min(k++, 8) * 80 + 'ms');
+        requestAnimationFrame(function () { n.classList.add('mo-in'); });
+        /* na afloop de animatie-instellingen weghalen, zodat hover en klikken weer gewoon werken */
+        setTimeout(function () { n.classList.add('mo-done'); }, 1900 + Math.min(k, 8) * 80);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+    all('[data-mo]').forEach(function (n) { io.observe(n); });
+    /* Panoramis-strook: alleen bij binnenkomst openen; cellen die later in beeld schuiven staan er gewoon */
+    setTimeout(function () {
+      all('.hvp-cell[data-mo]').forEach(function (n) { io.unobserve(n); n.classList.add('mo-in', 'mo-done'); });
+    }, 2400);
+  }
+
+  /* desktop: zacht, vloeiend scrollen (Lenis); niet op de telefoon en niet op de Panoramis-home (die scrolt niet) */
+  function smooth() {
+    if (!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine) and (min-width: 1100px)').matches) return;
+    if (document.body.classList.contains('hv-is-panoramis')) return;
+    var lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 0.9 });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  }
+
   function load(url) {
     return fetch(url).then(function (r) { return r.json(); });
   }
@@ -1222,6 +1282,8 @@
         if (!homeStyles()) reel();
         grid();
         project();
+        motion();
+        smooth();
       })
       .catch(offline);
   });

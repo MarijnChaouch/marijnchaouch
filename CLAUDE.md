@@ -159,3 +159,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   op alle pagina's; client en agency gescheiden (Fila/The Spot Agency, Transavia/Untold Stories, Snipes/Provoke), 'x' klein in titels;
   menu op projectpagina's gelijk aan elders; grijs `--soft` en #8C857C naar #767069 (contrast 4.65:1).
   Mizuno en Snipes opnieuw uit 1080x1920 originelen (`trailrun_recap-v3`, `Provoke_BTS_SnipesXKappa_N-v3`, previews `-preview-v3`).
+- Beweging (22-10-2026, `motion()` en `smooth()` in site.js, CSS-blok 'beweging' onderaan site.css): tekst/blokken glijden omhoog
+  (`data-mo="up"`), beelden openen als gordijn met lichte zoom (`data-mo="img"`, clip-path op het kind, niet op het blok zelf:
+  dan ziet IntersectionObserver het blok als onzichtbaar), grote titels woord voor woord uit een masker (`data-mo="title"`, niet
+  op `data-fit`). Panoramis-strook alleen bij binnenkomst. Zachte paginaovergang via `@view-transition`. Desktop (≥1100, muis):
+  vloeiend scrollen met Lenis (`assets/js/lenis.min.js`, 1.1.13, lokaal), niet op Panoramis. Alles uit bij prefers-reduced-motion.
+- About 'Selected clients' = dezelfde merken als de logo's (site.json `clients`).
