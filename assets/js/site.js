@@ -242,7 +242,7 @@
       return '<div class="lay lay-cover">' +
         '<div class="cover-visual">' + b.hero + '</div>' +
         '<div class="cover-text">' +
-          '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>' +
+          '<div class="lay-corners">' + back + '<span>' + no + ' \u00b7 ' + kind + '</span></div>' +
           '<h1>' + esc(p.title) + '</h1>' +
           '<div class="cover-facts">' + factRows(p) + '</div>' +
           (p.intro ? '<p class="statement">' + esc(p.intro) + '</p>' : '') +
@@ -252,7 +252,7 @@
     /* kolommen: titel over twee verspringende regels, label met tekst, beeld over de volle breedte */
     if (layout === 'columns') {
       return '<div class="lay lay-columns">' +
-        '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>' +
+        '<div class="lay-corners">' + back + '<span>' + no + ' \u00b7 ' + kind + '</span></div>' +
         '<h1 class="stagger">' + halves(p.title) + '</h1>' +
         '<div class="col-row"><span>Project</span><p>' + esc(p.intro || p.caption || '') + '</p></div>' +
         '<div class="col-row"><span>Client</span><p>' + esc(p.client) + (p.year ? ', ' + esc(p.year) : '') + '</p></div>' +
@@ -297,7 +297,7 @@
         '</div>';
     }
 
-    var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u2014 ' + kind + '</span></div>';
+    var corners = '<div class="lay-corners">' + back + '<span>' + no + ' \u00b7 ' + kind + '</span></div>';
 
     /* midden: de film in het midden, links titel en klant, rechts de tekst als citaat, kleine regels onderaan */
     if (layout === 'center') {
@@ -385,7 +385,7 @@
         (p.intro && p.intro !== p.title ? '<p class="poster-intro">' + esc(p.intro) + '</p>' : '') +
         '<h1 data-fit><span>' + esc(p.title) + '</span></h1>' + under +
         '<div class="poster-foot"><span>' + esc(p.client) + '</span><span>' + esc(p.deliverables || kind) + '</span><span>' + no + '</span></div>' +
-        '<div class="poster-edge">Marijn Chaouch \u2014 Photography and Film</div>' +
+        '<div class="poster-edge">Marijn Chaouch \u00b7 Photography and Film</div>' +
         '</div>';
     }
 
@@ -820,7 +820,7 @@
     gallery: function () {
       /* naar 'Curated (works)': grote kop in het midden, link, onderaan een rij genummerde beeldjes */
       var years = P.map(function (p) { return parseInt(p.year, 10) || 0; }).filter(Boolean);
-      var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
+      var span = String(Math.min.apply(null, years)).slice(2) + '/' + String(Math.max.apply(null, years)).slice(2);
       var list = ordered();
       return '<div class="hvg-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1>' +
         '<a class="hvg-open" href="work.html">Open work</a>' +
@@ -876,9 +876,9 @@
     },
     list: function () {
       /* naar 'Selected work': grote kop, rijen met dikke lijn, titel groot links en beeld rechts */
-      /* combi (22-10-2026): 'Selected (Work) 24–26' midden in het eerste scherm, daaronder de rijen */
+      /* combi (22-10-2026): 'Selected (Work) 24/26' midden in het eerste scherm, daaronder de rijen */
       var years = P.map(function (p) { return parseInt(p.year, 10) || 0; }).filter(Boolean);
-      var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
+      var span = String(Math.min.apply(null, years)).slice(2) + '/' + String(Math.max.apply(null, years)).slice(2);
       return '<div class="hvl-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1></div>' +
         '<div class="hvl">' + byYear().map(function (p) {
           /* klein beeldje: altijd een stilstaand beeld (bij video de poster), zo laadt de telefoon geen tien video's tegelijk */
@@ -917,7 +917,7 @@
       var p = by('sjrm');
       return '<h1 class="hv-big" data-fit><span>MARIJN CHAOUCH</span></h1>' +
         '<div class="hv-mid">' + pic(p, 'hv-small') + '<span class="hv-cap">' + esc(p.title) + '</span></div>' +
-        '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u2014 2026</p><p>Photography<br>&amp; Film</p></div>';
+        '<div class="hv-foot"><p>' + esc(S.tagline || '') + '<br>' + esc(S.location || '') + ' \u00b7 2026</p><p>Photography<br>&amp; Film</p></div>';
     },
     aino: function (by) {
       /* eerst het werk, daaronder de tekst en als afsluiter de naam over de hele breedte */
@@ -1156,7 +1156,7 @@
     var preview = new URLSearchParams(location.search).get('layout');
     if (preview) p = Object.assign({}, p, { layout: preview });
 
-    document.title = p.title + ' \u2014 Marijn Chaouch';
+    document.title = p.title + ' \u00b7 Marijn Chaouch';
     /* projectkleuren staan uit: alle pagina's in de huisstijl. Weer aan: paint(p); */
     document.body.classList.add('case-' + (p.layout || 'editorial'));
 
