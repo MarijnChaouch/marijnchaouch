@@ -31,6 +31,22 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Niet opnieuw de nameservers naar Vercel (`ns1/ns2.vercel-dns.com`) zetten: dat is op 19-10-2026 geprobeerd,
   Vercel activeerde de zone niet (REFUSED) en de site was even onbereikbaar.
 
+## Plan: domein naar Cloudflare + mail (gepland, nog niet gedaan; 22-10-2026)
+
+- Marijn wil weg bij Mijndomein en een eigen mailadres (voorkeur advies: hello@marijnchaouch.com via Google Workspace;
+  marijn@ vond hij dubbel). Hij doet de account- en betaalstappen zelf; Claude zet de instellingen klaar.
+- Domein: aangemaakt 20-12-2024, verloopt 20-12-2026 (registrar Metaregistrar, via Mijndomein). Verhuizen vóór ~1 december 2026,
+  zodat Mijndomein niet eerst nog verlengt; de verhuizing naar Cloudflare verlengt meteen een jaar (~€10). 60-dagenregel speelt niet.
+- Huidige DNS (22-10-2026): A @ en www (en *) -> 76.76.21.21 (Vercel); TXT SPF `v=spf1 a mx include:spf.mijndomeinhosting.nl -all`;
+  _dmarc CNAME naar dmarc-reject.mijndomein.nl (p=quarantine). Geen MX (geen mail op het domein).
+- Stappen: 1) Cloudflare-account, domein toevoegen; records overnemen: A @ 76.76.21.21 en A www 76.76.21.21, proxy UIT (grijze wolk,
+  Vercel wil dat). Mijndomein-SPF en -DMARC NIET overnemen. 2) Bij Mijndomein nameservers naar de twee van Cloudflare; wachten tot
+  Cloudflare 'Active' zegt; site controleren. 3) Bij Mijndomein domeinvergrendeling uit + verhuiscode (EPP). 4) Bij Cloudflare
+  verhuizing starten en betalen; eventuele bevestigingsmail van Mijndomein goedkeuren. 5) Pas daarna Mijndomein opzeggen.
+- Mail (Google Workspace): MX `smtp.google.com` prio 1; SPF `v=spf1 include:_spf.google.com ~all`; DKIM-sleutel uit Workspace-admin;
+  DMARC eerst `v=DMARC1; p=none; rua=mailto:hello@marijnchaouch.com`. Daarna mailadres op de site (site.json `email`) aanpassen.
+- In Vercel hoeft niets te veranderen: het domein blijft aan het project gekoppeld, alleen de DNS verhuist.
+
 ## Overstap van Netlify (19-10-2026, afgerond)
 
 - De site draaide eerst op Netlify (betaald). Sinds 19-10 werken `marijnchaouch.com` en `www.marijnchaouch.com`
