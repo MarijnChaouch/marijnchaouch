@@ -1228,9 +1228,9 @@
       })(h);
       h.setAttribute('data-mo', 'title');
     });
-    all('.card .shot, .pj-item, .case .stack .item, .ct2-shots a, .hvp-cell').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'img'); });
-    all('.wi-row, .wi-side, .card .card-ed, .card .meta, .hvl-row, .pj-info, .ab4-big, .ab4-logos h2, .ab4-logos li, .ab4-col, ' +
-        '.ct2 .statement-x, .ct2 .row, .foot, .next, .hvp-text, .hv-card').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'up'); });
+    /* beelden zelf bewegen niet (Marijn vond het openen van de beelden irritant) */
+    all('.wi-row, .card .card-ed, .card .meta, .pj-info, .ab4-big, .ab4-logos h2, .ab4-logos li, .ab4-col, ' +
+        '.ct2 .statement-x, .ct2 .row, .foot, .next, .hvp-text').forEach(function (n) { if (!n.getAttribute('data-mo')) n.setAttribute('data-mo', 'up'); });
 
     var io = new IntersectionObserver(function (list) {
       var k = 0;
@@ -1238,17 +1238,13 @@
         if (!e.isIntersecting) return;
         var n = e.target;
         io.unobserve(n);
-        n.style.setProperty('--mo-d', Math.min(k++, 8) * 80 + 'ms');
+        n.style.setProperty("--mo-d", Math.min(k++, 6) * 50 + "ms");
         requestAnimationFrame(function () { n.classList.add('mo-in'); });
         /* na afloop de animatie-instellingen weghalen, zodat hover en klikken weer gewoon werken */
         setTimeout(function () { n.classList.add('mo-done'); }, 1900 + Math.min(k, 8) * 80);
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
     all('[data-mo]').forEach(function (n) { io.observe(n); });
-    /* Panoramis-strook: alleen bij binnenkomst openen; cellen die later in beeld schuiven staan er gewoon */
-    setTimeout(function () {
-      all('.hvp-cell[data-mo]').forEach(function (n) { io.unobserve(n); n.classList.add('mo-in', 'mo-done'); });
-    }, 2400);
   }
 
   /* desktop: zacht, vloeiend scrollen (Lenis); niet op de telefoon en niet op de Panoramis-home (die scrolt niet) */
@@ -1256,7 +1252,7 @@
     if (!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!window.matchMedia('(pointer: fine) and (min-width: 1100px)').matches) return;
     if (document.body.classList.contains('hv-is-panoramis')) return;
-    var lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 0.9 });
+    var lenis = new window.Lenis({ lerp: 0.18, wheelMultiplier: 1 });
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
   }
 
