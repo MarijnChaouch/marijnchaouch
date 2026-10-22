@@ -204,3 +204,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Veld `thumb` (projects.json): vaste stilstaande foto voor de lijst op de telefoon-home (`media/thumb_<slug>.jpg`, 640x800, 4:5),
   door Marijn gekozen momenten (22-10-2026): Hi Tec vrouw bij gele rotsen, PAL masker-shot, PAL Lookbook franjejas, Mille gletsjer,
   Bacardi Casa-gebouw, Snipes drie jongens, Ravi rode stenen, Nike x Patta gele capuchon, Mizuno rots-silhouet, Travelteq stuur met zee. Zonder `thumb` de poster van de preview.
+- Nachtstand (22-10-2026, wens Marijn): van 19:00 tot 07:00 lokale tijd van de bezoeker is de site zwart met wit (`html.night`).
+  Eerste keuze via een klein script direct na `<meta charset>` in elke HTML (geen witte flits), daarna `nightClock()` in site.js
+  dat precies om 07:00/19:00 wisselt en `theme-color` aanpast. Kleuren in het CSS-blok 'nacht' onderaan; grijs overal via `var(--soft)`.
+  Logo's op About worden wit (`invert`), het roze About-vlak wordt zwart. Test: `document.documentElement.classList.add('night')`.
