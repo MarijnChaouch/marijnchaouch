@@ -3041,3 +3041,26 @@ body.hv-is-panoramis .foot { display: none !important; }
 /* lijst (telefoon): kop 'Selected (Work)' midden in het eerste scherm, rijen eronder */
 .hvl-first { display: flex; align-items: center; justify-content: center; min-height: calc(100svh - 150px); padding-bottom: 24px; }
 .hvl-first .hvg-title { margin: 0; }
+
+/* about: 'Collaborated with', logo's in zwart onder de bio */
+.ab4-logos { margin: 0 0 72px; }
+.ab4-logos h2 { margin: 0 0 32px; text-align: center; font-size: 15px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; }
+.ab4-logos ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.ab4-logos li { display: flex; align-items: center; justify-content: center; height: 96px; }
+.ab4-logos img { display: block; max-width: 68%; max-height: calc(40px * var(--k, 1)); width: auto; height: auto; filter: brightness(0); }
+@media (min-width: 720px) {
+  .ab4-logos { max-width: 1100px; margin: 0 auto 140px; }
+  .ab4-logos h2 { margin-bottom: 48px; font-size: 20px; }
+  .ab4-logos ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ab4-logos li { height: 168px; }
+  .ab4-logos img { max-width: 62%; max-height: calc(64px * var(--k, 1)); }
+}
+
+/* panoramis op desktop: één scherm, de pagina scrolt niet; alleen de strook beweegt */
+@media (min-width: 720px) {
+  html:has(body.hv-is-panoramis), body.hv-is-panoramis { height: 100%; overflow: hidden; overscroll-behavior: none; }
+  body.hv-is-panoramis main.home { box-sizing: border-box; height: 100svh; overflow: hidden; }
+  body.hv-is-panoramis main.home > .wrap { box-sizing: border-box; display: flex; flex-direction: column; height: 100%; }
+  .hv-panoramis { flex: 1 1 auto; min-height: 0; }
+  .hvp-cell { width: min(28vw, 400px, 46svh); }
+}

@@ -125,7 +125,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 ## Kop en homepage-varianten (21-10-2026)
 
 - Kop op elke pagina: links 'MARIJN CHAOUCH  PHOTOGRAPHY AND FILM' (link naar home), rechts 'MENU' / 'CLOSE' (telefoon/tablet).
-- Keuzebalk (`?kies`) bevat: Studioform, Panoramis, Lijst, Portret, Magazine, Galerij, Reels, Stapel (varianten in `homeBuilders`).
+- Homepage vast (22-10-2026): telefoon Lijst (combi), desktop Panoramis. De keuzebalk is weg; opgeslagen keuzes tellen niet meer.
+  `?stijl=<naam>` werkt nog om een variant te bekijken (wordt niet bewaard). Andere varianten staan nog in `homeBuilders`.
+- Panoramis op desktop is één scherm: de pagina scrolt niet, scrollen/slepen beweegt alleen de strook (`strip()` luistert op window).
 - Per apparaat een eigen standaard (22-10-2026): desktop `data-style="panoramis"` (vastgezet 22-10-2026), telefoon (<720px) `data-style-mobile="list"`
   op `<main>` in index.html. De keuze in de balk wordt per apparaat bewaard (`homepick-d` / `homepick-m` in localStorage).
 - Lijst (combi sinds 22-10-2026): 'Selected (Work) 24–26' smal en groot midden in het eerste scherm (`.hvl-first`), daaronder de kleine lijst (`.hvl-row`: beeldje links, titel, klant, jaar rechts); Marijn wil deze kleinere lijst, niet de grote rijen (`rowsList`). Bijschriften op Panoramis wit.
@@ -133,3 +135,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   Galerij: 'CURATED (WORKS)'-stijl met genummerde rij. Panoramis (desktop, naar panoramis.framer.website): naam in het midden,
   eindeloze strook vierkante beelden (`strip()`, schuift vanzelf, slepen/scrollen kan).
 - About-foto: `media/portrait_colourchart.jpg` (Marijn met colorchecker, van cinea.studio), via `portrait` in site.json.
+- About: onder de bio 'Collaborated with' met logo's (`.ab4-logos`, bestanden in `media/logos/`, zwart via CSS-filter, grootte per logo met `--k`).
+  Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon of Brooks.
+  Nog zonder logo: Untold, Provoke, Ravi Nagarkar (niet zeker welk logo klopt; Marijn kan ze aanleveren).

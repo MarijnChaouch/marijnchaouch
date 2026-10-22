@@ -724,15 +724,10 @@
     var main = document.querySelector('main.home');
     if (!main) return false;
     var q = new URLSearchParams(location.search);
-    /* telefoon en desktop hebben elk hun eigen homepage (data-style-mobile / data-style) en eigen keuze */
+    /* vast (22-10-2026): telefoon Lijst, desktop Panoramis; keuzebalk weg. ?stijl= werkt nog voor testen, zonder te bewaren */
     var phone = window.matchMedia('(max-width: 719px)').matches;
-    var key = phone ? 'homepick-m' : 'homepick-d';
-    if (q.has('kies')) store('homepick-bar', '1');
-    if (q.get('stijl') != null) store(key, q.get('stijl'));
     var def = (phone && main.getAttribute('data-style-mobile')) || main.getAttribute('data-style') || '';
-    /* de link zelf telt altijd, ook als de browser niets mag opslaan */
-    var pick = q.get('stijl') != null ? q.get('stijl') : (store(key) != null ? store(key) : def);
-    if (q.has('kies') || store('homepick-bar')) chooser(pick);
+    var pick = q.get('stijl') || def;
     if (!pick || !homeBuilders[pick]) return false;
 
     var by = function (slug) { return P.filter(function (p) { return p.slug === slug; })[0] || P[0]; };
@@ -952,7 +947,9 @@
       track.style.transform = 'translate3d(' + x + 'px,0,0)';
       requestAnimationFrame(loop);
     }
-    el2.addEventListener('wheel', function (e) { x -= (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY); e.preventDefault(); }, { passive: false });
+    /* desktop: de pagina scrolt niet, scrollen overal op het scherm beweegt de strook */
+    var desk = window.matchMedia('(min-width: 720px)').matches;
+    (desk ? window : el2).addEventListener('wheel', function (e) { x -= (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY); e.preventDefault(); }, { passive: false });
     el2.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, start: x }; moved = 0; el2.classList.add('drag'); });
     window.addEventListener('pointermove', function (e) { if (!drag) return; moved = Math.abs(e.clientX - drag.x); x = drag.start + (e.clientX - drag.x); });
     window.addEventListener('pointerup', function () { drag = null; el2.classList.remove('drag'); });
