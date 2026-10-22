@@ -208,43 +208,43 @@
       "ink": "#14110F",
       "layout": "standard",
       "reel": false,
-      "cover": "/media/palfw26-preview.mp4",
+      "cover": "/media/palfw26-preview-v2.mp4",
       "heroType": "video",
-      "heroSrc": "/media/palfw26_6.mp4",
+      "heroSrc": "/media/palfw26_6-v2.mp4",
       "media": [
         {
           "type": "video",
-          "src": "/media/palfw26_7.mp4",
+          "src": "/media/palfw26_7-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_11.mp4",
+          "src": "/media/palfw26_11-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_3.mp4",
+          "src": "/media/palfw26_3-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_4.mp4",
+          "src": "/media/palfw26_4-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_13.mp4",
+          "src": "/media/palfw26_13-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_2.mp4",
+          "src": "/media/palfw26_2-v2.mp4",
           "span": "half",
           "ratio": 0.5625
         }
@@ -259,7 +259,7 @@
       "year": "2025",
       "kind": "video",
       "role": "Videography",
-      "deliverables": "Short documentary",
+      "deliverables": "Short documentary and edits",
       "intro": "A short documentary with Mille Monferin about denim and craft.",
       "caption": "",
       "article": "",
@@ -267,25 +267,19 @@
       "ink": "#14110F",
       "layout": "standard",
       "reel": false,
-      "cover": "/media/mille_main-preview.mp4",
+      "cover": "/media/mille-preview-v2.mp4",
       "heroType": "video",
-      "heroSrc": "/media/mille_main.mp4",
+      "heroSrc": "/media/mille_closeups.mp4",
       "media": [
         {
-          "type": "image",
-          "src": "/media/mille_still_01.jpg",
+          "type": "video",
+          "src": "/media/mille_jeans.mp4",
           "span": "half",
           "ratio": 1.25
         },
         {
-          "type": "image",
-          "src": "/media/mille_still_02.jpg",
-          "span": "half",
-          "ratio": 1.25
-        },
-        {
-          "type": "image",
-          "src": "/media/mille_still_03.jpg",
+          "type": "video",
+          "src": "/media/mille_book.mp4",
           "span": "half",
           "ratio": 1.25
         }

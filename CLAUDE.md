@@ -140,5 +140,6 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon, Brooks of The Spot. Erbij op verzoek (22-10-2026): Armani Exchange, Vlisco, Bacardi, Tomorrowland (festival-logo, niet Disney). Transavia = nieuw logo (transavia-v2.svg), JD = rond logo als png. Laatste rij staat in het midden (flex).
   Nog zonder logo: Untold, Provoke, Ravi Nagarkar (niet zeker welk logo klopt; Marijn kan ze aanleveren).
 - Nieuwe projecten 22-10-2026 (Marijn koos uit een overzicht van Dropbox-kandidaten; niets toevoegen zonder zijn keuze):
-  `pal-lookbook-fw26` (7 staande clips uit Dropbox 2025/December/PAL_Lookbook FW 26/V1 Shorts, zonder de muziek) en
-  `mille-monferin` (korte docu V6.mov uit 2025/Oktober, met geluid, 960x768, ~31 MB; client 'Minus One' afgeleid van het -1 label, nog bevestigen).
+  `pal-lookbook-fw26` (7 staande clips uit Dropbox 2025/December/PAL_Lookbook FW 26/V1 Shorts, zonder de muziek;
+  volle 1080x1920, crf 24, bestanden `-v2`; 720p was Marijn te zacht) en `mille-monferin` (drie losse edits met geluid:
+  closeups, Jeans snippet, Book; niet het interview, op wens van Marijn; client 'Minus One' afgeleid van het -1 label, nog bevestigen).
