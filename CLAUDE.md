@@ -197,3 +197,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Home-links onderaan (All work / About / Contact) als volle rijen zonder pijltjes.
 - About scrollen (22-10-2026, Marijn: 'trippy en glitchy'): foto-parallax alleen met muis (desktop) en dan via `lenis.on('scroll')`
   in hetzelfde frame (eerst liep hij een frame achter); op telefoon/tablet geen parallax. Geen fade-ins op About.
+- Ravi Nagarkar: `heroCount: 1` (zoals Snipes); ring-video vierkant (`ravi_ring-square.mp4`, uit Dropbox 2026/Augustus/Ravi/1.mov,
+  crop rond de ring, zonder de gele rand).
