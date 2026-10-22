@@ -209,3 +209,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   dat precies om 07:00/19:00 wisselt en `theme-color` aanpast. Kleuren in het CSS-blok 'nacht' onderaan; grijs overal via `var(--soft)`.
   Logo's op About worden wit (`invert`), het roze About-vlak wordt zwart. Nachtkleuren neutraal: #000 met #FFF, grijs #8F8F8F
   (warm zwart #0F0E0D vond Marijn 'bruin zwart'). Test: `document.documentElement.classList.add('night')`.
+- Witte scanranden (zichtbaar in de nachtstand) weggesneden bij de Morocco-foto's en tcs_amsterdam_03 (`-v2.jpg`, zelfde maat).
+  Nieuwe foto's eerst checken op witte randen.

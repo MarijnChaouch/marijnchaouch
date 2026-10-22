@@ -499,7 +499,7 @@
         },
         {
           "type": "image",
-          "src": "/media/tcs_amsterdam_03.jpg",
+          "src": "/media/tcs_amsterdam_03-v2.jpg",
           "span": "half",
           "ratio": 0.8
         },
@@ -528,25 +528,25 @@
       "ink": "#FFFFFF",
       "layout": "standard",
       "reel": false,
-      "cover": "/media/morocco_driver.jpg",
+      "cover": "/media/morocco_driver-v2.jpg",
       "heroType": "image",
       "heroSrc": "/media/morocco_road.jpg",
       "media": [
         {
           "type": "image",
-          "src": "/media/morocco_driver.jpg",
+          "src": "/media/morocco_driver-v2.jpg",
           "span": "half",
           "ratio": 0.6665
         },
         {
           "type": "image",
-          "src": "/media/morocco_docker.jpg",
+          "src": "/media/morocco_docker-v2.jpg",
           "span": "full",
           "ratio": 1.25
         },
         {
           "type": "image",
-          "src": "/media/morocco_thumbs_up.jpg",
+          "src": "/media/morocco_thumbs_up-v2.jpg",
           "span": "half",
           "ratio": 0.6665
         },
@@ -558,7 +558,7 @@
         },
         {
           "type": "image",
-          "src": "/media/morocco_waiter.jpg",
+          "src": "/media/morocco_waiter-v2.jpg",
           "span": "full",
           "ratio": 1.4993
         },
@@ -570,7 +570,7 @@
         },
         {
           "type": "image",
-          "src": "/media/morocco_portrait.jpg",
+          "src": "/media/morocco_portrait-v2.jpg",
           "span": "half",
           "ratio": 0.6665
         },
@@ -582,7 +582,7 @@
         },
         {
           "type": "image",
-          "src": "/media/morocco_bus_driver.jpg",
+          "src": "/media/morocco_bus_driver-v2.jpg",
           "span": "half",
           "ratio": 0.6665
         }
