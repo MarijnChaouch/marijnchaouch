@@ -181,5 +181,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   licht vloeiend scrollen met Lenis (lerp 0.18; 0.085 was 'te heftig') (`assets/js/lenis.min.js`, 1.1.13, lokaal), niet op Panoramis. Alles uit bij prefers-reduced-motion.
 - About 'Selected clients' = dezelfde merken als de logo's (site.json `clients`).
 - NOOIT streepjes op de site (Marijn, 22-10-2026: 'nooit nergens'): geen — of –, ook niet in paginatitels of JS-teksten.
-  Scheidingsteken is · (bijv. 'Work · Marijn Chaouch'), bereik met / ('24/26'), geen koppeltekens in zijn teksten ('Hi Tec', 'red toned').
+  Scheidingsteken is · (bijv. 'Work · Marijn Chaouch'), uitzondering: '24–26' in de kop 'Selected (Work)' op de telefoon-home mag wel (Marijn, 22-10-2026), geen koppeltekens in zijn teksten ('Hi Tec', 'red toned').
   Slugs in links (project?p=hi-tec) blijven zoals ze zijn.
