@@ -137,5 +137,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   eindeloze strook vierkante beelden (`strip()`, schuift vanzelf, slepen/scrollen kan).
 - About-foto: `media/portrait_colourchart.jpg` (Marijn met colorchecker, van cinea.studio), via `portrait` in site.json.
 - About: onder de bio 'Collaborated with' met logo's (`.ab4-logos`, bestanden in `media/logos/`, zwart via CSS-filter, grootte per logo met `--k`).
-  Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon, Brooks of The Spot. Transavia = nieuw logo (transavia-v2.svg), JD = rond logo als png. Laatste rij staat in het midden (flex).
+  Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon, Brooks of The Spot. Erbij op verzoek (22-10-2026): Armani Exchange, Vlisco, Bacardi, Tomorrowland (festival-logo, niet Disney). Transavia = nieuw logo (transavia-v2.svg), JD = rond logo als png. Laatste rij staat in het midden (flex).
   Nog zonder logo: Untold, Provoke, Ravi Nagarkar (niet zeker welk logo klopt; Marijn kan ze aanleveren).
+- Nieuwe projecten 22-10-2026 (Marijn koos uit een overzicht van Dropbox-kandidaten; niets toevoegen zonder zijn keuze):
+  `pal-lookbook-fw26` (7 staande clips uit Dropbox 2025/December/PAL_Lookbook FW 26/V1 Shorts, zonder de muziek) en
+  `mille-monferin` (korte docu V6.mov uit 2025/Oktober, met geluid, 960x768, ~31 MB; client 'Minus One' afgeleid van het -1 label, nog bevestigen).

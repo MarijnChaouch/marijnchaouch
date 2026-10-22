@@ -194,6 +194,106 @@
       "heroRatio": 1.0
     },
     {
+      "title": "PAL Lookbook FW26",
+      "slug": "pal-lookbook-fw26",
+      "client": "PAL Sporting Goods",
+      "year": "2025",
+      "kind": "video",
+      "role": "Videography",
+      "deliverables": "Lookbook videos",
+      "intro": "Fall Winter 26 lookbook for PAL Sporting Goods.",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "standard",
+      "reel": false,
+      "cover": "/media/palfw26-preview.mp4",
+      "heroType": "video",
+      "heroSrc": "/media/palfw26_6.mp4",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/palfw26_7.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
+          "src": "/media/palfw26_11.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
+          "src": "/media/palfw26_3.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
+          "src": "/media/palfw26_4.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
+          "src": "/media/palfw26_13.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        },
+        {
+          "type": "video",
+          "src": "/media/palfw26_2.mp4",
+          "span": "half",
+          "ratio": 0.5625
+        }
+      ],
+      "ratio": "9 / 16",
+      "heroRatio": 0.5625
+    },
+    {
+      "title": "Mille Monferin",
+      "slug": "mille-monferin",
+      "client": "Minus One",
+      "year": "2025",
+      "kind": "video",
+      "role": "Videography",
+      "deliverables": "Short documentary",
+      "intro": "A short documentary with Mille Monferin about denim and craft.",
+      "caption": "",
+      "article": "",
+      "color": "",
+      "ink": "#14110F",
+      "layout": "standard",
+      "reel": false,
+      "cover": "/media/mille_main-preview.mp4",
+      "heroType": "video",
+      "heroSrc": "/media/mille_main.mp4",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/mille_still_01.jpg",
+          "span": "half",
+          "ratio": 1.25
+        },
+        {
+          "type": "image",
+          "src": "/media/mille_still_02.jpg",
+          "span": "half",
+          "ratio": 1.25
+        },
+        {
+          "type": "image",
+          "src": "/media/mille_still_03.jpg",
+          "span": "half",
+          "ratio": 1.25
+        }
+      ],
+      "ratio": "5 / 4",
+      "heroRatio": 1.25
+    },
+    {
       "color": "#31c760",
       "media": [
         {
