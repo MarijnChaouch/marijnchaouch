@@ -136,5 +136,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   eindeloze strook vierkante beelden (`strip()`, schuift vanzelf, slepen/scrollen kan).
 - About-foto: `media/portrait_colourchart.jpg` (Marijn met colorchecker, van cinea.studio), via `portrait` in site.json.
 - About: onder de bio 'Collaborated with' met logo's (`.ab4-logos`, bestanden in `media/logos/`, zwart via CSS-filter, grootte per logo met `--k`).
-  Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon of Brooks.
+  Alleen merken uit Work (Marijn, 22-10-2026), niet Sunnery James & Ryan Marciano en niet Personal Project; geen Lululemon, Brooks of The Spot. Transavia = nieuw logo (transavia-v2.svg), JD = rond logo als png. Laatste rij staat in het midden (flex).
   Nog zonder logo: Untold, Provoke, Ravi Nagarkar (niet zeker welk logo klopt; Marijn kan ze aanleveren).
