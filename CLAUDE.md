@@ -213,3 +213,5 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   Nieuwe foto's eerst checken op witte randen, ook dunne lijntjes van 1 tot 3 px (daarna nog vijf foto's -v3).
 - TCS Marathon: film 'Mizuno edit V3' (Dropbox 2026/Oktober/Mizuno Marathon, 4:5, met geluid, `tcs_mizuno_edit.mp4`) na de twee
   hoofdfoto's als `span: "feature"` (groot, gecentreerd, ruimte eromheen) speelt vanzelf zoals de andere video's, met de Sound on/off-knop (geen speelknop); ~2 Mbit/s, `tcs_mizuno_edit-v2.mp4` (13.5 MB).
+- Zwart thema staat ALTIJD aan (23-10-2026, Marijn): `class="night"` op `<html>` in elke pagina, theme-color #000000.
+  De 19:00/07:00-timer (`nightClock`) is weg. Licht thema bestaat nog in de CSS (zonder `.night`), voor als hij terug wil.

@@ -1343,23 +1343,7 @@
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
   }
 
-  /* nacht: van 19:00 tot 07:00 (klok van de bezoeker, dus overal ter wereld goed) zwart met wit; overdag licht.
-     De eerste keuze staat al in <head> (geen witte flits); hier wisselen we op het juiste moment als de pagina openblijft. */
-  function nightClock() {
-    var root = document.documentElement;
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta && !meta.getAttribute('data-day')) meta.setAttribute('data-day', meta.getAttribute('content'));
-    function apply() {
-      var now = new Date(), h = now.getHours(), night = h >= 19 || h < 7;
-      root.classList.toggle('night', night);
-      if (meta) meta.setAttribute('content', night ? '#000000' : meta.getAttribute('data-day'));
-      var next = new Date(now); next.setMinutes(0, 0, 0);
-      next.setHours(night ? (h >= 19 ? 24 + 7 : 7) : 19);
-      setTimeout(apply, Math.max(1000, next - now + 500));
-    }
-    apply();
-  }
-
+  /* zwart thema staat altijd aan (class="night" op <html>, sinds 23-10-2026); vroeger alleen van 19:00 tot 07:00 */
   function load(url) {
     return fetch(url).then(function (r) { return r.json(); });
   }
@@ -1371,7 +1355,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    nightClock();
     menu();
     Promise.all([load('data/projects.json'), load('data/site.json')])
       .then(function (out) {
