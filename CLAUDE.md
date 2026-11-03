@@ -217,3 +217,4 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   hoofdfoto's als `span: "feature"` (groot, gecentreerd, ruimte eromheen) speelt vanzelf zoals de andere video's, met de Sound on/off-knop (geen speelknop); ~2 Mbit/s, `tcs_mizuno_edit-v2.mp4` (13.5 MB).
 - Zwart thema staat ALTIJD aan (23-10-2026, Marijn): `class="night"` op `<html>` in elke pagina, theme-color #000000.
   De 19:00/07:00-timer (`nightClock`) is weg. Licht thema bestaat nog in de CSS (zonder `.night`), voor als hij terug wil.
+- Telefoon-home: 'Selected (Work) 24–26' draait in 3D rond om zijn eigen as in het midden (rotateY, 9 s per rondje, `hvl-spin`), uit bij reduced motion.

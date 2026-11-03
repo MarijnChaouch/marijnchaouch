@@ -3165,3 +3165,12 @@ html.night .burger span { background: var(--ink); }
 @media (min-width: 720px) {
   .case .stack .item.feature, .case:not(.case-contents) .stack .item.feature:nth-child(n) { grid-column: 1 / -1; margin: 10vh 0; }
 }
+
+/* telefoon-home: 'Selected (Work) 24–26' draait langzaam rond in 3D (23-10/nov 2026, wens Marijn) */
+.hvl-first { perspective: 900px; }
+.hvl-first .hvg-title { transform-style: preserve-3d; transform-origin: 50% 50%; will-change: transform; animation: hvl-spin 9s linear infinite; }
+@keyframes hvl-spin {
+  from { transform: rotateY(0deg) scaleX(.86); }
+  to { transform: rotateY(360deg) scaleX(.86); }
+}
+@media (prefers-reduced-motion: reduce) { .hvl-first .hvg-title { animation: none; } }
