@@ -974,7 +974,9 @@
       /* combi (22-10-2026): 'Selected (Work) 24–26' (dit streepje mag van Marijn) midden in het eerste scherm, daaronder de rijen */
       var years = P.map(function (p) { return parseInt(p.year, 10) || 0; }).filter(Boolean);
       var span = String(Math.min.apply(null, years)).slice(2) + '\u2013' + String(Math.max.apply(null, years)).slice(2);
-      return '<div class="hvl-first"><h1 class="hvg-title">Selected<br>(Work)<br>' + span + '</h1></div>' +
+      /* twee kanten: voor en achter (gespiegeld terug), zodat de tekst bij het 3D-draaien altijd goed leesbaar is */
+      var face = 'Selected<br>(Work)<br>' + span;
+      return '<div class="hvl-first"><h1 class="hvg-title"><span class="spin-f">' + face + '</span><span class="spin-b" aria-hidden="true">' + face + '</span></h1></div>' +
         '<div class="hvl">' + byYear().map(function (p) {
           /* klein beeldje: altijd een stilstaand beeld (bij video de poster), zo laadt de telefoon geen tien video's tegelijk */
           var still = p.thumb || (coverType(p) === 'video' ? poster(cover(p)) : cover(p));

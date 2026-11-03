@@ -218,3 +218,4 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Zwart thema staat ALTIJD aan (23-10-2026, Marijn): `class="night"` op `<html>` in elke pagina, theme-color #000000.
   De 19:00/07:00-timer (`nightClock`) is weg. Licht thema bestaat nog in de CSS (zonder `.night`), voor als hij terug wil.
 - Telefoon-home: 'Selected (Work) 24–26' draait in 3D rond om zijn eigen as in het midden (rotateY, 9 s per rondje, `hvl-spin`), uit bij reduced motion.
+  Eerst vallen de woorden in (masker), pas bij `.mo-done` begint het draaien. Twee kanten (`.spin-f`/`.spin-b`) zodat de achterkant ook leesbaar is.
