@@ -79,8 +79,9 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
 - Video's (22-10-2026, nieuw): bron in `data-lz`, geladen door `lazyVideos()` als ze binnen ~1 scherm komen (Panoramis-strook meteen),
   daarna `start()` = play(). Werk-pagina telefoon start met ~1.5 MB i.p.v. ~25 MB; eerste video speelt meteen. (Oktober 2026 speelde een
   eerdere lui-laad-versie op Marijns iPhone niet af; deze versie roept zelf play() aan. Bij twijfel op zijn iPhone checken.)
-  Energiebesparing iPhone: play() geeft NotAllowedError -> `asImage()` ruilt de video voor `<img src=...mp4>` (Safari speelt dat wel af);
-  op projectpagina's brengt een tik de echte video met geluid terug. Geluidsknop kijkt opnieuw bij 'playing'.
+  Energiebesparing iPhone: play() geeft NotAllowedError -> `lowPower`: video blijft staan met zijn still (nooit zwart), een tik op een
+  case-video speelt hem af. NIET meer `<img src=...mp4>` gebruiken: dat werd zwart en liet pagina's vastlopen (nov 2026).
+  Op Work en de Panoramis-strook is de still het gekozen `thumb`-beeld als dat er is. Geluidsknop kijkt opnieuw bij 'playing'.
   Video's die meer dan ~3 schermen uit beeld zijn geven hun bron terug (`unloadVideo`, still blijft) en laden opnieuw bij terugkomst;
   anders bleven op iPhone (Safari/Instagram) halverwege Work de video's hangen (nov 2026). Video's met geluid aan blijven staan.
 - Video's altijd met vierkante pixels en in hun echte vorm: `scale=W:H,setsar=1` bij encoderen. De PAL-honkbalvideo's en rocks waren

@@ -38,31 +38,19 @@
   var lowPower = false;
   function start(v) {
     var go = v.play();
-    if (go && go.catch) go.catch(function (err) { log('play geweigerd: ' + (err && err.name) + ' ' + (v.getAttribute('src') || '').split('/').pop()); if (err && err.name === 'NotAllowedError') asImage(v); });
-  }
-  /* iPhone in energiebesparing speelt geen video's vanzelf af, maar wel een mp4 als <img> (Safari ondersteunt dat).
-     Dan ruilen we de video voor zo'n beeld; op een projectpagina brengt een tik de echte video (met geluid) terug. */
-  function asImage(v) {
-    if (!webkit || !v.parentNode || v.controls) return;
-    lowPower = true;
-    var src = v.currentSrc || v.getAttribute('src') || v.getAttribute('data-lz');
-    if (!src) return;
-    var img = document.createElement('img');
-    img.className = v.className;
-    if (v.getAttribute('style')) img.setAttribute('style', v.getAttribute('style'));
-    img.alt = '';
-    img.setAttribute('data-video-img', '');
-    img._video = v;
-    img.src = src;
-    try { v.pause(); } catch (e) {}
-    v.parentNode.replaceChild(img, v);
+    if (go && go.catch) go.catch(function (err) {
+      log('play geweigerd: ' + (err && err.name) + ' ' + (v.getAttribute('src') || '').split('/').pop());
+      /* energiebesparing (iPhone): niet vanzelf afspelen. De video blijft staan met zijn stilstaande beeld (nooit zwart);
+         een tik op de video speelt hem af. (Vroeger ruilden we hem voor een mp4-als-plaatje: dat werd zwart en liet de pagina vastlopen.) */
+      if (err && err.name === 'NotAllowedError') { lowPower = true; document.documentElement.classList.add('lowpower'); }
+    });
   }
   document.addEventListener('click', function (e) {
-    var img = e.target.closest ? e.target.closest('img[data-video-img]') : null;
-    if (!img || !img._video || img.closest('a')) return;
-    var v = img._video;
+    if (!lowPower) return;
+    var v = e.target.closest ? e.target.closest('.case video, .pj-item video, .stack video') : null;
+    if (!v) { var box = e.target.closest ? e.target.closest('.pj-item, .stack .item') : null; v = box && box.querySelector('video'); }
+    if (!v || (v.closest && v.closest('a')) || !v.paused) return;
     if (!v.getAttribute('src') && v.getAttribute('data-lz')) { v.src = v.getAttribute('data-lz'); v.removeAttribute('data-lz'); }
-    img.parentNode.replaceChild(v, img);
     var go = v.play(); if (go && go.catch) go.catch(function () {});
   });
   /* testweergave voor de telefoon: ?debug toont per video wat de browser doet (alleen voor ons, verandert niets aan de site) */
@@ -72,11 +60,10 @@
     if (!dbg) return;
     var box = document.getElementById('dbg');
     if (!box) { box = document.createElement('pre'); box.id = 'dbg'; box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;max-height:55vh;overflow:auto;margin:0;padding:8px;background:rgba(0,0,0,.85);color:#7CFC9A;font:10px/1.35 ui-monospace,Menlo,monospace;z-index:99999;white-space:pre-wrap'; document.body.appendChild(box); }
-    var vids = Array.prototype.slice.call(document.querySelectorAll('video, img[data-video-img]'));
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video'));
     var rows = vids.map(function (v, k) {
       var r = v.getBoundingClientRect(), vis = r.bottom > 0 && r.top < innerHeight && r.width > 0;
       var name = (v.getAttribute('src') || v.getAttribute('data-lz') || '').split('/').pop();
-      if (v.tagName === 'IMG') return (vis ? '*' : ' ') + k + ' IMG(fallback) ' + name + (v.complete ? ' ok' : ' laden');
       return (vis ? '*' : ' ') + k + ' ' + (v.getAttribute('src') ? (v.paused ? 'STIL' : 'SPEELT') : 'wacht') + ' rs' + v.readyState + ' ns' + v.networkState + ' t' + v.currentTime.toFixed(1) + ' ' + name;
     });
     box.textContent = navigator.userAgent.replace(/^Mozilla\/5.0 /, '') + '\nlowPower=' + lowPower + ' webkit=' + webkit + '\n' + rows.join('\n') + '\n--\n' + dbg.slice(-12).join('\n');
@@ -88,9 +75,9 @@
     if (!src) return;
     v.removeAttribute('data-lz');
     v.setAttribute('preload', 'auto');
-    if (lowPower) { v.setAttribute('src', src); asImage(v); return; }
     v.src = src;
     watch(v);
+    if (lowPower) { v.setAttribute('preload', 'metadata'); return; }
     start(v);
   }
   /* video's ver buiten beeld geven hun geheugen terug (bron eraf, still blijft staan) en laden opnieuw als ze terugkomen.
@@ -904,7 +891,7 @@
       /* desktop naar Panoramis: één scherm, alle projecten als rij vierkanten van rand tot rand, sleepbaar */
       var list = ordered();
       var cells = list.concat(list).map(function (p) {
-        return '<a class="hvp-cell" href="' + link(p) + '" draggable="false">' + shot(coverType(p), cover(p), p.title, 'hvp-shot') +
+        return '<a class="hvp-cell" href="' + link(p) + '" draggable="false">' + shot(coverType(p), cover(p), p.title, 'hvp-shot', { poster: p.thumb }) +
           '<span class="hvp-cap"><b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span></span></a>';
       }).join('');
       /* links boven staat de kop (mark) op één lijn met het menu; plaats en status onder de tekst, niet in de hero */
@@ -1169,7 +1156,7 @@
         if (current === p) return;
         current = p;
         frame.innerHTML = '';
-        frame.appendChild(media(coverType(p), cover(p), p.title, 'wi-shot'));
+        frame.appendChild(media(coverType(p), cover(p), p.title, 'wi-shot', { poster: p.thumb }));
         cap.innerHTML = '<b>' + esc(p.title) + '</b><span>' + esc(p.client) + ' \u00b7 ' + esc(p.year) + '</span>';
         side.href = link(p);
       }
@@ -1202,7 +1189,7 @@
         var a = el('a', 'card');
         a.href = link(p);
         a.appendChild(el('div', 'card-ed', editorial(p, n)));
-        a.appendChild(media(coverType(p), cover(p), p.title, 'shot'));
+        a.appendChild(media(coverType(p), cover(p), p.title, 'shot', { poster: p.thumb }));
         a.appendChild(el('div', 'meta', '<b>' + ('0' + (n + 1)).slice(-2) + ' ' + esc(p.title) + '</b><span>' + (p.kind === 'video' ? 'Video' : 'Photo') + '</span>'));
         host.appendChild(a);
       });
