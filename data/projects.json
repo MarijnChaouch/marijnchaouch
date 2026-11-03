@@ -5,13 +5,13 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/rocks-v2.mp4",
+          "src": "/media/rocks-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/13.mp4",
+          "src": "/media/13-snd.mp4",
           "span": "half",
           "ratio": 1.7778
         }
@@ -22,7 +22,7 @@
       "heroSrc": "/media/trailrun_recap-v3.mp4",
       "slug": "mizuno-neo-accera",
       "posterFrames": 2,
-      "posterUnder": "/media/rocks-v2.mp4",
+      "posterUnder": "/media/rocks-v2-snd.mp4",
       "coverPhone": "/media/trailrun_recap-_final--phone.mp4",
       "look": 1,
       "client": "Mizuno",
@@ -158,27 +158,27 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/pal_reel-1.mp4",
+          "src": "/media/pal_reel-1-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/pal_reel-2.mp4",
+          "src": "/media/pal_reel-2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "span": "half",
           "type": "video",
-          "src": "/media/pal_reel-3.mp4",
+          "src": "/media/pal_reel-3-snd.mp4",
           "ratio": 0.5625
         }
       ],
       "caption": "BASEPAL ⚾️",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/pal_teaser.mp4",
+      "heroSrc": "/media/pal_teaser-snd.mp4",
       "slug": "pal-sporting-goods",
       "coverPhone": "/media/pal_teaser-phone.mp4",
       "look": 2,
@@ -215,47 +215,47 @@
       "reel": false,
       "cover": "/media/palfw26-preview-v2.mp4",
       "heroType": "video",
-      "heroSrc": "/media/palfw26_6-v2.mp4",
+      "heroSrc": "/media/palfw26_6-v2-snd.mp4",
       "media": [
         {
           "type": "video",
-          "src": "/media/palfw26_7-v2.mp4",
+          "src": "/media/palfw26_7-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_11-v2.mp4",
+          "src": "/media/palfw26_11-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_5-v2.mp4",
+          "src": "/media/palfw26_5-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_3-v2.mp4",
+          "src": "/media/palfw26_3-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_4-v2.mp4",
+          "src": "/media/palfw26_4-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_10-v2.mp4",
+          "src": "/media/palfw26_10-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/palfw26_2-v2.mp4",
+          "src": "/media/palfw26_2-v2-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         }
@@ -407,13 +407,13 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/Provoke_BTS_SnipesXKappa_1-v3.mp4",
+          "src": "/media/Provoke_BTS_SnipesXKappa_1-v3-snd.mp4",
           "span": "half",
           "ratio": 0.5639
         },
         {
           "type": "video",
-          "src": "/media/Provoke_BTS_SnipesXKappa_3-v3.mp4",
+          "src": "/media/Provoke_BTS_SnipesXKappa_3-v3-snd.mp4",
           "span": "half",
           "ratio": 0.5639
         }
@@ -421,7 +421,7 @@
       "caption": "Shot across the run up to the tournament.",
       "ink": "#FAF9F7",
       "layout": "standard",
-      "heroSrc": "/media/Provoke_BTS_SnipesXKappa_2-v3.mp4",
+      "heroSrc": "/media/Provoke_BTS_SnipesXKappa_2-v3-snd.mp4",
       "slug": "snipes-x-kappa",
       "look": 3,
       "client": "Snipes",
@@ -616,13 +616,13 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/ravi_render-v2-sq.mp4",
+          "src": "/media/ravi_render-v2-sq-snd.mp4",
           "span": "half",
           "ratio": 0.5625
         },
         {
           "type": "video",
-          "src": "/media/ravi_ring-square.mp4",
+          "src": "/media/ravi_ring-square-snd.mp4",
           "span": "half",
           "ratio": 1.0
         }

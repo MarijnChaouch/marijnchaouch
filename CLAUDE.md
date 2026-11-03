@@ -219,3 +219,7 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   De 19:00/07:00-timer (`nightClock`) is weg. Licht thema bestaat nog in de CSS (zonder `.night`), voor als hij terug wil.
 - Telefoon-home: 'Selected (Work) 24–26' draait in 3D rond om zijn eigen as in het midden (rotateY, 9 s per rondje, `hvl-spin`), uit bij reduced motion.
   Eerst vallen de woorden in (masker), pas bij `.mo-done` begint het draaien. Twee kanten (`.spin-f`/`.spin-b`) zodat de achterkant ook leesbaar is.
+- Geluid (nov 2026, Marijn: 'bij elke video in de cases een geluidknop'): de video's die eerder zonder geluid waren gemaakt kregen het
+  geluid uit het origineel erbij zonder het beeld te hercoderen (`-c:v copy`, aac 128k), bestanden `<naam>-snd.mp4`
+  (PAL teaser/reels, PAL Lookbook-clips, Snipes BTS, Mizuno rocks en 13, Ravi render en ring). Previews (`cover`) blijven stil.
+  Nieuwe case-video's dus MET geluid encoderen.
