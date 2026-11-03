@@ -223,3 +223,4 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   geluid uit het origineel erbij zonder het beeld te hercoderen (`-c:v copy`, aac 128k), bestanden `<naam>-snd.mp4`
   (PAL teaser/reels, PAL Lookbook-clips, Snipes BTS, Mizuno rocks en 13, Ravi render en ring). Previews (`cover`) blijven stil.
   Nieuwe case-video's dus MET geluid encoderen.
+- CSS/JS-links hebben `?v=<datumtijd>` (nov 2026): bij elke wijziging aan site.js/site.css dat nummer ophogen, anders kan Safari op iPhone de oude code uit het geheugen houden.
