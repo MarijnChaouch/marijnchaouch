@@ -81,6 +81,8 @@ wat er moet veranderen; Claude doet het werk en legt in gewone taal uit wat er g
   eerdere lui-laad-versie op Marijns iPhone niet af; deze versie roept zelf play() aan. Bij twijfel op zijn iPhone checken.)
   Energiebesparing iPhone: play() geeft NotAllowedError -> `asImage()` ruilt de video voor `<img src=...mp4>` (Safari speelt dat wel af);
   op projectpagina's brengt een tik de echte video met geluid terug. Geluidsknop kijkt opnieuw bij 'playing'.
+  Video's die meer dan ~3 schermen uit beeld zijn geven hun bron terug (`unloadVideo`, still blijft) en laden opnieuw bij terugkomst;
+  anders bleven op iPhone (Safari/Instagram) halverwege Work de video's hangen (nov 2026). Video's met geluid aan blijven staan.
 - Video's altijd met vierkante pixels en in hun echte vorm: `scale=W:H,setsar=1` bij encoderen. De PAL-honkbalvideo's en rocks waren
   ooit van staand 1080x1920 naar een vierkant geperst (SAR 9:16): opnieuw gemaakt uit de originelen (Dropbox 2026/Februari/Pal Honkbal/
   Delivery en Mizuno Gran C/Day2/Rocks.mp4) als `pal_teaser`, `pal_reel-1..3`, `rocks-v2` (1080x1920); PAL staat nu op ratio 9/16.

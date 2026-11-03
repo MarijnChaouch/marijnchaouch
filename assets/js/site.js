@@ -93,14 +93,28 @@
     watch(v);
     start(v);
   }
+  /* video's ver buiten beeld geven hun geheugen terug (bron eraf, still blijft staan) en laden opnieuw als ze terugkomen.
+     iPhone (Safari en de Instagram-browser) houdt maar een beperkt aantal video's tegelijk actief; zonder dit bleven
+     halverwege Work de volgende video's hangen (november 2026). */
+  function unloadVideo(v) {
+    if (!v.parentNode || v.getAttribute('data-lz') || !v.getAttribute('src') || !v.muted) return;
+    try { v.pause(); } catch (e) {}
+    v.setAttribute('data-lz', v.getAttribute('src'));
+    v.removeAttribute('src');
+    v.setAttribute('preload', 'none');
+    try { v.load(); } catch (e) {}
+  }
   var near = window.IntersectionObserver ? new IntersectionObserver(function (list) {
-    list.forEach(function (e) { if (e.isIntersecting) { near.unobserve(e.target); loadVideo(e.target); } });
+    list.forEach(function (e) { if (e.isIntersecting) loadVideo(e.target); });
   }, { rootMargin: '120% 0px' }) : null;
+  var far = window.IntersectionObserver ? new IntersectionObserver(function (list) {
+    list.forEach(function (e) { if (!e.isIntersecting) unloadVideo(e.target); });
+  }, { rootMargin: '300% 0px' }) : null;
   function lazyVideos(root) {
     Array.prototype.forEach.call((root || document).querySelectorAll('video[data-lz]'), function (v) {
       if (v._lz) return;
       v._lz = true;
-      if (!near || (v.closest && v.closest('.hvp-strip'))) loadVideo(v); else near.observe(v);
+      if (!near || (v.closest && v.closest('.hvp-strip'))) loadVideo(v); else { near.observe(v); far.observe(v); }
     });
   }
   /* ook video's die later worden toegevoegd (andere kolommen, filters) */
